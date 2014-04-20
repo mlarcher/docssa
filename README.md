@@ -1,5 +1,5 @@
-docssa
-======
+DoCSSa {dok~sa} 
+===============
 
 DoCSSa - Sass based CSS architecture and methodology
 
