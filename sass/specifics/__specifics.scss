@@ -11,16 +11,16 @@
 }
 
 .firstOrderList_item {
-  list-style-type: disc;
-  color: $color-beige;
+  list-style-type: square;
+  color: $color-pink;
 }
 .firstOrderList_item_content {
   color: $color-default-black;
 }
 
 .secondaryList_item {
-  list-style-type: circle;
-  color: $color-beige;
+  list-style-type: square;
+  color: $color-pink;
 }
 .secondaryList_item_content {
   color: $color-default-black;
@@ -32,7 +32,7 @@
 
 .note {
   padding: 15px;
-  background: $color-default-white;
+  border: dotted 1px $color-pink;
 }
 
 .exampleNote {
@@ -40,7 +40,17 @@
   border: dotted 1px $color-purple-light;
 }
 
-
+.sampleTitle {
+  background: $color-beige;
+  display: inline-block;
+  padding: 5px 20px;
+}
+.codeSample {
+  background: $color-beige-light;
+  border: solid 1px $color-beige;
+  margin-top: 0;
+  padding: 20px;
+}
 
 
 // various example component implementations
