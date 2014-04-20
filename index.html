@@ -170,9 +170,9 @@
 
                 <p>The main .scss file will look something like this :</p>
 
-<code>
-// custom.scss
-<pre>
+
+<samp class="sampleTitle">// custom.scss</samp>
+<pre class="codeSample">
 @charset "UTF-8";
 
 /*!
@@ -201,7 +201,6 @@
 // declarations specific to the project, organized according to the items/sections represented
 @import 'specifics/__specifics';
 </pre>
-</code>
 
                 <p>As you can see, it mostly acts as an aggregator for other files, which themselves import some
                     other scss files, and so on. With a well thought organization, this construct can prove very powerful.</p>
@@ -210,7 +209,8 @@
 
                 <p>Here is an overview of what a basic file system might look like :</p>
 
-<pre>
+<samp class="sampleTitle">// file system</samp>
+<pre class="codeSample">
 sass
 ¦   custom.scss
 ¦
@@ -351,9 +351,8 @@ sass
                             <aside class="exampleNote">
                                 <p>Here's what a mixin may look like in the <em>utils/_mixins</em> file :</p>
 
-                                <code>
-                                    // base/utils/_mixins.scss
-<pre>
+                              <samp class="sampleTitle">// base/utils/_mixins.scss</samp>
+<pre class="codeSample">
 @mixin linear-gradient($from, $to, $fallback:'') {
   .cssgradients & {
     background-image: -webkit-gradient(linear, left top, left bottom, from($from), to($to)); /* Saf4+, Chrome */
@@ -371,13 +370,12 @@ sass
   }
 }
 </pre>
-                                </code>
 
                                 <p>And an example of placeholder in the <em>utils/_helpers</em> file :</p>
 
-                                <code>
-                                    // base/utils/_helpers.scss
-<pre>
+                              <samp class="sampleTitle">// base/utils/_helpers.scss</samp>
+
+<pre class="codeSample">
 %clearfix {
   &:before,
   &:after {
@@ -390,7 +388,6 @@ sass
   *zoom: 1;
 }
 </pre>
-                                </code>
 
                             </aside>
                         </div>
@@ -415,11 +412,9 @@ sass
 
                             <p>Here's what the <em>_variables.scss</em> file might look like :</p>
 
-<code>
-// _variables.scss
-<pre>
+                          <samp class="sampleTitle">// _variables.scss</samp>
 
-
+<pre class="codeSample">
 /* _____ VARIABLES _____ */
 
 // Generic
@@ -444,9 +439,7 @@ $color-purple-light: #d75b62;
 
 $color-default-black: #000;
 $color-default-white: #fff;
-
 </pre>
-</code>
                         </div>
                     </li>
 
@@ -598,11 +591,13 @@ $color-default-white: #fff;
                 definition to get access to its placeholders, and make a new mixin that will handle the altered implementation.<br>
 
                 <div class="exampleNote">
-                    For example, your component can bind the %exampleAltState placeholder to #{$selector}:hover by default,
+                    <p>For example, your component can bind the %exampleAltState placeholder to #{$selector}:hover by default,
                 but bind it to the #{$selector}_#{$hover} class for special cases.<br>
-                Here is what it could look like :
-                    <code>
-<pre>
+                Here is what it could look like :</p>
+
+                  <samp class="sampleTitle">// component example</samp>
+
+<pre class="codeSample">
 // map the placeholders content to some selectors through a mixin
 @mixin example($selector: '.example', $hover: ':hover', $param2: '', $defaultSkin: true) {
 
@@ -630,7 +625,6 @@ $color-default-white: #fff;
 
 }
 </pre>
-                    </code>
                 </div>
 
                 <p>In order to fulfill their role, components need to respect those two guidelines :</p>
@@ -687,10 +681,9 @@ $color-default-white: #fff;
 
                 <p>Here's the <em>structure</em> part of our "tabs" component :</p>
 
-<code>
-// components/tabs/_tabs.scss
-<pre>
+                <samp class="sampleTitle">// components/tabs/_tabs.scss</samp>
 
+<pre class="codeSample">
 @import 'sass/base/utils/__utils';
 
 // _____ STRUCTURE _____ //
@@ -744,7 +737,6 @@ $color-default-white: #fff;
 
 }
 </pre>
-</code>
 
 
                 <p>First, the component imports 'sass/base/utils/__utils', which will give it access to the default
@@ -764,9 +756,9 @@ $color-default-white: #fff;
 
                 <p>Now let's look at the <em>skin</em> part of our "tabs" component :</p>
 
-<code>
-<pre>
+                <samp class="sampleTitle">// A component's skin part</samp>
 
+<pre class="codeSample">
 // _____ SKIN _____ //
 @import 'sass/base/project/_variables';
 @import 'sass/base/project/_helpers';
@@ -850,7 +842,6 @@ $color-default-white: #fff;
 
 }
 </pre>
-</code>
 
                 <p>As you can see, it is very close to the structure part. Actually it is placed inside the component's
                 folder for simplicity, but it could very well reside in a _skins folder right away.</p>
@@ -883,18 +874,17 @@ $color-default-white: #fff;
 
                 <p>Here's what an implementation may look like :</p>
 
-<code>
-// in specifics/_main.scss
-<pre>
+                <samp class="sampleTitle">// in specifics/_main.scss</samp>
+
+<pre class="codeSample">
 @include tabs('.mainMenu');
 </pre>
-</code>
                 <p>That's right, now that you have defined your component, using it is as easy as that!</p>
                 <p>And here is what the output css will look like :</p>
 
-<code>
-// in css/custom.scss
-<pre>
+                <samp class="sampleTitle">// in css/custom.scss</samp>
+
+<pre class="codeSample">
 .mainMenu {
   list-style: none;
   padding: 10px 0 0;
@@ -953,19 +943,18 @@ $color-default-white: #fff;
     -webkit-box-shadow: 3px 0 3px rgba(0, 0, 0, 0.5);
     box-shadow: 3px 0 3px rgba(0, 0, 0, 0.5); }
 </pre>
-</code>
                 <p>If later on you need to bind the tabs component to another class, all you have to do is to call the mixin
                     with that class and the parameters you want, and you're done!
                 </p>
                 <p>For example :</p>
 
-<code>
-// in specifics/_main.scss
-<pre>
+                <samp class="sampleTitle">// in specifics/_main.scss</samp>
+
+<pre class="codeSample">
+
 @include tabs('.articleTabs', $defaultSkin: false);
 @include tabs-skin-alternate('.articleTabs');
 </pre>
-</code>
 
 
                 <h2 class="mainArticle_subtitle" id="components_standalone">Standalone component</h2>
@@ -987,17 +976,16 @@ $color-default-white: #fff;
                 <div class="exampleNote">
                     <p>Here's what the standalone files would look like for our tabs example :</p>
 
-<code>
-// tabs.standalone.scss
-<pre>
+                  <samp class="sampleTitle">// tabs.standalone.scss</samp>
+
+<pre class="codeSample">
 @import '_tabs.scss';
 @include tabs('.dynamicTabs');
 </pre>
-</code>
 
-<code>
-// tabs.standalone.scss
-<pre>
+                  <samp class="sampleTitle">// tabs.standalone.scss</samp>
+
+<pre class="codeSample">
 &ltul class="dynamicTabs"&gt
     &ltli class="dynamicTabs_item"&gt
         &lta class="dynamicTabs_link" href="#tabContent1"&gttabContent1&lt/a&gt
@@ -1019,7 +1007,6 @@ $color-default-white: #fff;
     &lt/li&gt
 &lt/ul&gt
 </pre>
-</code>
 
                 </div>
 
@@ -1050,9 +1037,11 @@ $color-default-white: #fff;
                 </p>
 
                 <div class="exampleNote">
-                    Here is an example of what that convention may look like in our tab example :
-                    <code>
-<pre>
+                    <p>Here is an example of what that convention may look like in our tab example :</p>
+
+                  <samp class="sampleTitle">// naming example</samp>
+
+<pre class="codeSample">
 &lt;ul class="mainMenu"&gt;
     &lt;li class="mainMenu_item"&gt;
         &lt;a class="mainMenu_link" href="#about"&gt;About&lt;/a&gt;
@@ -1074,7 +1063,6 @@ $color-default-white: #fff;
     &lt;/li&gt;
 &lt;/ul&gt;
 </pre>
-                    </code>
                     Note that this example is taken from the menu you're looking at just now in the present page.
                 </div>
 
@@ -1124,9 +1112,11 @@ $color-default-white: #fff;
                 </p>
 
                 <div class="exampleNote">
-                    For example, you could pass "myExampleClass" as a selector to a component mixin for an implementation that would look like this :
-<code>
-<pre>
+                    <p>For example, you could pass "myExampleClass" as a selector to a component mixin for an implementation that would look like this :</p>
+
+                  <samp class="sampleTitle">// example</samp>
+
+<pre class="codeSample">
 #{$selector} {
   @extend %componentName;
 }
@@ -1137,7 +1127,6 @@ $color-default-white: #fff;
     }
 }
 </pre>
-</code>
                 </div>
 
                 <h2>SASS variables</h2>
@@ -1147,9 +1136,11 @@ $color-default-white: #fff;
                   advantage of autocompletion.</p>
 
                 <div class="exampleNote">
-                    For example :
-<code>
-<pre>
+                    <p>For example :</p>p>
+
+                  <samp class="sampleTitle">// variables example</samp>
+
+<pre class="codeSample">
 /* _____ VARIABLES _____ */
 
 // Generic
@@ -1175,7 +1166,6 @@ $color-purple-light: #d75b62;
 $color-default-black: #000;
 $color-default-white: #fff;
 </pre>
-</code>
 
                 </div>
 
@@ -1191,7 +1181,7 @@ $color-default-white: #fff;
 
                 <h2 class="mainArticle_subtitle">Download the kit</h2>
 
-                Download this page and its implementation of DoCSSa and play with it.
+                Download this page and its implementation of DoCSSa and play with it.<br>
                 Source code can be found on <a href="https://github.com/mlarcher/docssa">DoCSSa's github page</a>.
 
                 <h2 class="mainArticle_subtitle">Learn about the basics</h2>
@@ -1232,7 +1222,7 @@ $color-default-white: #fff;
                 <h2 class="mainArticle_subtitle">Contact us</h2>
 
                 <p>DoCSSa is evolving! We are very interested in your feedback to improve it or learn about how you implemented
-                    it. Please contact us at XXXXX.
+                    it. Please contact us, fork the project, make Pull Requests or talk about DoCSSa at will.
                 </p>
 
 
@@ -1242,7 +1232,8 @@ $color-default-white: #fff;
 
 
         <footer class="mainFooter">
-            <p>Presented by <a href="https://twitter.com/larchermatthieu">Matthieu Larcher</a> & <a href="https://twitter.com/_faz">Fabien Zibi</a></p>
+            Presented by <a class="mainFooterLink" href="https://twitter.com/larchermatthieu">Matthieu Larcher</a> &amp;
+          <a class="mainFooterLink" href="https://twitter.com/_faz">Fabien Zibi</a>
         </footer>
 
 

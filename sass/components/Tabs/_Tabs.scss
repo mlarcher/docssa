@@ -7,24 +7,21 @@
 @include define('tabs') {
   %tabs {
     list-style: none;
-    padding: 10px 0 0;
+    padding: 0;
     margin: 0;
     font-size: 0;
+    display: inline-block;
   }
 
   %tabs_item{
-    font-size: 16px;
-    padding: 15px;
+    @include remIt(font-size, 16);
+    padding: 10px 0;
     display: inline-block;
     vertical-align: bottom;
-    margin-top: 10px;
-    margin-left: 5px;
   }
 
-  %tabs_item_current {
-    padding-top: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
+  %tabs_link {
+    padding: 0 10px;
   }
 
 }
@@ -38,13 +35,14 @@
   }
 
   #{$selector}_item {
-
     @extend %tabs_item;
-
-    &._is_current {
-      @extend %tabs_item_current;
-    }
   }
+
+  #{$selector}_link {
+    @extend %tabs_link;
+  }
+
+
 
   @if $defaultSkin != false {
     @include tabs-skin-default($selector);
@@ -60,44 +58,39 @@
 // define component placeholders for component skin (no selector here)
 @include define('tabs-skin-default') {
 
-  %tabs-skin-default {
-    background: $color-beige;
+  %tabs-skin-default__item {
+    border-bottom: solid 3px transparent;
   }
 
-  %tabs-skin-default-item {
-    background: $color-purple-light;
-    border-left: solid 1px #fff;
-    @include border-radius('3px 3px 0 0 ');
-    @include box-shadow('3px 0 3px rgba(0, 0, 0, 0.2)');
+  %tabs-skin-default__item_current {
+    border-bottom: solid 3px $color-green;
   }
 
-  %tabs-skin-default-item_first {
+  %tabs-skin-default__item_hover {
+    border-bottom: solid 3px $color-green-light;
+  }
+
+
+  %tabs-skin-default__link {
+    border-left: solid 1px $color-green;
+    text-decoration: none;
+    color: $color-green;
+  }
+
+  %tabs-skin-default__link_first {
     border-left: inherit;
   }
 
-  %tabs-skin-default-item_hover {
-    background: $color-purple;
+  %tabs-skin-default__item_hover_link {
+    color: $color-green-light;
   }
 
-  %tabs-skin-default-item_link {
-    text-decoration: none;
-    color: #fff;
+  %tabs-skin-default__item_current_link {
+    color: $color-green;
   }
 
-  %tabs-skin-default-item_hover_link {
-    color: #fff;
-  }
-
-  %tabs-skin-default-item_current {
-    background: $color-purple-dark;
-    border-left: solid 1px $color-beige;
-    @include box-shadow('3px 0 3px rgba(0, 0, 0, 0.5)');
-    position: relative;
-    z-index: 10;
-  }
-
-  %tabs-skin-default-item_current_link {
-    color: #fff;
+  %tabs-skin-default__item_highlighted {
+    color: $color-grey-dark;
   }
 
 }
@@ -106,32 +99,41 @@
 // only visual changes that don't affect the component layout should be in here
 @mixin tabs-skin-default($selector) {
 
-  #{$selector} {
-    @extend %tabs-skin-default;
-  }
-
   #{$selector}_item {
 
-    @extend %tabs-skin-default-item;
-    &:first-child {
-      @extend %tabs-skin-default-item_first;
+    @extend %tabs-skin-default__item;
+
+    &._is_current {
+      @extend %tabs-skin-default__item_current;
     }
 
     &:hover {
-      @extend %tabs-skin-default-item_hover;
-
-      #{$selector}_link {
-        @extend %tabs-skin-default-item_hover_link;
-      }
+      @extend %tabs-skin-default__item_hover;
     }
 
-    &._is_current {
-      @extend %tabs-skin-default-item_current;
-    }
+
   }
 
   #{$selector}_link {
-    @extend %tabs-skin-default-item_link;
+
+    @extend %tabs-skin-default__link;
+
+    #{$selector}_item:first-child & {
+      @extend %tabs-skin-default__link_first;
+    }
+
+    &:hover {
+      @extend %tabs-skin-default__item_hover_link;
+    }
+
+    #{$selector}_item#{'--highlighted'} & {
+      @extend %tabs-skin-default__item_highlighted;
+    }
+
+    #{$selector}_item._is_current & {
+
+    }
   }
+
 
 }
