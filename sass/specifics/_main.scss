@@ -1,0 +1,99 @@
+
+.mainHeader {
+  padding-top: 60px;
+  padding-left: 15px;
+  position: fixed;
+  top: 0;
+  background: $color-grey-light;
+  width: $containerWidth;
+  height: $headerHeight;
+}
+
+.mainTitle {
+  font-family: 'robotoSlab', georgia, serif;
+  @include remIt('font-size', 40);
+  @include remIt('line-height', 40);
+  margin: 0 0 15px;
+  @include text-shadow(1px 1px 3px #888);
+}
+
+// only hide mainArticles by default if js is present to reveal them
+.js .mainArticle {
+  display: none;
+}
+.js .mainArticle._is_current {
+  display: block;
+}
+
+.mainArticle {
+  padding: 10px 40px;
+}
+
+// decide the kind of style we want from a config variable
+@if $variant == 'base' {
+
+  @include tabs('.mainMenu');
+  .mainNav {
+    position: fixed;
+    top: $headerHeight;
+    width: $containerWidth;
+    padding-bottom: 20px;
+    border-bottom: dashed 1px $color-purple-light;
+    background: $color-grey-light;
+  }
+  .mainContainer {
+    padding-top: $headerHeight + 100;
+  }
+
+} @else {
+
+  $mainNavWidth: 200px;
+
+  @include verticalMenu('.mainMenu');
+  .mainNav {
+    position: fixed;
+    width: $mainNavWidth;
+    top: $headerHeight;
+  }
+  .mainContent {
+    margin-left: $mainNavWidth;
+    width: $containerWidth - $mainNavWidth;
+  }
+  .mainContainer {
+    padding-top: $headerHeight;
+  }
+
+  .mainHeader {
+    border-bottom: dashed 1px $color-purple-light;
+  }
+
+}
+
+.mainMenu_item--highlighted {
+  border: solid 2px $color-default-white;
+  border-bottom: none;
+  &._is_current {
+    border-right: none;
+    border-top: none;
+  }
+}
+
+.mainArticle_title {
+  font-family: stalemate, arial, sans-serif;
+  @include remIt('font-size', 50);
+  @include remIt('line-height', 50);
+}
+.mainArticle_subtitle {
+  margin-top: 100px;
+}
+
+.mainArticle_smallTitle {
+  margin-top: 80px;
+}
+
+
+.mainFooter {
+  border-top: dashed 1px $color-purple-light;
+  margin-top: 40px;
+  text-align: center;
+}

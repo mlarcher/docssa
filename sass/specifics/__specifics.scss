@@ -1,0 +1,56 @@
+
+/* _____ SPECIFICS _____ */
+
+// import contextual entities
+@import '_main';
+
+
+// miscellaneous rules
+.navLink {
+  @extend %basicClickable;
+}
+
+.firstOrderList_item {
+  list-style-type: disc;
+  color: $color-beige;
+}
+.firstOrderList_item_content {
+  color: $color-default-black;
+}
+
+.secondaryList_item {
+  list-style-type: circle;
+  color: $color-beige;
+}
+.secondaryList_item_content {
+  color: $color-default-black;
+}
+
+.articleSeparator {
+  @extend %hidden;
+}
+
+.note {
+  padding: 15px;
+  background: $color-default-white;
+}
+
+.exampleNote {
+  padding: 15px;
+  border: dotted 1px $color-purple-light;
+}
+
+
+
+
+// various example component implementations
+@include example();
+@include example('.example2');
+@include example('.example3', 'maClasseHover');
+@include example('.example4', $param2: 'tutu', $hover: 'monHover');
+@include example('.example5', $defaultSkin: false);
+@include example-skin-alt('.example5');
+
+.example6 {
+  @include example2();
+}

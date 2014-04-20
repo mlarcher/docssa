@@ -1,0 +1,19 @@
+{
+  "name": "docssa",
+  "version": "0.2.1",
+  "description": "A Sass based CSS architecture and methodology",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "docssa",
+    "sass",
+    "css",
+    "architecture",
+    "methodology",
+    "boilerplate"
+  ],
+  "author": "Matthieu Larcher <mlarcher@ringabell.org> (http://www.ringabell.org)",
+  "license": "ISC"
+}

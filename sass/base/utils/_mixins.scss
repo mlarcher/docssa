@@ -1,0 +1,272 @@
+
+/* _____ MIXINS _____ */
+
+// Fonts
+// ==========================================================================
+
+@mixin importFont($fontname, $filename, $svgLabel, $isBold: false, $isItalic: false) {
+
+  @font-face {
+    font-family: $fontname;
+
+    // IE9 Compat Modes
+    src: url('fonts/#{$filename}.eot');
+    // IE6-IE8
+    src: url('fonts/#{$filename}.eot?#iefix') format('embedded-opentype'),
+    // Modern Browsers
+    url('fonts/#{$filename}.woff') format('woff'),
+    // Safari, Android, iOS
+    url('fonts/#{$filename}.ttf') format('truetype'),
+    // Legacy iOS
+    url('fonts/#{$filename}.svg##{$svgLabel}') format('svg');
+
+    @if $isBold {
+      font-weight: bold;
+    } @else {
+      font-weight: normal;
+    }
+
+    @if $isItalic {
+      font-style: italic;
+    } @else {
+      font-style: normal;
+    }
+  }
+
+}
+
+
+// Units
+// ==========================================================================
+
+@mixin remIt($attribute, $value, $value2: '', $before: '', $between:'', $after: '') {
+  $baseFontSize: 16;
+
+  @if $value2 == '' {
+    #{$attribute}: #{$before}#{$value}px#{$after};
+  } @else {
+    #{$attribute}: #{$before}#{$value}px#{$between}#{$value2}px#{$after};
+  }
+
+  .cssremunit & {
+
+    @if $value2 == '' {
+      #{$attribute}: #{$before}#{$value/$baseFontSize}rem#{$after};
+    } @else {
+      #{$attribute}: #{$before}#{$value/$baseFontSize}rem#{$between}#{$value/$baseFontSize}rem#{$after};
+    }
+
+  }
+}
+
+// Helpers
+// ==========================================================================
+
+@mixin box-opacity($value) {
+  opacity: $value; // Chrome 4+, FF2+, Saf3.1+, Opera 9+, IE9, iOS 3.2+, Android 2.1+
+  filter: alpha(opacity=$value*100); // IE6-IE8
+}
+
+@mixin border-radius($value) {
+  .borderradius & {
+    -webkit-border-radius: #{$value}; // Saf3-4, iOS 1-3.2, Android ≤1.6
+    border-radius: #{$value}; // Opera 10.5, IE9, Saf5, Chrome, FF4+, iOS 4, Android 2.1+
+
+    // useful if you don't want a bg color from leaking outside the border:
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+  }
+}
+
+@mixin box-shadow($value, $fallback:'') {
+    .boxshadow & {
+      -webkit-box-shadow: #{$value}; // Saf3-4, iOS 4.0.2 - 4.2, Android 2.3+
+      box-shadow: #{$value}; // Opera 10.5, IE9, FF4+, Chrome 6+, iOS 5
+    }
+
+    @if $fallback != '' {
+      .no-boxshadow & {
+        border-color: #{$fallback};
+      }
+    }
+}
+
+@mixin text-shadow($value) {
+  .textshadow & {
+    text-shadow: #{$value}; // Chrome, Firefox 3.5+, IE 10+, Opera 9+, Safari 1+
+  }
+}
+
+@mixin box-columns($nb: 3, $gap: 10px) {
+  .csscolumns & {
+    -webkit-column-count: $nb;
+    -webkit-column-gap: $gap; // Safari 3, Chrome
+    -moz-column-count: $nb;
+    -moz-column-gap: $gap; // Firefox 3.5+
+    column-count: $nb;
+    column-gap: $gap; // Opera 11+
+  }
+}
+
+@mixin background-size($value) {
+  .backgroundsize & {
+    -webkit-background-size: $value; // Saf3-4
+    background-size: $value; // Opera, IE9, Saf5, Chrome, FF4+
+  }
+}
+
+@mixin linear-gradient($from, $to, $fallback:'') {
+
+  .cssgradients & {
+    background-image: -webkit-gradient(linear, left top, left bottom, from($from), to($to)); // Saf4+, Chrome
+    background-image: -webkit-linear-gradient(top, $from, $to); // Chrome 10+, Saf5.1+, iOS 5+
+    background-image: -moz-linear-gradient(top, $from, $to); // FF3.6+
+    background-image: -o-linear-gradient(top, $from, $to); // Opera 11.10+
+    background-image: linear-gradient(to bottom, $from, $to);
+  }
+  .no-cssgradients & {
+    @if $fallback != '' {
+      background-color: $fallback;
+    } @else {
+      background-color: mix($from, $to);
+    }
+  }
+}
+
+@mixin box-gradient-with-img($from, $to, $img, $bkgmore: no-repeat) {
+  background: #{$img} #{$bkgmore};
+  background-image: $img, -webkit-gradient(linear, left top, left bottom, from($from), to($to)); // Saf4+, Chrome
+  background-image: $img, -webkit-linear-gradient(top, $from, $to); // Chrome 10+, Saf5.1+, iOS 5+
+  background-image: $img, -moz-linear-gradient(top, $from, $to); // FF3.6+
+  background-image: $img, -o-linear-gradient(top, $from, $to); // Opera 11.10+
+  background-image: $img, linear-gradient(to bottom, $from, $to);
+}
+
+@mixin box-gradient-double($from1, $to1, $from2, $to2) {
+  background-color: $to1;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, $from1), color-stop(.5, $to1), color-stop(.51, $from2), to($to2)); // Saf4+, Chrome
+  background-image: -webkit-linear-gradient(top, $from1, $to1 50%, $from2 51%, $to2); // Chrome 10+, Saf5.1+, iOS 5+
+  background-image: -moz-linear-gradient(top, $from1, $to1 50%, $from2 51%, $to2); // FF3.6+
+  background-image: -o-linear-gradient(top, $from1, $to1 50%, $from2 51%, $to2); // Opera 11.10+
+  background-image: linear-gradient(to bottom, $from1, $to1 50%, $from2 51%, $to2);
+}
+
+@mixin box-gradient-double-horiz($from1, $to1, $from2, $to2, $fallback: '') {
+
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(0, $from1), color-stop(.5, $to1), color-stop(.51, $from2), to($to2)); // Saf4+, Chrome
+  background-image: -webkit-linear-gradient(left, $from1, $to1 50%, $from2 51%, $to2); // Chrome 10+, Saf5.1+, iOS 5+
+  background-image: -moz-linear-gradient(left, $from1, $to1 50%, $from2 51%, $to2); // FF3.6+
+  background-image: -o-linear-gradient(left, $from1, $to1 50%, $from2 51%, $to2); // Opera 11.10+
+  background-image: linear-gradient(to right, $from1, $to1 50%, $from2 51%, $to2);
+
+  .no-cssgradients & {
+    @if $fallback != '' {
+      background: $fallback;
+    } @else {
+      background: mix($from, $to);
+    }
+  }
+
+}
+
+@mixin box-gradient-double-vert($from1, $to1, $from2, $to2) {
+
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, $from1), color-stop(.5, $to1), color-stop(.51, $from2), to($to2)); // Saf4+, Chrome
+  background-image: -webkit-linear-gradient(top, $from1, $to1 50%, $from2 51%, $to2); // Chrome 10+, Saf5.1+, iOS 5+
+  background-image: -moz-linear-gradient(top, $from1, $to1 50%, $from2 51%, $to2); // FF3.6+
+  background-image: -o-linear-gradient(top, $from1, $to1 50%, $from2 51%, $to2); // Opera 11.10+
+  background-image: linear-gradient(to bottom, $from1, $to1 50%, $from2 51%, $to2);
+
+  .no-cssgradients & {
+    background: $from1;
+  }
+}
+
+// Animations
+// ==========================================================================
+
+@mixin animation($value) {
+  .cssanimations & {
+    -webkit-animation: #{$value}; // Chrome, Safari 5
+    -moz-animation: #{$value}; // Firefox 5-15
+    -o-animation: #{$value}; // Opera 12+
+    animation: #{$value}; // Chrome, Firefox 16+, IE 10+, Safari 5
+  }
+}
+
+@mixin transition($value) {
+  .csstransitions & {
+    -webkit-transition: #{$value}; // Saf3.2+, Chrome
+    -moz-transition: #{$value}; // FF4+
+    -o-transition: #{$value}; // Opera 10.5+
+    transition: #{$value};
+  }
+}
+
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+
+// Transforms
+// ==========================================================================
+
+@mixin box-rotate($degrees) {
+  .csstransforms & {
+    -webkit-transform: rotate(#{$degrees}deg); // Saf3.1+, Chrome
+    -moz-transform: rotate(#{$degrees}deg); // FF3.5+
+    -ms-transform: rotate(#{$degrees}deg); // IE9
+    -o-transform: rotate(#{$degrees}deg); // Opera 10.5
+    transform: rotate(#{$degrees}deg);
+  }
+}
+
+@mixin box-transform($val) {
+  .csstransforms & {
+    -webkit-transform: #{$val};
+    -moz-transform: #{$val};
+    -ms-transform: #{$val};
+    -o-transform: #{$val};
+    transform: #{$val};
+  }
+}
+
+@mixin box-skew($degrees1, $degrees2) {
+  .csstransforms & {
+    transform: skew(#{$degrees1}deg, #{$degrees2}deg);
+    -ms-transform: skew(#{$degrees1}deg, #{$degrees2}deg); // IE 9
+    -webkit-transform: skew(#{$degrees1}deg, #{$degrees2}deg); // Safari and Chrome
+  }
+}
+
+@mixin box-scale($ratio) {
+  .csstransforms & {
+    -webkit-transform: scale($ratio);  // Chrome, Safari 3.1+
+       -moz-transform: scale($ratio);  // Firefox 3.5+
+        -ms-transform: scale($ratio);  // IE 9
+         -o-transform: scale($ratio);  // Opera 10.50-12.00
+            transform: scale($ratio);  // Firefox 16+, IE 10+, Opera 12.10+
+  }
+}
+
+@mixin transform-matrix($value) {
+  .csstransforms & {
+    -webkit-transform: matrix(#{$value});
+    -moz-transform: matrix(#{$value});
+    -ms-transform: matrix(#{$value});
+    -o-transform: matrix(#{$value});
+    transform: matrix(#{$value});
+  }
+}

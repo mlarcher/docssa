@@ -1,0 +1,65 @@
+
+@include define('project-globals') {
+
+  /* _____ GLOBAL DEFAULTS _____ */
+
+  *,
+  :before,
+  :after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  html {
+    font-size: 100%;
+    width: 100%;
+  }
+
+  body {
+    @include remIt(font-size, 16);
+    @include remIt(line-height, 24);
+    background: #fff;
+    font-family: "openSans", Arial, "sans-serif";
+    width: 100%;
+    color: #000;
+  }
+
+  h1 {
+  }
+
+  h2 {
+  }
+
+  h3 {
+  }
+
+  h4 {
+  }
+
+  a,
+  a:visited {
+  }
+
+  ul {
+    list-style: square;
+  }
+
+  pre {
+    background: #fff;
+    padding: 10px;
+  }
+
+
+
+  /* _____ LAYOUT _____ */
+
+  .mainContainer {
+    @extend %clearfix;
+    max-width: $containerWidth;
+    margin: 0 auto;
+    background: $color-grey-light;
+    @include box-shadow('0 3px 5px rgba(0,0,0,.3)')
+  }
+
+}

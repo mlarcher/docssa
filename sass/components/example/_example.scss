@@ -1,0 +1,153 @@
+
+@import 'sass/base/utils/__utils';
+@import 'sass/base/project/__project';
+
+
+/*
+usage examples:
+@include example();
+@include example('.example2');
+@include example('.example3', 'maClasseHover');
+@include example('.example4', $param2: 'tutu', $hover: 'monHover');
+
+@include example('.example5', $defaultSkin: false);
+@include example-skin-alt('.example5');
+*/
+
+
+/* **** EXAMPLE COMPONENT **** */
+
+// define component placeholders for component contents (no selector here)
+@include define('example') {
+  %example {
+    padding: 10px;
+  }
+
+  %exampleInner {
+    padding: 20px;
+  }
+  %exampleAltState {
+    padding: 30px;
+  }
+}
+
+
+// map the placeholders content to some selectors through a mixin
+@mixin example($selector: '.example', $hover: ':hover', $param2: '', $defaultSkin: true) {
+
+  #{$selector} {
+    @extend %example;
+  }
+
+  #{$selector}_inner {
+    @extend %exampleInner;
+  }
+
+  @if $hover == ':hover' {
+    #{$selector}:hover {
+      @extend %exampleAltState;
+    }
+  } @else {
+    #{$selector}_#{$hover} {
+      @extend %exampleAltState;
+    }
+  }
+
+  @if $defaultSkin != false {
+    @include example-skin-default($selector, $hover, $param2);
+  }
+
+}
+
+@mixin example2($hover: ':hover', $param2: '', $defaultSkin: true) {
+
+  & {
+    @extend %example;
+  }
+
+  &_inner {
+    @extend %exampleInner;
+  }
+
+  @if $hover == ':hover' {
+    &:hover {
+      @extend %exampleAltState;
+    }
+  } @else {
+    &_#{$hover} {
+      @extend %exampleAltState;
+    }
+  }
+
+  @if $defaultSkin != false {
+    @include example-skin-default2($hover, $param2);
+  }
+
+}
+
+
+
+
+
+/* **** EXAMPLE COMPONENT SKIN **** */
+
+// define component placeholders for component skin (no selector here)
+@include define('example_skin') {
+  %example-skin-default {
+    background: #eee;
+    color: blue;
+  }
+
+  %exampleInner-skin-default {
+    color: red;
+  }
+  %exampleAltState-skin-default {
+    border: solid 1px red;
+  }
+}
+
+// provide a default skin for the component
+// only visual changes that don't affect the component layout should be in here
+@mixin example-skin-default($selector: '.example', $hover: ':hover', $param2: '') {
+
+    #{$selector} {
+      @extend %example-skin-default;
+    }
+    #{$selector}_inner {
+      @extend %exampleInner-skin-default;
+    }
+
+    @if $hover == ':hover' {
+      #{$selector}:hover {
+        @extend %exampleAltState-skin-default;
+      }
+    } @else {
+      #{$selector}_#{$hover} {
+        @extend %exampleAltState-skin-default;
+      }
+    }
+
+}
+
+// provide a default skin for the component
+// only visual changes that don't affect the component layout should be in here
+@mixin example-skin-default2($hover: ':hover', $param2: '') {
+
+  & {
+    @extend %example-skin-default;
+  }
+  &_inner {
+    @extend %exampleInner-skin-default;
+  }
+
+  @if $hover == ':hover' {
+    &:hover {
+      @extend %exampleAltState-skin-default;
+    }
+  } @else {
+    &_#{$hover} {
+      @extend %exampleAltState-skin-default;
+    }
+  }
+
+}

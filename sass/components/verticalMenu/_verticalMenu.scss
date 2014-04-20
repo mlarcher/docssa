@@ -1,0 +1,115 @@
+
+@import 'sass/base/utils/__utils';
+@import 'sass/base/project/__project';
+
+// _____ STRUCTURE _____ //
+
+// define component placeholders for component contents (no selector here)
+@include define('verticalMenu') {
+  %verticalMenu {
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+  }
+
+  %verticalMenu_item{
+    display: block;
+    padding: 15px;
+  }
+
+}
+
+
+// map the placeholders content to some selectors through a mixin
+@mixin verticalMenu($selector, $defaultSkin: true) {
+
+  #{$selector} {
+    @extend %verticalMenu;
+  }
+
+  #{$selector}_item {
+
+    @extend %verticalMenu_item;
+  }
+
+  @if $defaultSkin != false {
+    @include verticalMenu-skin-default($selector);
+  }
+
+}
+
+// _____ SKIN _____ //
+
+// define component placeholders for component skin (no selector here)
+@include define('verticalMenu-skin-default') {
+
+  %verticalMenu-skin-default {
+    background: $color-beige;
+  }
+
+  %verticalMenu-skin-default-item {
+    background: $color-purple-light;
+    border-top: solid 1px #fff;
+  }
+
+  %verticalMenu-skin-default-item_first {
+    border-top: inherit;
+  }
+
+  %verticalMenu-skin-default-item_hover {
+    background: $color-purple;
+  }
+
+  %verticalMenu-skin-default-item_link {
+    text-decoration: none;
+    color: #fff;
+  }
+
+  %verticalMenu-skin-default-item_hover_link {
+    color: #fff;
+  }
+
+  %verticalMenu-skin-default-item_current {
+    background: $color-purple-dark;
+    border-top: solid 1px $color-beige;
+  }
+
+  %verticalMenu-skin-default-item_current_link {
+    color: #fff;
+  }
+
+}
+
+// provide a default skin for the component
+// only visual changes that don't affect the component layout should be in here
+@mixin verticalMenu-skin-default($selector) {
+
+  #{$selector} {
+    @extend %verticalMenu-skin-default;
+  }
+
+  #{$selector}_item {
+
+    @extend %verticalMenu-skin-default-item;
+    &:first-child {
+      @extend %verticalMenu-skin-default-item_first;
+    }
+
+    &:hover {
+      @extend %verticalMenu-skin-default-item_hover;
+
+      #{$selector}_link {
+        @extend %verticalMenu-skin-default-item_hover_link;
+      }
+    }
+
+    &._is_current {
+      @extend %verticalMenu-skin-default-item_current;
+    }
+  }
+
+  #{$selector}_link {
+    @extend %verticalMenu-skin-default-item_link;
+  }
+
+}

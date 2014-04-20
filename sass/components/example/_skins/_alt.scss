@@ -1,0 +1,43 @@
+
+/* **** EXAMPLE COMPONENT SKIN ALT **** */
+
+// define component placeholders for component skin (no selector here)
+@include define('example-skin-alt') {
+  %example-skin-alt {
+    background: #fff;
+    color: green;
+  }
+
+  %exampleInner-skin-alt {
+    color: orange;
+    background: #eee;
+  }
+  %exampleAltState-skin-alt {
+    border: solid 1px purple;
+    background: blue;
+  }
+}
+
+
+// provide a default skin for the component
+// only visual changes that don't affect the component layout should be in here
+@mixin example-skin-alt($selector: '.example', $hover: ':hover', $param2: '') {
+
+  #{$selector} {
+    @extend %example-skin-alt;
+  }
+  #{$selector}_inner {
+    @extend %exampleInner-skin-alt;
+  }
+
+  @if $hover == ':hover' {
+    #{$selector}:hover {
+      @extend %exampleAltState-skin-alt;
+    }
+  } @else {
+    #{$selector}_#{$hover} {
+      @extend %exampleAltState-skin-alt;
+    }
+  }
+
+}

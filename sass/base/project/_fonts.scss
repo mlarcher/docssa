@@ -1,0 +1,12 @@
+
+@include define('project-fonts') {
+
+  /* _____ FONTS _____ */
+
+  @include importFont('openSans', 'opensans-regular-webfont', 'open_sansregular');
+  @include importFont('openSans', 'opensans-bold-webfont', 'open_sansbold', $isBold: true);
+  @include importFont('robotoSlab', 'robotoslab-regular-webfont', 'roboto_slabregular');
+  @include importFont('robotoSlab', 'robotoslab-bold-webfont', 'roboto_slabbold', $isBold: true);
+  @include importFont('stalemate', 'stalemate-regular-webfont', 'stalemateregular');
+
+}

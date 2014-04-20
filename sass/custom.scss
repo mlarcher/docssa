@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+/*!
+========== INIT
+*/
+@import 'vendor/_normalize';
+
+
+/*!
+========== BASE
+*/
+// variables, fonts, mixins, helpers... common styles used across the entire site
+@import 'base/__base';
+
+
+/*!
+========== COMPONENTS
+*/
+// reusable/framework components
+@import 'components/__components';
+
+
+/*!
+========== SPECIFICS
+*/
+// more specific declarations, may be built on a per page basis
+@import 'specifics/__specifics';
