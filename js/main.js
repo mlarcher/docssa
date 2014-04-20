@@ -14,6 +14,9 @@
 
 
     mainItems.bind('click', function(e) {
+      var href,
+      scrollV;
+
       e.preventDefault();
 
       mainHeader.hide();
@@ -26,9 +29,19 @@
       }
 
       currentMainMenuItem = $(this).addClass('_is_current');
-      currentMainArticle = $(currentMainMenuItem.find('.mainMenu_link').attr('href')).addClass('_is_current');
+      href = currentMainMenuItem.find('.mainMenu_link').attr('href');
+      currentMainArticle = $(href).addClass('_is_current');
 
       scrollTarget.scrollTop(0);
+
+      if (history.pushState) {
+        history.pushState({}, "", href);
+        // provide a fallback
+      } else {
+        scrollV = document.body.scrollTop;
+        location.hash = href;
+        document.body.scrollTop = scrollV;
+      }
     });
 
     //mainItems.eq(1).find('.mainMenu_link').trigger('click');
