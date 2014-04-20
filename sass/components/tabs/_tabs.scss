@@ -86,7 +86,7 @@
   }
 
   %tabs-skin-default__item_current_link {
-    color: $color-green;
+    color: $color-green-light;
   }
 
   %tabs-skin-default__item_highlighted {
@@ -131,7 +131,7 @@
     }
 
     #{$selector}_item._is_current & {
-
+      @extend %tabs-skin-default__item_current_link;
     }
   }
 
