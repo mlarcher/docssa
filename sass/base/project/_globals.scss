@@ -18,8 +18,8 @@
   }
 
   body {
-    @include remIt(font-size, 18);
-    @include remIt(line-height, 28);
+    @include remIt(font-size, 16);
+    line-height: 1.4;
     background: #fff;
     font-family: "titillium", Arial, "sans-serif";
     width: 100%;
