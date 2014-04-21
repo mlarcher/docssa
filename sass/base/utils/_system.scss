@@ -62,23 +62,25 @@ $placeholders: ();
       @each $breakpoint, $value in $breakpoints {
         // Opening a media query block
         @media (min-width: $value) {
+
+          // set the current-breakpoint so that nested calls to _use can work
+          $current-breakpoint: $breakpoint !global;
+
           // Generating a placeholder
           // Called $name-$breakpoint
           %#{$name}-#{$breakpoint} {
-
-            // set the current-breakpoint so that nested calls to _use can work
-            $current-breakpoint: $breakpoint !global;
             // dump the content
             @content;
-            // reset current-breakpoint
-            $current-breakpoint: $default-breakpoint !global;
           }
+
+          // reset current-breakpoint
+          $current-breakpoint: $default-breakpoint !global;
         }
       }
 
       // And dumping a placeholder out of any media query as well
       // so basically at root level
-      %#{$name}-#{$default-breakpoint} {
+      %#{$name} {
         @content;
       }
     }
