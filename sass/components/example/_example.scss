@@ -19,14 +19,14 @@ usage examples:
 
 // define component placeholders for component contents (no selector here)
 @include define('example') {
-  %example {
+  @include _add(example) {
     padding: 10px;
   }
 
-  %exampleInner {
+  @include _add(exampleInner) {
     padding: 20px;
   }
-  %exampleAltState {
+  @include _add(exampleAltState) {
     padding: 30px;
   }
 }
@@ -36,20 +36,20 @@ usage examples:
 @mixin example($selector: '.example', $hover: ':hover', $param2: '', $defaultSkin: true) {
 
   #{$selector} {
-    @extend %example;
+    @include _use(example);
   }
 
   #{$selector}_inner {
-    @extend %exampleInner;
+    @include _use(exampleInner);
   }
 
   @if $hover == ':hover' {
     #{$selector}:hover {
-      @extend %exampleAltState;
+      @include _use(exampleAltState);
     }
   } @else {
     #{$selector}_#{$hover} {
-      @extend %exampleAltState;
+      @include _use(exampleAltState);
     }
   }
 
@@ -62,20 +62,20 @@ usage examples:
 @mixin example2($hover: ':hover', $param2: '', $defaultSkin: true) {
 
   & {
-    @extend %example;
+    @include _use(example);
   }
 
   &_inner {
-    @extend %exampleInner;
+    @include _use(exampleInner);
   }
 
   @if $hover == ':hover' {
     &:hover {
-      @extend %exampleAltState;
+      @include _use(exampleAltState);
     }
   } @else {
     &_#{$hover} {
-      @extend %exampleAltState;
+      @include _use(exampleAltState);
     }
   }
 
@@ -93,15 +93,15 @@ usage examples:
 
 // define component placeholders for component skin (no selector here)
 @include define('example_skin') {
-  %example-skin-default {
+  @include _add(example-skin-default) {
     background: #eee;
     color: blue;
   }
 
-  %exampleInner-skin-default {
+  @include _add(exampleInner-skin-default) {
     color: red;
   }
-  %exampleAltState-skin-default {
+  @include _add(exampleAltState-skin-default) {
     border: solid 1px red;
   }
 }
@@ -111,19 +111,19 @@ usage examples:
 @mixin example-skin-default($selector: '.example', $hover: ':hover', $param2: '') {
 
     #{$selector} {
-      @extend %example-skin-default;
+      @include _use(example-skin-default);
     }
     #{$selector}_inner {
-      @extend %exampleInner-skin-default;
+      @include _use(exampleInner-skin-default);
     }
 
     @if $hover == ':hover' {
       #{$selector}:hover {
-        @extend %exampleAltState-skin-default;
+        @include _use(exampleAltState-skin-default);
       }
     } @else {
       #{$selector}_#{$hover} {
-        @extend %exampleAltState-skin-default;
+        @include _use(exampleAltState-skin-default);
       }
     }
 
@@ -134,19 +134,19 @@ usage examples:
 @mixin example-skin-default2($hover: ':hover', $param2: '') {
 
   & {
-    @extend %example-skin-default;
+    @include _use(example-skin-default);
   }
   &_inner {
-    @extend %exampleInner-skin-default;
+    @include _use(exampleInner-skin-default);
   }
 
   @if $hover == ':hover' {
     &:hover {
-      @extend %exampleAltState-skin-default;
+      @include _use(exampleAltState-skin-default);
     }
   } @else {
     &_#{$hover} {
-      @extend %exampleAltState-skin-default;
+      @include _use(exampleAltState-skin-default);
     }
   }
 

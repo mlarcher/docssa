@@ -1,4 +1,11 @@
 
+// breakpoints are used by the system utils, so they need to be loaded first
+$breakpoints: (
+  "small": 600px,
+  "medium": 900px,
+  "large": 1200px
+);
+
 @import 'utils/__utils';
 @import 'project/__project';
 

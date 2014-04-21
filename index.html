@@ -62,7 +62,7 @@
 
                 <h2 class="mainArticle_subtitle">What is DoCSSa ?</h2>
 
-                <p>DoCSSa is a CSS framework and methodology that tries to combine all the good parts of the current state of
+                <p>DoCSSa is a CSS architecture and methodology that tries to combine all the good parts of the current state of
                     the art.<br>
                     It is intended for use in large, long lived sites, on which many frontend developers may be working
                     over time.<br>
@@ -376,7 +376,7 @@ sass
                               <samp class="sampleTitle">// base/utils/_helpers.scss</samp>
 
 <pre class="codeSample">
-%clearfix {
+@include _add(clearfix) {
   &:before,
   &:after {
     content: " ";
@@ -603,20 +603,20 @@ $color-beige-light: #f3f4d9;
 @mixin example($selector: '.example', $hover: ':hover', $param2: '', $defaultSkin: true) {
 
   #{$selector} {
-    @extend %example;
+    @include _use(example);
   }
 
   #{$selector}_inner {
-    @extend %exampleInner;
+    @include _use(exampleInner);
   }
 
   @if $hover == ':hover' {
     #{$selector}:hover {
-      @extend %exampleAltState;
+      @include _use(exampleAltState);
     }
   } @else {
     #{$selector}_#{$hover} {
-      @extend %exampleAltState;
+      @include _use(exampleAltState);
     }
   }
 
@@ -691,14 +691,14 @@ $color-beige-light: #f3f4d9;
 
 // define component placeholders for component contents (no selector here)
 @include define('tabs') {
-  %tabs {
+  @include _add(tabs) {
     list-style: none;
     padding: 10px 0 0;
     margin: 0;
     font-size: 0;
   }
 
-  %tabs_item{
+  @include _add(tabs_item) {
     font-size: 16px;
     padding: 15px;
     display: inline-block;
@@ -707,7 +707,7 @@ $color-beige-light: #f3f4d9;
     margin-left: 5px;
   }
 
-  %tabs_item_current {
+  @include _add(tabs_item_current) {
     padding-top: 20px;
     padding-left: 20px;
     padding-right: 20px;
@@ -720,15 +720,15 @@ $color-beige-light: #f3f4d9;
 @mixin tabs($selector, $defaultSkin: true) {
 
   #{$selector} {
-    @extend %tabs;
+    @include _use(tabs);
   }
 
   #{$selector}_item {
 
-    @extend %tabs_item;
+    @include _use(tabs_item);
 
     &._is_current {
-      @extend %tabs_item_current;
+      @include _use(tabs_item_current);
     }
   }
 
@@ -767,35 +767,35 @@ $color-beige-light: #f3f4d9;
 // define component placeholders for component skin (no selector here)
 @include define('tabs-skin-default') {
 
-  %tabs-skin-default {
+  @include _add(tabs-skin-default) {
     background: $color-beige;
   }
 
-  %tabs-skin-default-item {
+  @include _add(tabs-skin-default-item) {
     background: $color-purple-light;
     border-left: solid 1px #fff;
     @include border-radius('3px 3px 0 0 ');
     @include box-shadow('3px 0 3px rgba(0, 0, 0, 0.2)');
   }
 
-  %tabs-skin-default-item_first {
+  @include _add(tabs-skin-default-item_first) {
     border-left: inherit;
   }
 
-  %tabs-skin-default-item_hover {
+  @include _add(tabs-skin-default-item_hover) {
     background: $color-purple;
   }
 
-  %tabs-skin-default-item_link {
+  @include _add(tabs-skin-default-item_link) {
     text-decoration: none;
     color: #fff;
   }
 
-  %tabs-skin-default-item_hover_link {
+  @include _add(tabs-skin-default-item_hover_link) {
     color: #fff;
   }
 
-  %tabs-skin-default-item_current {
+  @include _add(tabs-skin-default-item_current) {
     background: $color-purple-dark;
     border-left: solid 1px $color-beige;
     @include box-shadow('3px 0 3px rgba(0, 0, 0, 0.5)');
@@ -803,7 +803,7 @@ $color-beige-light: #f3f4d9;
     z-index: 10;
   }
 
-  %tabs-skin-default-item_current_link {
+  @include _add(tabs-skin-default-item_current_link) {
     color: #fff;
   }
 
@@ -814,31 +814,31 @@ $color-beige-light: #f3f4d9;
 @mixin tabs-skin-default($selector) {
 
   #{$selector} {
-    @extend %tabs-skin-default;
+    @include _use(tabs-skin-default);
   }
 
   #{$selector}_item {
 
-    @extend %tabs-skin-default-item;
+    @include _use(tabs-skin-default-item);
     &:first-child {
-      @extend %tabs-skin-default-item_first;
+      @include _use(tabs-skin-default-item_first);
     }
 
     &:hover {
-      @extend %tabs-skin-default-item_hover;
+      @include _use(tabs-skin-default-item_hover);
 
       #{$selector}_link {
-        @extend %tabs-skin-default-item_hover_link;
+        @include _use(tabs-skin-default-item_hover_link);
       }
     }
 
     &._is_current {
-      @extend %tabs-skin-default-item_current;
+      @include _use(tabs-skin-default-item_current);
     }
   }
 
   #{$selector}_link {
-    @extend %tabs-skin-default-item_link;
+    @include _use(tabs-skin-default-item_link);
   }
 
 }
@@ -1119,12 +1119,12 @@ $color-beige-light: #f3f4d9;
 
 <pre class="codeSample">
 #{$selector} {
-  @extend %componentName;
+  @include _use(componentName);
 }
 #{$selector}_singleItem {
-    @extend %componentName_singleItem
+    @include _use(componentName_singleItem);
     &:hover {
-        @extend %componentName_singleItem-altState
+        @include _use(componentName_singleItem-altState);
     }
 }
 </pre>

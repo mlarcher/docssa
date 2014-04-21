@@ -6,13 +6,13 @@
 
 // define component placeholders for component contents (no selector here)
 @include define('verticalMenu') {
-  %verticalMenu {
+  @include _add(verticalMenu) {
     list-style: none;
     padding: 10px 0;
     margin: 0;
   }
 
-  %verticalMenu_item{
+  @include _add(verticalMenu_item) {
     display: block;
     padding: 15px;
   }
@@ -24,12 +24,12 @@
 @mixin verticalMenu($selector, $defaultSkin: true) {
 
   #{$selector} {
-    @extend %verticalMenu;
+    @include _use(verticalMenu);
   }
 
   #{$selector}_item {
 
-    @extend %verticalMenu_item;
+    @include _use(verticalMenu_item);
   }
 
   @if $defaultSkin != false {
@@ -43,38 +43,38 @@
 // define component placeholders for component skin (no selector here)
 @include define('verticalMenu-skin-default') {
 
-  %verticalMenu-skin-default {
+  @include _add(verticalMenu-skin-default) {
     background: $color-beige;
   }
 
-  %verticalMenu-skin-default-item {
+  @include _add(verticalMenu-skin-default-item) {
     background: $color-green-light;
     border-top: solid 1px #fff;
   }
 
-  %verticalMenu-skin-default-item_first {
+  @include _add(verticalMenu-skin-default-item_first) {
     border-top: inherit;
   }
 
-  %verticalMenu-skin-default-item_hover {
+  @include _add(verticalMenu-skin-default-item_hover) {
     background: $color-green;
   }
 
-  %verticalMenu-skin-default-item_link {
+  @include _add(verticalMenu-skin-default-item_link) {
     text-decoration: none;
     color: #fff;
   }
 
-  %verticalMenu-skin-default-item_hover_link {
+  @include _add(verticalMenu-skin-default-item_hover_link) {
     color: #fff;
   }
 
-  %verticalMenu-skin-default-item_current {
+  @include _add(verticalMenu-skin-default-item_current) {
     background: $color-green;
     border-top: solid 1px $color-beige;
   }
 
-  %verticalMenu-skin-default-item_current_link {
+  @include _add(verticalMenu-skin-default-item_current_link) {
     color: #fff;
   }
 
@@ -85,31 +85,31 @@
 @mixin verticalMenu-skin-default($selector) {
 
   #{$selector} {
-    @extend %verticalMenu-skin-default;
+    @include _use(verticalMenu-skin-default);
   }
 
   #{$selector}_item {
 
-    @extend %verticalMenu-skin-default-item;
+    @include _use(verticalMenu-skin-default-item);
     &:first-child {
-      @extend %verticalMenu-skin-default-item_first;
+      @include _use(verticalMenu-skin-default-item_first);
     }
 
     &:hover {
-      @extend %verticalMenu-skin-default-item_hover;
+      @include _use(verticalMenu-skin-default-item_hover);
 
       #{$selector}_link {
-        @extend %verticalMenu-skin-default-item_hover_link;
+        @include _use(verticalMenu-skin-default-item_hover_link);
       }
     }
 
     &._is_current {
-      @extend %verticalMenu-skin-default-item_current;
+      @include _use(verticalMenu-skin-default-item_current);
     }
   }
 
   #{$selector}_link {
-    @extend %verticalMenu-skin-default-item_link;
+    @include _use(verticalMenu-skin-default-item_link);
   }
 
 }

@@ -7,7 +7,7 @@
 
 // miscellaneous rules
 .navLink {
-  @extend %basicClickable;
+  @include _use(basicClickable);
 }
 
 .firstOrderList_item {
@@ -27,7 +27,7 @@
 }
 
 .articleSeparator {
-  @extend %hidden;
+  @include _use(hidden);
 }
 
 .note {
@@ -64,3 +64,38 @@
 .example6 {
   @include example2();
 }
+
+
+
+
+
+
+.abc {
+  @include _use(clearfix);
+}
+
+.bcd {
+  @include _use(clearfix);
+}
+
+
+.cde {
+  @include breakpoint(medium) {
+    @include _use(clearfix);
+  }
+}
+
+@include breakpoint(medium) {
+  .def {
+    @include _use(clearfix);
+  }
+}
+
+.efg {
+  @include _use(clearfix);
+
+  @include breakpoint(large) {
+    @include _use(clearfix);
+  }
+}
+
