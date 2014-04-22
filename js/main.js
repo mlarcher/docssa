@@ -7,10 +7,12 @@
     currentMainMenuItem,
     currentMainArticle,
     scrollTarget = $('html, body'),
-    mainHeader;
+    mainHeader,
+    mainFooter;
 
     mainItems = $('.mainMenu_item');
     mainHeader = $('.mainHeader');
+    mainFooter = $('.mainFooter');
 
 
     mainItems.bind('click', function(e) {
@@ -20,6 +22,7 @@
       e.preventDefault();
 
       mainHeader.hide();
+      mainFooter.hide();
 
       if (currentMainMenuItem) {
         currentMainMenuItem.removeClass('_is_current');
@@ -45,6 +48,9 @@
     });
 
     //mainItems.eq(1).find('.mainMenu_link').trigger('click');
+    if (window.location.hash) {
+      mainItems.find('a').filter('[href=' + window.location.hash + ']').trigger('click');
+    }
 
   });
 
