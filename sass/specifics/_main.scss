@@ -47,7 +47,7 @@
 
 .mainArticle_header {
   padding: 10px 40px;
-  background: transparentize($color-default-white, .5);
+  background: $color-green-lighter;
 }
 
 // decide the kind of style we want from a config variable

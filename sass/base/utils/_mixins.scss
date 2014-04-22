@@ -42,12 +42,10 @@
 @mixin remIt($attr, $value, $value2: '', $before: '', $between:'', $after: '') {
   $baseFontSize: 16;
 
-  .no-cssremunit & {
-    @if $value2 == '' {
-      #{$attr}: #{$before}#{$value}px#{$after};
-    } @else {
-      #{$attr}: #{$before}#{$value}px#{$between}#{$value2}px#{$after};
-    }
+  @if $value2 == '' {
+    #{$attr}: #{$before}#{$value}px#{$after};
+  } @else {
+    #{$attr}: #{$before}#{$value}px#{$between}#{$value2}px#{$after};
   }
 
   .cssremunit & {
