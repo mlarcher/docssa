@@ -11,19 +11,20 @@
 
 .mainTitle {
   font-family: 'robotoSlab', georgia, serif;
+  font-weight: normal;
+  margin: 0 0 10px;
   @include remIt('font-size', 70);
   @include remIt('line-height', 75);
-  font-weight: normal;
-  margin: 0 0 25px;
   @include text-shadow(1px 1px 3px rgba(0, 0, 0, .3));
 }
 .mainSubtitle {
+  margin: 0;
+  font-weight: normal;
   @include text-shadow(1px 1px 3px rgba(0, 0, 0, .3));
 }
 
 
 .mainContent{
-  background: $color-default-white;
   margin: 65px 0 50px;
 }
 
@@ -36,7 +37,17 @@
 }
 
 .mainArticle {
+  //padding: 10px 40px;
+}
+
+.mainArticle_body {
   padding: 10px 40px;
+  background: $color-default-white;
+}
+
+.mainArticle_header {
+  padding: 10px 40px;
+  background: transparentize($color-default-white, .5);
 }
 
 // decide the kind of style we want from a config variable
@@ -76,13 +87,13 @@
 
 .mainArticle_title {
   font-weight: normal;
-  padding-bottom: 10px;
-  border-bottom: solid 1px $color-default-black;
+  color: $color-green;
   @include remIt('font-size', 26);
   @include remIt('line-height', 30);
 }
 .mainArticle_subtitle {
-  margin-top: 50px;
+  margin-top: 30px;
+  margin-bottom: 20px;
 }
 
 .mainArticle_smallTitle {
