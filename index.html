@@ -48,6 +48,9 @@
             <a class="mainMenu_link" href="#naming_conventions">Naming conventions</a>
         </li>
         <li class="mainMenu_item">
+          <a class="mainMenu_link" href="#responsive">Responsive</a>
+        </li>
+        <li class="mainMenu_item">
             <a class="mainMenu_link" href="#getting_started">Getting started</a>
         </li>
         <li class="mainMenu_item mainMenu_item--highlighted">
@@ -241,8 +244,8 @@ sass
 ¦   +---utils
 ¦           __utils.scss
 ¦           _define.scss
-¦           _helpers.scss
 ¦           _mixins.scss
+¦           _system.scss
 ¦
 +---components
 ¦   ¦   __components.scss
@@ -264,6 +267,7 @@ sass
 +---specifics
 ¦   ¦   __specifics.scss
 ¦   ¦   _main.scss
+|   |   _inbox.scss
 ¦   ¦
 ¦   +---popins
 ¦           __popins.scss
@@ -293,17 +297,18 @@ sass
                 <p>
                     <strong id="fileStructure_base_utils">Utils</strong> contains only things that don't need to change
                     from a project to another. As of today,
-                    it consists of <em>_define</em>, <em>_helpers</em>, and <em>_mixins</em>.
+                    it consists of <em>_system</em>, <em>_helpers</em>, and <em>_mixins</em>.
                 </p>
                 <ul class="secondaryList">
                     <li class="secondaryList_item">
                         <div class="secondaryList_item_content">
-                            <p><em>_define</em> is a special mixin that is used by DoCSSa to allow inclusion of placeholders
-                                from several
-                                places without generating duplicate content.
+                            <p><em>_system</em> is a special file the contains tools used by DoCSSa.<br>
+                                Most notably, it contains a <em>define</em> mixin used to allow inclusion of placeholders
+                                from several places without generating duplicate content, and <em>_add()/_use()</em> mixins for
+                              handling cross media placeholders.
                             </p>
 
-                            <p class="note"> To have a
+                            <p class="note">To have a
                                 specific
                                 component's CSS file rendered, the component's .scss file needs to import the placeholders
                                 contained in <em>_helpers.scss</em>.
@@ -316,6 +321,13 @@ sass
                                 times
                                 from various places. Dig in the provided example structure if you want to find out how
                                 this works.
+                            </p>
+
+                            <p class="note">As you'll notice, DoCSSa makes heavy use of placeholders. By default, Sass
+                                doesn't like it when you try to use a placeholder defined on the root from within a
+                                media query and will throw nasty errors at you for that. Thankfully, some nice folks have
+                                found a way around it, and we've implemented it in DoCSSa. More on that in the "Responsive"
+                                section.
                             </p>
                         </div>
                     </li>
@@ -336,7 +348,7 @@ sass
                                 implementing
                                 them, they add that selector to the list of selectors on which to apply a set of CSS rules.<br>
                                 The magic of
-                                placeholders is only glanced at here, but you'll see more awesome stuff we can do about
+                                placeholders is only glanced at here, but you'll see more awesome stuff we can do with
                                 it in the
                                 components section.</p>
                         </div>
@@ -453,9 +465,11 @@ $color-green: #449888;
 $color-green-light: #5cbcaa;
 $color-pink: #ee746f;
 $color-grey-dark: #333;
-$color-beige-dark: #4f4f47;
-$color-beige: #e1e1bf;
-$color-beige-light: #f3f4d9;
+$color-beige-dark: #c2c0bc;
+$color-beige: #f1ede4;
+$color-beige-light: #f8f5ec;
+
+$color-code: #637c84;
 </pre>
                         </div>
                     </li>
@@ -472,7 +486,7 @@ $color-beige-light: #f3f4d9;
                                 Typically, you'll have the <em>custom.scss</em> file in a "sass" folder" compiled to a
                                 <em>custom.css</em> in a
                                 "css" or "styles" folder. The font files will have to be there (preferably in a "fonts"
-                                subfolder" in order to stay nice and tidy).<br>
+                                subfolder in order to stay nice and tidy).<br>
                                 Same goes for all the image files you may be referring to in your stylesheets.
                             </p>
                         </div>
@@ -491,7 +505,7 @@ $color-beige-light: #f3f4d9;
                     <li class="secondaryList_item">
                         <div class="secondaryList_item_content">
                             <p><strong>_helpers</strong> contains placeholders helper that are specific to your current
-                                project. If you have a reusable visual component that wouldn't make sens in another project
+                                project. If you have a reusable visual component that wouldn't make sense in another project
                                 and can be applied to your selector through a simple @extend, this is where it belongs.
                                 For more advanced reusable components, the "components" section is what you're looking for.
                             </p>
@@ -555,10 +569,16 @@ $color-beige-light: #f3f4d9;
                         (popins/__popins.scss).</p>
                 </aside>
 
-                <p class="note">DoCSSa encourages you to keep your definitions tidy and reorganized in subfolders as soon as it makes
+                <p class="note">DoCSSa encourages you to keep your definitions tidy and reorganize in subfolders as soon as it makes
                     sense.<br>
                     No file should ever be big enough that you can't scroll through it in a few mousewheel movements
                     max.</p>
+
+                <p>Before everyone in your team is familiar with DoCSSa, it can be helpful for occasional contributors
+                    wondering where to place their code to have a dedicated file. In such case, we recommend using
+                    a <em>_inbox.scss</em> file in the "specifics" folder and ask them to commit their work in there.<br>
+                    It shall be emptied regularly by a more experienced user to the correct place.
+                </p>
 
 
                 <h2 class="mainArticle_subtitle" id="fileStructure_vendor">Vendor folder</h2>
@@ -692,10 +712,11 @@ $color-beige-light: #f3f4d9;
                     <p>When looking at a component folder, you may see three files, and eventually some subfolders.
                         Let's take a <em>Tabs</em> component as an example, as probably everyone has already seen a tabbed
                         navigation in a page. The files in the Tabs folder would be: <em>_tabs.scss</em>, <em>tabs.standalone.scss</em>,
-                        and <em>tabs.html</em>.
+                        and <em>tabs.standalone.html</em>.
                     </p>
                     <p>The underscore prefixed file (_tabs.scss) is the component definition. It is the only essential file for the
-                        component, the others are optional. Let's look at it in details.
+                        component, the others are optional.<br>
+                        Let's look at it in details.
                     </p>
                     <h3 class="mainArticle_smallTitle" id="components_definition">Component's definition</h3>
                     <p>The component definition file contains two sets of placeholders
@@ -714,24 +735,21 @@ $color-beige-light: #f3f4d9;
 @include define('tabs') {
   %tabs {
     list-style: none;
-    padding: 10px 0 0;
+    padding: 0;
     margin: 0;
     font-size: 0;
+    display: inline-block;
   }
 
   %tabs_item{
-    font-size: 16px;
-    padding: 15px;
+    @include remIt(font-size, 18);
+    padding: 10px 0;
     display: inline-block;
     vertical-align: bottom;
-    margin-top: 10px;
-    margin-left: 5px;
   }
 
-  %tabs_item_current {
-    padding-top: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
+  %tabs_link {
+    padding: 0 10px;
   }
 
 }
@@ -745,13 +763,14 @@ $color-beige-light: #f3f4d9;
   }
 
   #{$selector}_item {
-
     @extend %tabs_item;
-
-    &._is_current {
-      @extend %tabs_item_current;
-    }
   }
+
+  #{$selector}_link {
+    @extend %tabs_link;
+  }
+
+
 
   @if $defaultSkin != false {
     @include tabs-skin-default($selector);
@@ -786,47 +805,43 @@ $color-beige-light: #f3f4d9;
 @import 'sass/base/project/_variables';
 @import 'sass/base/project/_helpers';
 
+
 // define component placeholders for component skin (no selector here)
 @include define('tabs-skin-default') {
 
-  %tabs-skin-default {
-    background: $color-beige;
+  %tabs-skin-default__item {
+    border-bottom: solid 3px transparent;
   }
 
-  %tabs-skin-default-item {
-    background: $color-purple-light;
-    border-left: solid 1px #fff;
-    @include border-radius('3px 3px 0 0 ');
-    @include box-shadow('3px 0 3px rgba(0, 0, 0, 0.2)');
+  %tabs-skin-default__item_current {
+    border-bottom: solid 3px $color-green;
   }
 
-  %tabs-skin-default-item_first {
+  %tabs-skin-default__item_hover {
+    border-bottom: solid 3px $color-green-light;
+  }
+
+
+  %tabs-skin-default__link {
+    border-left: solid 1px $color-green;
+    text-decoration: none;
+    color: $color-green;
+  }
+
+  %tabs-skin-default__link_first {
     border-left: inherit;
   }
 
-  %tabs-skin-default-item_hover {
-    background: $color-purple;
+  %tabs-skin-default__item_hover_link {
+    color: $color-green-light;
   }
 
-  %tabs-skin-default-item_link {
-    text-decoration: none;
-    color: #fff;
+  %tabs-skin-default__item_current_link {
+    color: $color-green-light;
   }
 
-  %tabs-skin-default-item_hover_link {
-    color: #fff;
-  }
-
-  %tabs-skin-default-item_current {
-    background: $color-purple-dark;
-    border-left: solid 1px $color-beige;
-    @include box-shadow('3px 0 3px rgba(0, 0, 0, 0.5)');
-    position: relative;
-    z-index: 10;
-  }
-
-  %tabs-skin-default-item_current_link {
-    color: #fff;
+  %tabs-skin-default__item_highlighted {
+    color: $color-grey-dark;
   }
 
 }
@@ -835,32 +850,40 @@ $color-beige-light: #f3f4d9;
 // only visual changes that don't affect the component layout should be in here
 @mixin tabs-skin-default($selector) {
 
-  #{$selector} {
-    @extend %tabs-skin-default;
-  }
-
   #{$selector}_item {
 
-    @extend %tabs-skin-default-item;
-    &:first-child {
-      @extend %tabs-skin-default-item_first;
+    @extend %tabs-skin-default__item;
+
+    &._is_current {
+      @extend %tabs-skin-default__item_current;
     }
 
     &:hover {
-      @extend %tabs-skin-default-item_hover;
-
-      #{$selector}_link {
-        @extend %tabs-skin-default-item_hover_link;
-      }
+      @extend %tabs-skin-default__item_hover;
     }
 
-    &._is_current {
-      @extend %tabs-skin-default-item_current;
-    }
+
   }
 
   #{$selector}_link {
-    @extend %tabs-skin-default-item_link;
+
+    @extend %tabs-skin-default__link;
+
+    #{$selector}_item:first-child & {
+      @extend %tabs-skin-default__link_first;
+    }
+
+    &:hover {
+      @extend %tabs-skin-default__item_hover_link;
+    }
+
+    #{$selector}_item#{'--highlighted'} & {
+      @extend %tabs-skin-default__item_highlighted;
+    }
+
+    #{$selector}_item._is_current & {
+      @extend %tabs-skin-default__item_current_link;
+    }
   }
 
 }
@@ -901,79 +924,63 @@ $color-beige-light: #f3f4d9;
 </pre>
                     <p>That's right, now that you have defined your component, using it is as easy as that!</p>
                     <p>And here is what the output css will look like :</p>
-                    <samp class="sampleTitle">// in css/custom.scss</samp>
+                    <samp class="sampleTitle">// in css/custom.css</samp>
 <pre class="codeSample">
 .mainMenu {
-    list-style: none;
-    padding: 10px 0 0;
-    margin: 0;
-    font-size: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0;
+  display: inline-block;
 }
 
 .mainMenu_item {
-    font-size: 16px;
-    padding: 15px;
-    display: inline-block;
-    vertical-align: bottom;
-    margin-top: 10px;
-    margin-left: 5px;
+  font-size: 18px;
+  padding: 10px 0;
+  display: inline-block;
+  vertical-align: bottom;
 }
-
-.mainMenu_item._is_current {
-    padding-top: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
-.mainMenu {
-    background: #cdc3aa;
-}
-
-.mainMenu_item {
-    background: #d75b62;
-    border-left: solid 1px #fff;
-}
-
-.borderradius .mainMenu_item {
-    -webkit-border-radius: 3px 3px 0 0 ;
-    border-radius: 3px 3px 0 0 ;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-}
-
-.boxshadow .mainMenu_item {
-    -webkit-box-shadow: 3px 0 3px rgba(0, 0, 0, 0.2);
-    box-shadow: 3px 0 3px rgba(0, 0, 0, 0.2);
-}
-
-.mainMenu_item:first-child {
-    border-left: inherit;
-}
-
-.mainMenu_item:hover {
-    background: #a73951;
+.cssremunit .mainMenu_item {
+  font-size: 1.125rem;
 }
 
 .mainMenu_link {
-    text-decoration: none;
-    color: #fff;
+  padding: 0 10px;
 }
 
-.mainMenu_item:hover .mainMenu_link {
-    color: #fff;
+
+.mainMenu_item {
+  border-bottom: solid 3px transparent;
 }
 
 .mainMenu_item._is_current {
-    background: #412a3e;
-    border-left: solid 1px #cdc3aa;
-    position: relative;
-    z-index: 10;
+  border-bottom: solid 3px #449888;
 }
 
-.boxshadow .mainMenu_item._is_current {
-    -webkit-box-shadow: 3px 0 3px rgba(0, 0, 0, 0.5);
-    box-shadow: 3px 0 3px rgba(0, 0, 0, 0.5);
+.mainMenu_item:hover {
+  border-bottom: solid 3px #5cbcaa;
+}
+
+.mainMenu_link {
+  border-left: solid 1px #449888;
+  text-decoration: none;
+  color: #449888;
+}
+
+.mainMenu_item:first-child .mainMenu_link {
+  border-left: inherit;
+}
+
+.mainMenu_link:hover {
+  color: #5cbcaa;
+}
+
+.mainMenu_item._is_current .mainMenu_link {
+  color: #5cbcaa;
+}
+
+.mainMenu_item--highlighted .mainMenu_link {
+  color: #333333;
 }
 </pre>
                     <p>If later on you need to bind the tabs component to another class, all you have to do is to call the mixin
@@ -995,7 +1002,7 @@ $color-beige-light: #f3f4d9;
                         This can be useful when you want some javascript to dynamically instantiate a component and load
                         its associated CSS, instead of providing the component's CSS along with the main stylesheet.
                     </p>
-                    <p>Each component folder should contain a standalone version and a HTML example, so that fellow developers
+                    <p class="note">Each component folder should contain a standalone version and a HTML example, so that fellow developers
                         know what is the expected structure HTML-wise and can test the result easily.<br>
                         It can be really useful to maintain a project Style Guide, including every component standalone as a reference.
                     </p>
@@ -1007,7 +1014,7 @@ $color-beige-light: #f3f4d9;
 @include tabs('.dynamicTabs');
 </pre>
 
-                            <samp class="sampleTitle">// tabs.standalone.scss</samp>
+                            <samp class="sampleTitle">// tabs.standalone.html</samp>
 <pre class="codeSample">
 &ltul class="dynamicTabs"&gt
     &ltli class="dynamicTabs_item"&gt
@@ -1071,26 +1078,34 @@ $color-beige-light: #f3f4d9;
                             <p>Here is an example of what that convention may look like in our tab example :</p>
                             <samp class="sampleTitle">// naming example</samp>
 <pre class="codeSample">
-&lt;ul class="mainMenu"&gt;
-&lt;li class="mainMenu_item"&gt;
-&lt;a class="mainMenu_link" href="#about"&gt;About&lt;/a&gt;
-&lt;/li&gt;
-&lt;li class="mainMenu_item"&gt;
-&lt;a class="mainMenu_link" href="#file_structure"&gt;File Structure&lt;/a&gt;
-&lt;/li&gt;
-&lt;li class="mainMenu_item"&gt;
-&lt;a class="mainMenu_link" href="#components"&gt;Components&lt;/a&gt;
-&lt;/li&gt;
-&lt;li class="mainMenu_item _is_current"&gt;
-&lt;a class="mainMenu_link" href="#naming_conventions"&gt;Naming conventions&lt;/a&gt;
-&lt;/li&gt;
-&lt;li class="mainMenu_item"&gt;
-&lt;a class="mainMenu_link" href="#getting_started"&gt;Getting started&lt;/a&gt;
-&lt;/li&gt;
-&lt;li class="mainMenu_item mainMenu_item--highlighted"&gt;
-&lt;a class="mainMenu_link" href="#contributing"&gt;Contributing&lt;/a&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
+&lt;nav class="mainNav"&gt;
+    &lt;ul class="mainMenu"&gt;
+        &lt;li class="mainMenu_item"&gt;
+            &lt;a class="mainMenu_link" href="#"&gt;Home&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li class="mainMenu_item"&gt;
+            &lt;a class="mainMenu_link" href="#about"&gt;About&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li class="mainMenu_item"&gt;
+            &lt;a class="mainMenu_link" href="#file_structure"&gt;File Structure&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li class="mainMenu_item"&gt;
+            &lt;a class="mainMenu_link" href="#components"&gt;Components&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li class="mainMenu_item _is_current"&gt;
+            &lt;a class="mainMenu_link" href="#naming_conventions"&gt;Naming conventions&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li class="mainMenu_item"&gt;
+            &lt;a class="mainMenu_link" href="#responsive"&gt;Responsive&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li class="mainMenu_item"&gt;
+            &lt;a class="mainMenu_link" href="#getting_started"&gt;Getting started&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li class="mainMenu_item mainMenu_item--highlighted"&gt;
+            &lt;a class="mainMenu_link" href="#contributing"&gt;Contributing&lt;/a&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav>
 </pre>
                             Note that this example is taken from the menu you're looking at just now in the present
                             page.
@@ -1218,13 +1233,28 @@ $color-default-white: #fff;
 
 $color-green: #449888;
 $color-green-light: #5cbcaa;
+$color-green-lighter: #a8d5cd;
 $color-pink: #ee746f;
 $color-grey-dark: #333;
-$color-beige-dark: #4f4f47;
-$color-beige: #e1e1bf;
-$color-beige-light: #f3f4d9;
+$color-beige-dark: #c2c0bc;
+$color-beige: #f1ede4;
+$color-beige-light: #f8f5ec;
+
+$color-code: #637c84;
 </pre>
                         </div>
+                    </div>
+                </article>
+
+
+                <hr class="articleSeparator">
+
+                <article class="mainArticle" id="responsive">
+                    <header class="mainArticle_header">
+                        <h1 class="mainArticle_title">Responsive</h1>
+                    </header>
+                    <div class="mainArticle_body">
+                        // Coming soon
                     </div>
                 </article>
 
@@ -1238,33 +1268,33 @@ $color-beige-light: #f3f4d9;
 
                         <h2 class="mainArticle_subtitle">Download the kit</h2>
                         Download this page and its implementation of DoCSSa and play with it.<br>
-                        Source code can be found on <a class="navLink" href="https://github.com/mlarcher/docssa">DoCSSa's github page</a>.
+                        Source code can be found on <a class="externalLink" href="https://github.com/mlarcher/docssa">DoCSSa's github page</a>.
                         <h2 class="mainArticle_subtitle">Learn about the basics</h2>
                         <ul class="firstOrderList">
                             <li class="firstOrderList_item">
                                 <div class="firstOrderList_item_content">
-                                    <a class="navLink" href="http://alistapart.com/article/getting-started-with-sass">
+                                    <a class="externalLink" href="http://alistapart.com/article/getting-started-with-sass">
                                         Getting started with SASS [article]
                                     </a>
                                 </div>
                             </li>
                             <li class="firstOrderList_item">
                                 <div class="firstOrderList_item_content">
-                                    <a class="navLink" href="http://www.creativebloq.com/css3/create-modular-and-scalable-css-9134351)">
+                                    <a class="externalLink" href="http://www.creativebloq.com/css3/create-modular-and-scalable-css-9134351)">
                                         Four ways to create CSS that's modular and scalable [article]
                                     </a>
                                 </div>
                             </li>
                             <li class="firstOrderList_item">
                                 <div class="firstOrderList_item_content">
-                                    <a class="navLink" href="http://bem.info/">
+                                    <a class="externalLink" href="http://bem.info/">
                                         BEM methodology [official website]
                                     </a>
                                 </div>
                             </li>
                             <li class="firstOrderList_item">
                                 <div class="firstOrderList_item_content">
-                                    <a class="navLink" href="http://www.youtube.com/watch?v=vAs9tjEkkKk">
+                                    <a class="externalLink" href="http://www.youtube.com/watch?v=vAs9tjEkkKk">
                                         Shubhie Panicker - CSS module system in Google+ (CSSconf.eu 2013) [video]
                                     </a>
                                 </div>
@@ -1283,8 +1313,12 @@ $color-beige-light: #f3f4d9;
 
                         <h2 class="mainArticle_subtitle">Contact us</h2>
 
-                        <p>DoCSSa is evolving! We are very interested in your feedback to improve it or learn about how you implemented
-                            it. Please contact us, fork the project, make Pull Requests or talk about DoCSSa at will.
+                        <p>DoCSSa is evolving!<br>
+                            We are very interested in your feedback to improve it or learn about how you implemented
+                            it.<br>
+                            Please <a class="navLink" href="/">contact us</a>, fork
+                            <a class="externalLink" href="https://github.com/mlarcher/docssa">the project</a>, make Pull Requests
+                            or talk about DoCSSa at will.
                         </p>
                     </div>
                 </article>

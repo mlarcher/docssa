@@ -9,6 +9,9 @@
 .navLink {
   @extend %basicClickable;
 }
+.externalLink{
+  @extend %basicClickable;
+}
 
 .firstOrderList_item {
   list-style-type: square;
@@ -32,12 +35,14 @@
 
 .note {
   padding: 15px;
-  border: dotted 1px $color-pink;
+  border: solid 1px transparentize($color-green-lighter, 0.7);;
+  background: transparentize($color-green-lighter, 0.8);
 }
 
 .exampleNote {
   padding: 15px;
   border: dotted 1px $color-pink;
+  margin-bottom: 15px;
 }
 
 .sampleTitle {
