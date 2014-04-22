@@ -33,7 +33,13 @@
 
       currentMainMenuItem = $(this).addClass('_is_current');
       href = currentMainMenuItem.find('.mainMenu_link').attr('href');
-      currentMainArticle = $(href).addClass('_is_current');
+
+      if (href === '#') {
+        mainHeader.show();
+        mainFooter.show();
+      } else {
+        currentMainArticle = $(href).addClass('_is_current');
+      }
 
       scrollTarget.scrollTop(0);
 
@@ -49,7 +55,9 @@
 
     //mainItems.eq(1).find('.mainMenu_link').trigger('click');
     if (window.location.hash) {
-      mainItems.find('a').filter('[href=' + window.location.hash + ']').trigger('click');
+      mainItems.find('.mainMenu_link').filter('[href=' + window.location.hash + ']').trigger('click');
+    } else {
+      mainItems.find('.mainMenu_link').filter('[href=#]').trigger('click');
     }
 
   });
