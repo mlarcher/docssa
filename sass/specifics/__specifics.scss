@@ -50,6 +50,9 @@
   border: solid 1px $color-beige;
   margin-top: 0;
   padding: 20px;
+  color: $color-code;
+  @include remIt('font-size', 14);
+  line-height: 1.3;
 }
 
 
