@@ -1,16 +1,21 @@
 
-/*_____ priority 1 — urgent _____*/
+/*_____ Priority 1 — urgent _____*/
 
-- improve graphism
-- update texts (move around, prune, optimize organization and examples...)
-- add note on &#{'--highlighted'} {
+- Update texts (move around, prune, optimize organization and examples...)
+    * Compiled code example (tab navigation over code example to switch between sass source and compiled output)
+    * English review
 
-/*_____ priority 2 — can wait _____*/
+- Add note on &#{'--highlighted'} {}
 
-- check if dynamic placeholders can be helpful
-- make use of sass 3.3 maps
-- make responsive
 
-/*_____ priority 3 — optional/non urgent _____*/
 
-- add inbox folder
+/*_____ Priority 2 — can wait _____*/
+
+- Check if dynamic placeholders can be helpful
+- Make use of sass 3.3 maps
+- Write end to end responsive guide
+
+
+/*_____ Priority 3 — optional/non urgent _____*/
+
+- Add inbox folder
