@@ -383,14 +383,14 @@ sass
                                 <samp class="sampleTitle">// base/utils/_mixins.scss</samp>
 <pre class="codeSample">
 @mixin linear-gradient($from, $to, $fallback:'') {
-  .cssgradients & {
+  .cssgradients &amp; {
     background-image: -webkit-gradient(linear, left top, left bottom, from($from), to($to)); /* Saf4+, Chrome */
     background-image: -webkit-linear-gradient(top, $from, $to); /* Chrome 10+, Saf5.1+, iOS 5+ */
     background-image: -moz-linear-gradient(top, $from, $to); /* FF3.6+ */
     background-image: -o-linear-gradient(top, $from, $to); /* Opera 11.10+ */
     background-image: linear-gradient(to bottom, $from, $to);
   }
-  .no-cssgradients & {
+  .no-cssgradients &amp; {
     @if $fallback != '' {
       background-color: $fallback;
     } @else {
@@ -406,12 +406,12 @@ sass
 
 <pre class="codeSample">
 %clearfix {
-  &:before,
-  &:after {
+  &amp;:before,
+  &amp;:after {
     content: " ";
     display: table;
   }
-  &:after {
+  &amp;:after {
     clear: both;
   }
   *zoom: 1;
@@ -622,7 +622,7 @@ $color-code: #637c84;
                         from the CSS side. That means that you can keep a semantic meaning to your HTML classes, and change
                         their look and feel without having to modify the markup. When your markup comes from a RTE, this is a huge gain.
                         You can change the styling without asking the contributors to change their habits, and you can
-                        affect everything already written without having to make search&replace throughout a database or without
+                        affect everything already written without having to make search&amp;replace throughout a database or without
                         having a "red" class helper mean the color is going to be purple!
                     </p>
                     <p class="exampleNote">
@@ -854,11 +854,11 @@ $color-code: #637c84;
 
     @extend %tabs-skin-default__item;
 
-    &._is_current {
+    &amp;._is_current {
       @extend %tabs-skin-default__item_current;
     }
 
-    &:hover {
+    &amp;:hover {
       @extend %tabs-skin-default__item_hover;
     }
 
@@ -869,19 +869,19 @@ $color-code: #637c84;
 
     @extend %tabs-skin-default__link;
 
-    #{$selector}_item:first-child & {
+    #{$selector}_item:first-child &amp; {
       @extend %tabs-skin-default__link_first;
     }
 
-    &:hover {
+    &amp;:hover {
       @extend %tabs-skin-default__item_hover_link;
     }
 
-    #{$selector}_item#{'--highlighted'} & {
+    #{$selector}_item#{'--highlighted'} &amp; {
       @extend %tabs-skin-default__item_highlighted;
     }
 
-    #{$selector}_item._is_current & {
+    #{$selector}_item._is_current &amp; {
       @extend %tabs-skin-default__item_current_link;
     }
   }
@@ -1194,7 +1194,7 @@ $color-code: #637c84;
 }
 #{$selector}_singleItem {
   @extend %componentName_singleItem
-  &:hover {
+  &amp;:hover {
     @extend %componentName_singleItem-altState
   }
 }
@@ -1275,6 +1275,13 @@ $color-code: #637c84;
                                 <div class="firstOrderList_item_content">
                                     <a class="externalLink" href="http://alistapart.com/article/getting-started-with-sass">
                                         Getting started with SASS [article]
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="firstOrderList_item">
+                                <div class="firstOrderList_item_content">
+                                    <a class="externalLink" href="http://www.sitepoint.com/cross-media-query-extend-sass/">
+                                        Cross media query extend
                                     </a>
                                 </div>
                             </li>
