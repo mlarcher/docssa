@@ -16,10 +16,13 @@
 
 
     mainItems.bind('click', function(e) {
+      e.preventDefault();
+      navigateTo($(this));
+    });
+
+    function navigateTo($navItem, replace) {
       var href,
       scrollV;
-
-      e.preventDefault();
 
       mainHeader.hide();
       mainFooter.hide();
@@ -31,7 +34,8 @@
         currentMainArticle.removeClass('_is_current');
       }
 
-      currentMainMenuItem = $(this).addClass('_is_current');
+      currentMainMenuItem = $navItem.addClass('_is_current');
+      console.log(currentMainMenuItem);
       href = currentMainMenuItem.find('.mainMenu_link').attr('href');
 
       if (href === '#') {
@@ -44,21 +48,27 @@
       scrollTarget.scrollTop(0);
 
       if (history.pushState) {
-        history.pushState({}, "", href);
-        // provide a fallback
+        if (replace) {
+          history.replaceState({}, "", href);
+        } else {
+          history.pushState({}, "", href);
+        }
       } else {
+        // provide a fallback
         scrollV = document.body.scrollTop;
         location.hash = href;
         document.body.scrollTop = scrollV;
       }
-    });
+    }
 
     //mainItems.eq(1).find('.mainMenu_link').trigger('click');
     if (window.location.hash) {
-      mainItems.find('.mainMenu_link').filter('[href=' + window.location.hash + ']').trigger('click');
+      navigateTo(mainItems.find('.mainMenu_link').filter('[href=' + window.location.hash + ']').parents('li'));
     } else {
-      mainItems.find('.mainMenu_link').filter('[href=#]').trigger('click');
+      navigateTo(mainItems.find('.mainMenu_link').filter('[href=#]').parents('li'), true);
     }
+
+
 
   });
 
