@@ -1,6 +1,6 @@
-DoCSSa {dok~sa} 
+DoCSSa {dok~sa}
 ===============
 
 DoCSSa - Sass based CSS architecture and methodology
 
-See it live at [mlarcher.github.io/docssa](http://mlarcher.github.io/docssa)
+See it live at [docssa.info](http://docssa.info)
