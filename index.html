@@ -39,19 +39,19 @@
             <a class="mainMenu_link" href="#about">About</a>
         </li>
         <li class="mainMenu_item">
-            <a class="mainMenu_link" href="#file_structure">File Structure</a>
+            <a class="mainMenu_link" href="#fileStructure">File Structure</a>
         </li>
         <li class="mainMenu_item">
             <a class="mainMenu_link" href="#components">Components</a>
         </li>
         <li class="mainMenu_item">
-            <a class="mainMenu_link" href="#naming_conventions">Naming conventions</a>
+            <a class="mainMenu_link" href="#namingConventions">Naming conventions</a>
         </li>
         <li class="mainMenu_item">
           <a class="mainMenu_link" href="#responsive">Responsive</a>
         </li>
         <li class="mainMenu_item">
-            <a class="mainMenu_link" href="#getting_started">Getting started</a>
+            <a class="mainMenu_link" href="#gettingStarted">Getting started</a>
         </li>
         <li class="mainMenu_item mainMenu_item--highlighted">
             <a class="mainMenu_link" href="#contributing">Contributing</a>
@@ -136,7 +136,7 @@
 
                 <hr class="articleSeparator">
 
-                <article class="mainArticle" id="file_structure">
+                <article class="mainArticle" id="fileStructure">
 
                 <header class="mainArticle_header">
                     <h1 class="mainArticle_title">File Structure</h1>
@@ -233,6 +233,7 @@ sass
 ¦
 +---base
 ¦   ¦   __base.scss
+¦   ¦   _config.scss
 ¦   ¦
 ¦   +---project
 ¦   ¦       __project.scss
@@ -294,6 +295,9 @@ sass
                         </div>
                     </li>
                 </ul>
+                <p class="note">It also imports the <em>_config.scss</em> file which contains configuration infos required by both
+                the system and the project. As of today, this file contrains $baseFontSize which is required for the
+                    remIt mixin, and $breakpoints which is required for cross-media placeholders.</p>
                 <p>
                     <strong id="fileStructure_base_utils">Utils</strong> contains only things that don't need to change
                     from a project to another. As of today,
@@ -366,7 +370,8 @@ sass
                                 DoCSSa
                                 recommends using Modernizr for feature detection and progressive enhancement, and the provided
                                 mixins
-                                implementing CSS3 features rely on it for their output.<br>
+                                implementing CSS3 features rely on it by default for their output, even though it can be
+                                disabled at include time.<br>
                             </p>
 
                             <p class="note">Mixins, like placeholders, can accumulate and enrich your library
@@ -382,21 +387,26 @@ sass
 
                                 <samp class="sampleTitle">// base/utils/_mixins.scss</samp>
 <pre class="codeSample">
-@mixin linear-gradient($from, $to, $fallback:'') {
-  .cssgradients &amp; {
-    background-image: -webkit-gradient(linear, left top, left bottom, from($from), to($to)); /* Saf4+, Chrome */
-    background-image: -webkit-linear-gradient(top, $from, $to); /* Chrome 10+, Saf5.1+, iOS 5+ */
-    background-image: -moz-linear-gradient(top, $from, $to); /* FF3.6+ */
-    background-image: -o-linear-gradient(top, $from, $to); /* Opera 11.10+ */
-    background-image: linear-gradient(to bottom, $from, $to);
-  }
-  .no-cssgradients &amp; {
+@mixin linear-gradient($from, $to, $fallback: '', $useModernizr: true) {
+
+  $prefixes: getPrefixes(cssgradients, $useModernizr);
+
+  #{map-get($prefixes, no)} & {
     @if $fallback != '' {
       background-color: $fallback;
     } @else {
       background-color: mix($from, $to);
     }
   }
+
+  #{map-get($prefixes, yes)} & {
+    background-image: -webkit-gradient(linear, left top, left bottom, from($from), to($to)); // Saf4+, Chrome
+    background-image: -webkit-linear-gradient(top, $from, $to); // Chrome 10+, Saf5.1+, iOS 5+
+    background-image: -moz-linear-gradient(top, $from, $to); // FF3.6+
+    background-image: -o-linear-gradient(top, $from, $to); // Opera 11.10+
+    background-image: linear-gradient(to bottom, $from, $to);
+  }
+
 }
 </pre>
 
@@ -405,7 +415,7 @@ sass
                                 <samp class="sampleTitle">// base/utils/_helpers.scss</samp>
 
 <pre class="codeSample">
-%clearfix {
+@include _add(clearfix) {
   &amp;:before,
   &amp;:after {
     content: " ";
@@ -418,6 +428,10 @@ sass
 }
 </pre>
 
+                                <p class="note">
+                                    Note that we use <em>@include _add(clearfix)</em> here instead of <em>%clearfix</em>. This
+                                    is a way to allow cross-media placeholders. More on that in the "responsive" section.
+                                </p>
                             </aside>
                         </div>
                     </li>
@@ -1043,7 +1057,7 @@ $color-code: #637c84;
 
                 <hr class="articleSeparator">
 
-                <article class="mainArticle" id="naming_conventions">
+                <article class="mainArticle" id="namingConventions">
                     <header class="mainArticle_header">
                         <h1 class="mainArticle_title">Naming conventions</h1>
                     </header>
@@ -1087,19 +1101,19 @@ $color-code: #637c84;
             &lt;a class="mainMenu_link" href="#about"&gt;About&lt;/a&gt;
         &lt;/li&gt;
         &lt;li class="mainMenu_item"&gt;
-            &lt;a class="mainMenu_link" href="#file_structure"&gt;File Structure&lt;/a&gt;
+            &lt;a class="mainMenu_link" href="#fileStructure"&gt;File Structure&lt;/a&gt;
         &lt;/li&gt;
         &lt;li class="mainMenu_item"&gt;
             &lt;a class="mainMenu_link" href="#components"&gt;Components&lt;/a&gt;
         &lt;/li&gt;
         &lt;li class="mainMenu_item _is_current"&gt;
-            &lt;a class="mainMenu_link" href="#naming_conventions"&gt;Naming conventions&lt;/a&gt;
+            &lt;a class="mainMenu_link" href="#namingConventions"&gt;Naming conventions&lt;/a&gt;
         &lt;/li&gt;
         &lt;li class="mainMenu_item"&gt;
             &lt;a class="mainMenu_link" href="#responsive"&gt;Responsive&lt;/a&gt;
         &lt;/li&gt;
         &lt;li class="mainMenu_item"&gt;
-            &lt;a class="mainMenu_link" href="#getting_started"&gt;Getting started&lt;/a&gt;
+            &lt;a class="mainMenu_link" href="#gettingStarted"&gt;Getting started&lt;/a&gt;
         &lt;/li&gt;
         &lt;li class="mainMenu_item mainMenu_item--highlighted"&gt;
             &lt;a class="mainMenu_link" href="#contributing"&gt;Contributing&lt;/a&gt;
@@ -1183,7 +1197,7 @@ $color-code: #637c84;
                         </p>
 
                         <div class="exampleNote">
-                            <p>For example, you could pass "myExampleClass" as a selector to a component mixin for an
+                            <p>For example, you could pass ".myExampleClass" as a selector to a component mixin for an
                                 implementation that
                                 would look like this :
                             </p>
@@ -1260,7 +1274,7 @@ $color-code: #637c84;
 
                 <hr class="articleSeparator">
 
-                <article class="mainArticle" id="getting_started">
+                <article class="mainArticle" id="gettingStarted">
                     <header class="mainArticle_header">
                         <h1 class="mainArticle_title">Getting started</h1>
                     </header>

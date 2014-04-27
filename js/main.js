@@ -8,7 +8,8 @@
     currentMainArticle,
     scrollTarget = $('html, body'),
     mainHeader,
-    mainFooter;
+    mainFooter,
+    hashPrefix;
 
     mainItems = $('.mainMenu_item');
     mainHeader = $('.mainHeader');
@@ -20,7 +21,7 @@
       navigateTo($(this));
     });
 
-    function navigateTo($navItem, replace) {
+    function navigateTo($navItem, replace, subItemDest) {
       var href,
       scrollV;
 
@@ -35,7 +36,6 @@
       }
 
       currentMainMenuItem = $navItem.addClass('_is_current');
-      console.log(currentMainMenuItem);
       href = currentMainMenuItem.find('.mainMenu_link').attr('href');
 
       if (href === '#') {
@@ -59,11 +59,16 @@
         location.hash = href;
         document.body.scrollTop = scrollV;
       }
+
+      if (subItemDest) {
+        window.location.hash = subItemDest;
+      }
     }
 
     //mainItems.eq(1).find('.mainMenu_link').trigger('click');
     if (window.location.hash) {
-      navigateTo(mainItems.find('.mainMenu_link').filter('[href=' + window.location.hash + ']').parents('li'));
+      hashPrefix = window.location.hash.replace(/_+.*/, '');
+      navigateTo(mainItems.find('.mainMenu_link').filter('[href=' + hashPrefix + ']').parents('li'), false, window.location.hash);
     } else {
       navigateTo(mainItems.find('.mainMenu_link').filter('[href=#]').parents('li'), true);
     }
