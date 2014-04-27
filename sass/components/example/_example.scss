@@ -7,8 +7,8 @@
 usage examples:
 @include example();
 @include example('.example2');
-@include example('.example3', 'maClasseHover');
-@include example('.example4', $param2: 'tutu', $hover: 'monHover');
+@include example('.example3', 'myHoverClass');
+@include example('.example4', $param2: 'someParam', $hover: 'myHover');
 
 @include example('.example5', $defaultSkin: false);
 @include example-skin-alt('.example5');
@@ -59,6 +59,8 @@ usage examples:
 
 }
 
+// passing the selector is not mandatory, but it gets really useful when you need to add a prefix to it (ex: Modernizr)
+// here's how a component can look like without it, though :
 @mixin example2($hover: ':hover', $param2: '', $defaultSkin: true) {
 
   & {
