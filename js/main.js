@@ -49,7 +49,7 @@
 
       if (history.pushState) {
         if (replace) {
-          history.replaceState({}, "", href);
+          //history.replaceState({}, "", href);
         } else {
           history.pushState({}, "", href);
         }
