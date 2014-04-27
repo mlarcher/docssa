@@ -61,7 +61,8 @@
     right: 0;
     background: $color-default-white;
     text-align: right;
-    @include box-shadow('0 3px 5px rgba(0,0,0,.3)')
+    @include box-shadow('0 3px 5px rgba(0,0,0,.3)');
+    @include box-opacity(.95);
   }
 
 } @else {
