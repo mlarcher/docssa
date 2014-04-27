@@ -366,7 +366,8 @@ sass
                                 DoCSSa
                                 recommends using Modernizr for feature detection and progressive enhancement, and the provided
                                 mixins
-                                implementing CSS3 features rely on it for their output.<br>
+                                implementing CSS3 features rely on it by default for their output, even though it can be
+                                disabled at include time.<br>
                             </p>
 
                             <p class="note">Mixins, like placeholders, can accumulate and enrich your library
@@ -382,21 +383,27 @@ sass
 
                                 <samp class="sampleTitle">// base/utils/_mixins.scss</samp>
 <pre class="codeSample">
-@mixin linear-gradient($from, $to, $fallback:'') {
-  .cssgradients &amp; {
-    background-image: -webkit-gradient(linear, left top, left bottom, from($from), to($to)); /* Saf4+, Chrome */
-    background-image: -webkit-linear-gradient(top, $from, $to); /* Chrome 10+, Saf5.1+, iOS 5+ */
-    background-image: -moz-linear-gradient(top, $from, $to); /* FF3.6+ */
-    background-image: -o-linear-gradient(top, $from, $to); /* Opera 11.10+ */
-    background-image: linear-gradient(to bottom, $from, $to);
-  }
-  .no-cssgradients &amp; {
+
+@mixin linear-gradient($from, $to, $fallback: '', $useModernizr: true) {
+
+  $prefixes: getPrefixes(cssgradients, $useModernizr);
+
+  #{map-get($prefixes, no)} & {
     @if $fallback != '' {
       background-color: $fallback;
     } @else {
       background-color: mix($from, $to);
     }
   }
+
+  #{map-get($prefixes, yes)} & {
+    background-image: -webkit-gradient(linear, left top, left bottom, from($from), to($to)); // Saf4+, Chrome
+    background-image: -webkit-linear-gradient(top, $from, $to); // Chrome 10+, Saf5.1+, iOS 5+
+    background-image: -moz-linear-gradient(top, $from, $to); // FF3.6+
+    background-image: -o-linear-gradient(top, $from, $to); // Opera 11.10+
+    background-image: linear-gradient(to bottom, $from, $to);
+  }
+
 }
 </pre>
 

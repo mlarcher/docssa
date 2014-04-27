@@ -1,4 +1,14 @@
 
+@function getPrefixes($feature, $useModernizr: true) {
+  $yesPrefix: '';
+  $noPrefix: '';
+  @if $useModernizr {
+    $yesPrefix: '.' + $feature;
+    $noPrefix: '.no-' + $feature;
+  }
+  @return (yes: $yesPrefix, no: $noPrefix);
+}
+
 /* _____ MIXINS _____ */
 
 // Fonts
@@ -40,7 +50,6 @@
 // ==========================================================================
 
 @mixin remIt($attr, $value, $value2: '', $before: '', $between:'', $after: '') {
-  $baseFontSize: 16;
 
   @if $value2 == '' {
     #{$attr}: #{$before}#{$value}px#{$after};
@@ -134,8 +143,30 @@
   }
 }
 
-@mixin box-gradient-with-img($from, $to, $img, $bkgmore: no-repeat) {
+@mixin linear-gradient($from, $to, $fallback: '', $useModernizr: true) {
 
+  $prefixes: getPrefixes(cssgradients, $useModernizr);
+
+  #{map-get($prefixes, no)} & {
+    @if $fallback != '' {
+      background-color: $fallback;
+    } @else {
+      background-color: mix($from, $to);
+    }
+  }
+
+  #{map-get($prefixes, yes)} & {
+    background-image: -webkit-gradient(linear, left top, left bottom, from($from), to($to)); // Saf4+, Chrome
+    background-image: -webkit-linear-gradient(top, $from, $to); // Chrome 10+, Saf5.1+, iOS 5+
+    background-image: -moz-linear-gradient(top, $from, $to); // FF3.6+
+    background-image: -o-linear-gradient(top, $from, $to); // Opera 11.10+
+    background-image: linear-gradient(to bottom, $from, $to);
+  }
+
+}
+
+
+@mixin box-gradient-with-img($from, $to, $img, $bkgmore: no-repeat) {
 
   background: #{$img} #{$bkgmore};
   .cssgradients & {
@@ -148,6 +179,7 @@
 
 }
 
+// TODO: rewrite this old thing with lists
 @mixin box-gradient-double($from1, $to1, $from2, $to2, $fallback: '') {
 
   .cssgradients & {
