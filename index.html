@@ -295,9 +295,14 @@ sass
                         </div>
                     </li>
                 </ul>
-                <p class="note">It also imports the <em>_config.scss</em> file which contains configuration infos required by both
-                the system and the project. As of today, this file contrains $baseFontSize which is required for the
-                    remIt mixin, and $breakpoints which is required for cross-media placeholders.</p>
+                <p class="note">Both summary index for those folders import the <em>base/_config.scss</em> file which contains
+                    configuration infos required by both the system and the project. If you're wondering why we don't
+                    import the config from the __base.scss file, you're asking yourself the right questions! We had to
+                    stray a bit from the default rule on that one in order to ease the standalone components generation.
+                    We assumed it was better to import the file twice in "base" than once in "base" and then once for each
+                    component declaration.<br>
+                    As of today, this file contains $baseFontSize which is required for the
+                    "remIt" mixin, and $breakpoints which is required for cross-media placeholders.</p>
                 <p>
                     <strong id="fileStructure_base_utils">Utils</strong> contains only things that don't need to change
                     from a project to another. As of today,
@@ -1268,7 +1273,146 @@ $color-code: #637c84;
                         <h1 class="mainArticle_title">Responsive</h1>
                     </header>
                     <div class="mainArticle_body">
-                        // Coming soon
+                        <p>As you may have noticed, DoCSSa makes a quite heavy use of Sass placeholders. This is nice until
+                        you try to use them from within a media query, and stumble onto the dreaded <em>"You may not @extend
+                        an outer selector from within @media. You may only @extend selectors within the same directive."</em>
+                        error message. <br>
+                            But fear not, my friend! Until this gets fixed in Sass, there are ways around it.</p>
+                        <p>In order to be able to use your components in any context, you'll only have a few things to keep in mind:</p>
+                        <ul>
+                            <li>All <strong>breakpoints need to be named and predefined</strong> in the <strong>$breakpoints variable</strong> located in
+                                base/_config.scss
+                            </li>
+                            <li><strong>Placeholders definition</strong> need to be done through the provided <strong>_add()</strong> mixin</li>
+                            <li><strong>Placholders use</strong> need to be done through the provided <strong>_use()</strong> mixin</li>
+                            <li><strong>@media blocks</strong> need to be called through the provided <strong>breakpoint()</strong> mixin</li>
+                        </ul>
+                        <p>If you respect this process, which is a bargain, you can enjoy helpers and components anywhere
+                            in your sass structure. Aren't you just glad you came ?</p>
+
+                        <div class="exampleNote">
+                            <p>Here is how we implemented our "clearfix" helper for a responsive environment :</p>
+
+                            <samp class="sampleTitle">// in utils/_helpers.scss</samp>
+<pre class="codeSample">
+@include _add(clearfix) {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+  *zoom: 1;
+}
+</pre>
+                            <p>As you can see, we just replaced the traditional <em>%clearfix</em> definition with
+                                <em>@include _add(clearfix)</em>.</p>
+                            <p class="note">If you've already defined placeholders in DoCSSa before,
+                                a simple regex can do the conversion for you : replace <em>%([^ {]+)\s*\{</em>
+                                with <em>@include _add($1) {</em> and you're done!
+                                </p>
+                            <p>When creating the <em>_add()</em> mixin, we made sure it wouldn't break compatibility.
+                            That means that our clearfix placeholder can still be used with a simple <em>@extend %clearfix</em>
+                                as long as you're not within a media query block. But now, it can do much more!</p>
+                            <p>First, you need to define the breakpoints :</p>
+                            <samp class="sampleTitle">// in base/_config.scss</samp>
+<pre class="codeSample">
+$breakpoints: (
+  "small": 600px,
+  "medium": 900px,
+  "large": 1200px
+);
+</pre>
+                            <p>Once this is done, you can call the "clearfix" placeholder from within a media query with the
+                            following syntax:</p>
+                            <samp class="sampleTitle">// crossmedia placeholders example</samp>
+<pre class="codeSample">
+.a {
+  @include _use(clearfix);
+}
+
+.b {
+  @extend %clearfix;
+}
+
+.c {
+  @include breakpoint(medium) {
+    @include _use(clearfix);
+  }
+}
+
+@include breakpoint(medium) {
+  .d {
+    @include _use(clearfix);
+  }
+}
+
+.e {
+  @include _use(clearfix);
+
+  @include breakpoint(large) {
+    @include _use(clearfix);
+  }
+}
+</pre>
+                            <p>Here is what the end result would look like in your custom.css file :</p>
+<pre class="codeSample">
+@media (min-width: 900px) {
+  .c,
+  .d {
+    *zoom: 1;
+  }
+  .c:before,
+  .d:before,
+  .c:after,
+  .d:after {
+    content: " ";
+    display: table;
+  }
+  .c:after,
+  .d:after {
+    clear: both;
+  }
+}
+@media (min-width: 1200px) {
+  .e {
+    *zoom: 1;
+  }
+  .e:before,
+  .e:after {
+    content: " ";
+    display: table;
+  }
+  .e:after {
+    clear: both;
+  }
+}
+.a,
+.b,
+.e {
+  *zoom: 1;
+}
+.a:before,
+.b:before,
+.e:before,
+.a:after,
+.b:after,
+.e:after {
+  content: " ";
+  display: table;
+}
+.a:after,
+.b:after,
+.e:after {
+  clear: both;
+}
+</pre>
+                        </div>
+                        <p>As you can see, everything ends up nicely in the correct media query, as if you had wrote it
+                        down manually. There is a little difference with the old school, hands in the dirt approach though:
+                        you can now have your logic in a single place, and stay DRY all the way!</p>
                     </div>
                 </article>
 
@@ -1282,7 +1426,8 @@ $color-code: #637c84;
 
                         <h2 class="mainArticle_subtitle">Download the kit</h2>
                         Download this page and its implementation of DoCSSa and play with it.<br>
-                        Source code can be found on <a class="externalLink" href="https://github.com/mlarcher/docssa">DoCSSa's github page</a>.
+                        Source code can be found on <a class="externalLink" href="https://github.com/mlarcher/docssa">
+                        DoCSSa's github page</a>.
                         <h2 class="mainArticle_subtitle">Learn about the basics</h2>
                         <ul class="firstOrderList">
                             <li class="firstOrderList_item">

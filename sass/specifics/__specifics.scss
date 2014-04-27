@@ -3,6 +3,7 @@
 
 // import contextual entities
 @import '_main';
+@import '_responsiveExample';
 
 
 // miscellaneous rules
@@ -64,8 +65,8 @@
 // various example component implementations
 @include example();
 @include example('.example2');
-@include example('.example3', 'maClasseHover');
-@include example('.example4', $param2: 'tutu', $hover: 'monHover');
+@include example('.example3', 'myHoverClass');
+@include example('.example4', $param2: 'someParam', $hover: 'myHover');
 @include example('.example5', $defaultSkin: false);
 @include example-skin-alt('.example5');
 
