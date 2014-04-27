@@ -8,7 +8,7 @@
   // ==========================================================================
 
   // Image replacement
-  %ir {
+  @include _add(ir) {
     background-color: transparent;
     border: 0;
     overflow: hidden;
@@ -24,14 +24,14 @@
 
   // Hide from both screenreaders and browsers: h5bp.com/u
 
-  %hidden {
+  @include _add(hidden) {
     display: none !important;
     visibility: hidden;
   }
 
   // Hide only visually, but have it available for screenreaders: h5bp.com/v
 
-  %visuallyhidden {
+  @include _add(visuallyhidden) {
     border: 0;
     clip: rect(0 0 0 0);
     height: 1px;
@@ -56,12 +56,12 @@
   }
 
   // Hide visually and from screenreaders, but maintain layout
-  %invisible {
+  @include _add(invisible) {
     visibility: hidden;
   }
 
   // Contain floats: h5bp.com/q
-  %clearfix {
+  @include _add(clearfix) {
     &:before,
     &:after {
       content: " ";
@@ -75,27 +75,27 @@
 
   // from Ekino  ***** */
 
-  %inlineBlock {
+  @include _add(inlineBlock) {
     display: inline-block;
     .lt-ie8 & {
       display: inline;
     }
   }
 
-  %verticalAlign {
+  @include _add(verticalAlign) {
     &:before {
-      @extend %inlineBlock;
+      @include _use(inlineBlock);
       vertical-align: middle;
       content: "";
       height: 100%;
       width: 0;
       margin: 0;
     }
-    @extend %inlineBlock;
+    @include _use(inlineBlock);
     vertical-align: middle;
   }
 
-  %verticalAlign2 {
+  @include _add(verticalAlign2) {
       position: relative;
       top: 50%;
       -webkit-transform: translateY(-50%);
@@ -103,7 +103,7 @@
       transform: translateY(-50%);
   }
 
-  %nonSelectable {
+  @include _add(nonSelectable) {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
