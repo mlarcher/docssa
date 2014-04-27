@@ -642,7 +642,9 @@ usage examples:
   left: 0;
   right: 0;
   background: white;
-  text-align: right; }
+  text-align: right;
+  opacity: 0.95;
+  filter: alpha(opacity=95); }
   .boxshadow .mainNav {
     -webkit-box-shadow: 0 3px 5px rgba(0,0,0,.3);
     box-shadow: 0 3px 5px rgba(0,0,0,.3); }
