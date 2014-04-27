@@ -359,21 +359,35 @@ th {
 ========== BASE
 */
 /* ===== UTILS ===== */
-/* _____ DEFINE HELPER _____ */
+/* _____ SYSTEM TOOLS _____ */
 /* _____ MIXINS _____ */
 /* _____ UNIVERSAL HELPERS _____ */
 .articleSeparator {
   display: none !important;
   visibility: hidden; }
-
-.mainContainer {
+@media (min-width: 900px) {
+  .c, .d {
+    *zoom: 1; }
+    .c:before, .d:before, .c:after, .d:after {
+      content: " ";
+      display: table; }
+    .c:after, .d:after {
+      clear: both; } }
+@media (min-width: 1200px) {
+  .e {
+    *zoom: 1; }
+    .e:before, .e:after {
+      content: " ";
+      display: table; }
+    .e:after {
+      clear: both; } }
+.mainContainer, .a, .b, .e {
   *zoom: 1; }
-  .mainContainer:before, .mainContainer:after {
+  .mainContainer:before, .a:before, .b:before, .e:before, .mainContainer:after, .a:after, .b:after, .e:after {
     content: " ";
     display: table; }
-  .mainContainer:after {
+  .mainContainer:after, .a:after, .b:after, .e:after {
     clear: both; }
-
 /* ===== PROJECT ===== */
 /* _____ VARIABLES _____ */
 /* _____ FONTS _____ */
@@ -424,6 +438,8 @@ body {
   min-height: 100%; }
   .cssremunit body {
     font-size: 1rem; }
+  .no-cssgradients body {
+    background-color: #50aa99; }
   .cssgradients body {
     background: -moz-radial-gradient(center, ellipse cover, #5cbcaa 0%, #449888 100%) fixed;
     /* FF3.6+ */
@@ -437,9 +453,6 @@ body {
     /* IE10+ */
     background: radial-gradient(ellipse at center, #5cbcaa 0%, #449888 100%) fixed;
     /* W3C */ }
-  .no-cssgradients body {
-    /* Old browsers */
-    background: #50aa99; }
 
 ul {
   list-style: square; }
@@ -464,12 +477,11 @@ p {
   .navLink:hover, .externalLink:hover {
     color: #5cbcaa;
     text-decoration: underline; }
-
 /*!
 ========== COMPONENTS
 */
 /* ===== UTILS ===== */
-/* _____ DEFINE HELPER _____ */
+/* _____ SYSTEM TOOLS _____ */
 /* _____ MIXINS _____ */
 .mainMenu {
   list-style: none;
@@ -517,12 +529,12 @@ p {
   color: #333333; }
 
 /* ===== UTILS ===== */
-/* _____ DEFINE HELPER _____ */
+/* _____ SYSTEM TOOLS _____ */
 /* _____ MIXINS _____ */
 /* ===== PROJECT ===== */
 /* _____ VARIABLES _____ */
 /* ===== UTILS ===== */
-/* _____ DEFINE HELPER _____ */
+/* _____ SYSTEM TOOLS _____ */
 /* _____ MIXINS _____ */
 /* ===== PROJECT ===== */
 /* _____ VARIABLES _____ */
@@ -530,8 +542,8 @@ p {
 usage examples:
 @include example();
 @include example('.example2');
-@include example('.example3', 'maClasseHover');
-@include example('.example4', $param2: 'tutu', $hover: 'monHover');
+@include example('.example3', 'myHoverClass');
+@include example('.example4', $param2: 'someParam', $hover: 'myHover');
 
 @include example('.example5', $defaultSkin: false);
 @include example-skin-alt('.example5');
@@ -543,7 +555,7 @@ usage examples:
 .example_inner, .example2_inner, .example3_inner, .example4_inner, .example5_inner, .example6_inner {
   padding: 20px; }
 
-.example:hover, .example2:hover, .example3_maClasseHover, .example4_monHover, .example5:hover, .example6:hover {
+.example:hover, .example2:hover, .example3_myHoverClass, .example4_myHover, .example5:hover, .example6:hover {
   padding: 30px; }
 
 /* **** EXAMPLE COMPONENT SKIN **** */
@@ -554,7 +566,7 @@ usage examples:
 .example_inner, .example2_inner, .example3_inner, .example4_inner, .example6_inner {
   color: red; }
 
-.example:hover, .example2:hover, .example3_maClasseHover, .example4_monHover, .example6:hover {
+.example:hover, .example2:hover, .example3_myHoverClass, .example4_myHover, .example6:hover {
   border: solid 1px red; }
 
 /* **** EXAMPLE COMPONENT SKIN ALT **** */
