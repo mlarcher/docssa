@@ -396,7 +396,7 @@ sass
 
   $prefixes: getPrefixes(cssgradients, $useModernizr);
 
-  #{map-get($prefixes, no)} & {
+  #{map-get($prefixes, no)} &amp; {
     @if $fallback != '' {
       background-color: $fallback;
     } @else {
@@ -404,7 +404,7 @@ sass
     }
   }
 
-  #{map-get($prefixes, yes)} & {
+  #{map-get($prefixes, yes)} &amp; {
     background-image: -webkit-gradient(linear, left top, left bottom, from($from), to($to)); // Saf4+, Chrome
     background-image: -webkit-linear-gradient(top, $from, $to); // Chrome 10+, Saf5.1+, iOS 5+
     background-image: -moz-linear-gradient(top, $from, $to); // FF3.6+
@@ -1296,12 +1296,12 @@ $color-code: #637c84;
                             <samp class="sampleTitle">// in utils/_helpers.scss</samp>
 <pre class="codeSample">
 @include _add(clearfix) {
-  &:before,
-  &:after {
+  &amp;:before,
+  &amp;:after {
     content: " ";
     display: table;
   }
-  &:after {
+  &amp;:after {
     clear: both;
   }
   *zoom: 1;
