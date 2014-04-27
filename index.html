@@ -59,19 +59,19 @@
                 </ul>
             </nav>
 
-            <section class="mainContent">
+            <article class="mainContent">
 
                 <hr class="articleSeparator">
 
-                <article class="mainArticle" id="about">
+                <section class="mainSection" id="about">
 
-                    <header class="mainArticle_header">
-                        <h1 class="mainArticle_title">About</h1>
+                    <header class="mainSection_header">
+                        <h1 class="mainSection_title">About</h1>
                     </header>
 
-                    <div class="mainArticle_body">
+                    <div class="mainSection_body">
 
-                        <h2 class="mainArticle_subtitle">What is DoCSSa ?</h2>
+                        <h2 class="mainSection_subtitle">What is DoCSSa ?</h2>
 
                         <p>DoCSSa is a CSS architecture and methodology that tries to combine all the good parts of the current state of
                             the art.<br>
@@ -79,7 +79,7 @@
                             over time.<br>
                             The name stands for <em>Deferred Object CSS Architecture</em>.</p>
 
-                        <h2 class="mainArticle_subtitle">What are the benefits of doing things the DoCSSa way?</h2>
+                        <h2 class="mainSection_subtitle">What are the benefits of doing things the DoCSSa way?</h2>
 
                         <ul class="firstOrderList">
                             <li class="firstOrderList_item">
@@ -109,7 +109,7 @@
                             </li>
                         </ul>
 
-                        <h2 class="mainArticle_subtitle">Why does DoCSSa exist ?</h2>
+                        <h2 class="mainSection_subtitle">Why does DoCSSa exist ?</h2>
 
                         <p>As frontend web developers, we are living in a world of evergrowing complexity. What once was a
                             relatively easy thing to do (putting aside browsers inconsistencies) has grown into a very complex,
@@ -123,7 +123,7 @@
                         <p>DoCSSa is our attempt at an organization that aims toward a faster workflow without sacrificing the
                             long run flexibility.</p>
 
-                        <h2 class="mainArticle_subtitle">How does DoCSSa bring its benefits ?</h2>
+                        <h2 class="mainSection_subtitle">How does DoCSSa bring its benefits ?</h2>
 
                         <p>DoCSSa is based on Sass, and leverages some of its key features to achieve its goal.
                             Most notably, DoCSSa takes advantage of placeholders, mixins, and imports.
@@ -132,19 +132,19 @@
 
                     </div>
 
-                </article>
+                </section>
 
                 <hr class="articleSeparator">
 
-                <article class="mainArticle" id="fileStructure">
+                <section class="mainSection" id="fileStructure">
 
-                    <header class="mainArticle_header">
-                        <h1 class="mainArticle_title">File Structure</h1>
+                    <header class="mainSection_header">
+                        <h1 class="mainSection_title">File Structure</h1>
                     </header>
 
-                    <div class="mainArticle_body">
+                    <div class="mainSection_body">
 
-                        <h2 class="mainArticle_subtitle">Basics</h2>
+                        <h2 class="mainSection_subtitle">Basics</h2>
 
                         <p>In DoCSSa, the file system is divided in four main directories in the sass folder :</p>
 
@@ -280,7 +280,7 @@ sass
 </pre>
 
 
-                        <h2 class="mainArticle_subtitle" id="fileStructure_base">Base folder</h2>
+                        <h2 class="mainSection_subtitle" id="fileStructure_base">Base folder</h2>
 
                         <p>The "base" folder contains rules that are global to the site. It is divided in two parts : </p>
                         <ul class="firstOrderList">
@@ -533,7 +533,7 @@ $color-code: #637c84;
                             </li>
                         </ul>
 
-                        <h2 class="mainArticle_subtitle" id="fileStructure_components">Components folder</h2>
+                        <h2 class="mainSection_subtitle" id="fileStructure_components">Components folder</h2>
 
                         <p>
                             The "components" folder is where your complex ui-components are located. It plays quite the same
@@ -543,7 +543,7 @@ $color-code: #637c84;
                             so we won't say much more about them here.
                         </p>
 
-                        <h2 class="mainArticle_subtitle" id="fileStructure_specifics">Specifics folder</h2>
+                        <h2 class="mainSection_subtitle" id="fileStructure_specifics">Specifics folder</h2>
 
                         <p>The "specifics" folder is your common playground. It is where you'll place the rules that don't belong
                             in the "base" or "components" folders. Until you become fluent with DoCSSa's organization rules, what will
@@ -601,7 +601,7 @@ $color-code: #637c84;
                         </p>
 
 
-                        <h2 class="mainArticle_subtitle" id="fileStructure_vendor">Vendor folder</h2>
+                        <h2 class="mainSection_subtitle" id="fileStructure_vendor">Vendor folder</h2>
 
                         <p>The <em>vendor</em> folder is where we place CSS files that come from third parties and can be updated at
                             any time. As the .scss syntax is CSS compatible, all we have to do is to rename the .css file to
@@ -613,18 +613,18 @@ $color-code: #637c84;
                             party CSS.</p>
                     </div>
 
-                </article>
+                </section>
 
                 <hr class="articleSeparator">
 
-                <article class="mainArticle" id="components">
+                <section class="mainSection" id="components">
 
-                    <header class="mainArticle_header">
-                        <h1 class="mainArticle_title">Components</h1>
+                    <header class="mainSection_header">
+                        <h1 class="mainSection_title">Components</h1>
                     </header>
 
-                    <div class="mainArticle_body">
-                        <h2 class="mainArticle_subtitle">Introduction</h2>
+                    <div class="mainSection_body">
+                        <h2 class="mainSection_subtitle">Introduction</h2>
                         <p>Components are an important part of DoCSSa. They are intended to be as reusable and
                             extendable as possible. Ideally, they should be reusable in a totally different project without
                             writing any additionnal code. They are, along with the placeholder helpers, the "Deferred Object" part of DoCCSa,
@@ -731,7 +731,7 @@ $color-code: #637c84;
                             DoCSSa only gives you tools to play with, what you implement and how you do things with it is up to you.
                             That's what we believe a "framework" should be anyway.
                         </p>
-                        <h2 class="mainArticle_subtitle">Description</h2>
+                        <h2 class="mainSection_subtitle">Description</h2>
                         <p>When looking at a component folder, you may see three files, and eventually some subfolders.
                             Let's take a <em>Tabs</em> component as an example, as probably everyone has already seen a tabbed
                             navigation in a page. The files in the Tabs folder would be: <em>_tabs.scss</em>, <em>tabs.standalone.scss</em>,
@@ -741,7 +741,7 @@ $color-code: #637c84;
                             component, the others are optional.<br>
                             Let's look at it in details.
                         </p>
-                        <h3 class="mainArticle_smallTitle" id="components_definition">Component's definition</h3>
+                        <h3 class="mainSection_smallTitle" id="components_definition">Component's definition</h3>
                         <p>The component definition file contains two sets of placeholders
                             named after the component's name, and two mixins. One set is for the component structure, one for
                             the component's skin. Placeholders are wrapped in a <em>define</em> mixin, so that we can import the
@@ -938,7 +938,7 @@ $color-code: #637c84;
                             more it feels natural, and the easier it is to find out the right place when you come back to adjust
                             something about your component.
                         </p>
-                        <h3 class="mainArticle_smallTitle" id="components_implementation">Implementation</h3>
+                        <h3 class="mainSection_smallTitle" id="components_implementation">Implementation</h3>
                         <p>Now that we know how a component is structured, it's time to implement it.
                             This is done by calling the component mixin and passing it a class selector.
                         </p>
@@ -1017,7 +1017,7 @@ $color-code: #637c84;
 @include tabs('.articleTabs', $defaultSkin: false);
 @include tabs-skin-alternate('.articleTabs');
 </pre>
-                        <h2 class="mainArticle_subtitle" id="components_standalone">Standalone component</h2>
+                        <h2 class="mainSection_subtitle" id="components_standalone">Standalone component</h2>
                         <p>The _tabs.scss file is really the only one needed for your component, as long as it includes a skin
                             for the component. But there are two other files that we presented earlier : <em>tabs.standalone.scss</em>
                             and <em>tabs.standalone.html</em>.<br>
@@ -1064,18 +1064,18 @@ $color-code: #637c84;
 </pre>
                         </div>
                     </div>
-                </article>
+                </section>
 
                 <hr class="articleSeparator">
 
-                <article class="mainArticle" id="namingConventions">
+                <section class="mainSection" id="namingConventions">
 
-                    <header class="mainArticle_header">
-                        <h1 class="mainArticle_title">Naming conventions</h1>
+                    <header class="mainSection_header">
+                        <h1 class="mainSection_title">Naming conventions</h1>
                     </header>
 
-                    <div class="mainArticle_body">
-                        <h2 class="mainArticle_subtitle">HTML classes</h2>
+                    <div class="mainSection_body">
+                        <h2 class="mainSection_subtitle">HTML classes</h2>
 
                         <p>In DoCSSa, we decided to follow BEM class naming convention.<br>
                             HTML class names for <em>Blocks</em> are lowerCamelCase, and the <em>Elements</em> nested
@@ -1159,7 +1159,7 @@ $color-code: #637c84;
                             specify it in its name.
                         </p>
 
-                        <h2 class="mainArticle_subtitle">Sass files</h2>
+                        <h2 class="mainSection_subtitle">Sass files</h2>
 
                         <p>We talked about some of the aspects of the Sass file naming convention in the "File
                             Structure" section.</p>
@@ -1271,18 +1271,18 @@ $color-code: #637c84;
 </pre>
                         </div>
                     </div>
-                </article>
+                </section>
 
 
                 <hr class="articleSeparator">
 
-                <article class="mainArticle" id="responsive">
+                <section class="mainSection" id="responsive">
 
-                    <header class="mainArticle_header">
-                        <h1 class="mainArticle_title">Responsive</h1>
+                    <header class="mainSection_header">
+                        <h1 class="mainSection_title">Responsive</h1>
                     </header>
 
-                    <div class="mainArticle_body">
+                    <div class="mainSection_body">
                         <p>As you may have noticed, DoCSSa makes a quite heavy use of Sass placeholders. This is nice until
                         you try to use them from within a media query, and stumble onto the dreaded <em>"You may not @extend
                         an outer selector from within @media. You may only @extend selectors within the same directive."</em>
@@ -1424,23 +1424,23 @@ $breakpoints: (
                         down manually. There is a little difference with the old school, hands in the dirt approach though:
                         you can now have your logic in a single place, and stay DRY all the way!</p>
                     </div>
-                </article>
+                </section>
 
                 <hr class="articleSeparator">
 
-                <article class="mainArticle" id="gettingStarted">
+                <section class="mainSection" id="gettingStarted">
 
-                    <header class="mainArticle_header">
-                        <h1 class="mainArticle_title">Getting started</h1>
+                    <header class="mainSection_header">
+                        <h1 class="mainSection_title">Getting started</h1>
                     </header>
 
-                    <div class="mainArticle_body">
+                    <div class="mainSection_body">
 
-                        <h2 class="mainArticle_subtitle">Download the kit</h2>
+                        <h2 class="mainSection_subtitle">Download the kit</h2>
                         Download this page and its implementation of DoCSSa and play with it.<br>
                         Source code can be found on <a class="externalLink" href="https://github.com/mlarcher/docssa">
                         DoCSSa's github page</a>.
-                        <h2 class="mainArticle_subtitle">Learn about the basics</h2>
+                        <h2 class="mainSection_subtitle">Learn about the basics</h2>
                         <ul class="firstOrderList">
                             <li class="firstOrderList_item">
                                 <div class="firstOrderList_item_content">
@@ -1478,7 +1478,7 @@ $breakpoints: (
                                 </div>
                             </li>
                         </ul>
-                        <h2 class="mainArticle_subtitle">How to start ?</h2>
+                        <h2 class="mainSection_subtitle">How to start ?</h2>
                         <ol class="firstOrderList">
                             <li class="firstOrderList_item">
                                 <div class="firstOrderList_item_content">
@@ -1538,19 +1538,19 @@ $breakpoints: (
                         </ol>
 
                     </div>
-                </article>
+                </section>
 
                 <hr class="articleSeparator">
 
-                <article class="mainArticle" id="contributing">
+                <section class="mainSection" id="contributing">
 
-                    <header class="mainArticle_header">
-                        <h1 class="mainArticle_title">Contributing</h1>
+                    <header class="mainSection_header">
+                        <h1 class="mainSection_title">Contributing</h1>
                     </header>
 
-                    <div class="mainArticle_body">
+                    <div class="mainSection_body">
 
-                        <h2 class="mainArticle_subtitle">Contact us</h2>
+                        <h2 class="mainSection_subtitle">Contact us</h2>
 
                         <p>DoCSSa is evolving!<br>
                             We are very interested in your feedback to improve it or learn about how you implemented
@@ -1560,9 +1560,9 @@ $breakpoints: (
                             or talk about DoCSSa at will.
                         </p>
                     </div>
-                </article>
+                </section>
 
-            </section>
+            </article>
 
             <footer class="mainFooter">
                 Presented by <a class="mainFooterLink" href="https://twitter.com/larchermatthieu">Matthieu Larcher</a> &amp;

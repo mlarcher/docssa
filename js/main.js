@@ -5,7 +5,7 @@
 
     var mainItems,
     currentMainMenuItem,
-    currentMainArticle,
+    currentMainSection,
     scrollTarget = $('html, body'),
     mainHeader,
     mainFooter,
@@ -31,8 +31,8 @@
       if (currentMainMenuItem) {
         currentMainMenuItem.removeClass('_is_current');
       }
-      if (currentMainArticle) {
-        currentMainArticle.removeClass('_is_current');
+      if (currentMainSection) {
+        currentMainSection.removeClass('_is_current');
       }
 
       currentMainMenuItem = $navItem.addClass('_is_current');
@@ -42,7 +42,7 @@
         mainHeader.show();
         mainFooter.show();
       } else {
-        currentMainArticle = $(href).addClass('_is_current');
+        currentMainSection = $(href).addClass('_is_current');
       }
 
       scrollTarget.scrollTop(0);

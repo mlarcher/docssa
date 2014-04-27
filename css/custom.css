@@ -622,17 +622,17 @@ usage examples:
 .mainContent {
   margin: 65px 0 50px; }
 
-.js .mainArticle {
+.js .mainSection {
   display: none; }
 
-.js .mainArticle._is_current {
+.js .mainSection._is_current {
   display: block; }
 
-.mainArticle_body {
+.mainSection_body {
   padding: 10px 40px;
   background: white; }
 
-.mainArticle_header {
+.mainSection_header {
   padding: 10px 40px;
   background: #a8d5cd; }
 
@@ -649,21 +649,21 @@ usage examples:
     -webkit-box-shadow: 0 3px 5px rgba(0,0,0,.3);
     box-shadow: 0 3px 5px rgba(0,0,0,.3); }
 
-.mainArticle_title {
+.mainSection_title {
   font-weight: normal;
   color: #449888;
   font-size: 26px;
   line-height: 30px; }
-  .cssremunit .mainArticle_title {
+  .cssremunit .mainSection_title {
     font-size: 1.625rem; }
-  .cssremunit .mainArticle_title {
+  .cssremunit .mainSection_title {
     line-height: 1.875rem; }
 
-.mainArticle_subtitle {
+.mainSection_subtitle {
   margin-top: 30px;
   margin-bottom: 20px; }
 
-.mainArticle_smallTitle {
+.mainSection_smallTitle {
   margin-top: 80px; }
 
 .mainFooter {
