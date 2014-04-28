@@ -247,7 +247,7 @@ sass
 ¦   ¦
 ¦   +---utils
 ¦           __utils.scss
-¦           _define.scss
+¦           _helpers.scss
 ¦           _mixins.scss
 ¦           _system.scss
 ¦
@@ -301,7 +301,7 @@ sass
                         <p class="note">Both summary index for those folders import the <em>base/_config.scss</em> file which contains
                             configuration infos required by both the system and the project. If you're wondering why we don't
                             import the config from the __base.scss file, you're asking yourself the right questions! We had to
-                            stray a bit from the default rule on that one in order to ease the standalone components generation.
+                            stray a bit from our convention about sass files organization on that one in order to ease the standalone components generation.
                             We assumed it was better to import the file twice in "base" than once in "base" and then once for each
                             component declaration.<br>
                             As of today, this file contains $baseFontSize which is required for the
@@ -359,8 +359,7 @@ sass
                                         bit like mixins, but instead of placing a set of CSS rules within the selector
                                         implementing
                                         them, they add that selector to the list of selectors on which to apply a set of CSS rules.<br>
-                                        The magic of
-                                        placeholders is only glanced at here, but you'll see more awesome stuff we can do with
+                                        This may not seem as much,, but you'll see some of the awesome stuff we can do with
                                         it in the
                                         components section.</p>
                                 </div>
@@ -600,7 +599,8 @@ $color-code: #637c84;
                         <p>Before everyone in your team is familiar with DoCSSa, it can be helpful for occasional contributors
                             wondering where to place their code to have a dedicated file. In such case, we recommend using
                             a <em>_inbox.scss</em> file in the "specifics" folder and ask them to commit their work in there.<br>
-                            It shall be emptied regularly by a more experienced user to the correct place.
+                            It shall be emptied regularly by a more experienced DoCSSa user, who would move the CSS rules
+                            defined in there to the correct place in the architecture.
                         </p>
 
 
@@ -637,14 +637,14 @@ $color-code: #637c84;
                         <p>We say the Object is Deferred because its core resides in an abstraction (the placeholders)
                             instead of being tied to a classname. DoCSSa's components are class agnostic. They are made of placeholders
                             and mixins. The placeholders
-                            define the components, and a component mixin is in charge of binding those placeholders to a HTML class. Thanks to
-                            the
-                            BEM naming convention, that class can be a prefix for subclasses binding required for the component.
+                            define a component, and a component mixin is in charge of binding those placeholders to one
+                            or several HTML class(es). Thanks to the BEM naming convention, the class passed to the component mixin can be
+                            a prefix for other classes onto which to bind placeholder functionalities.
                         </p>
                         <p>This allows for components to be instantiated on any class, and to be extendable if needed.
                         </p>
                         <p>As the component is not tied to a particular class, you can use it on whatever class you want, whenever you want,
-                            from the CSS side. That means that you can keep a semantic meaning to your HTML classes, and change
+                            from the CSS side. That means that you can (and should) keep a semantic meaning to your HTML classes, and change
                             their look and feel without having to modify the markup. When your markup comes from a RTE, this is a huge gain.
                             You can change the styling without asking the contributors to change their habits, and you can
                             affect everything already written without having to make search&amp;replace throughout a database or without
@@ -757,8 +757,9 @@ $color-code: #637c84;
 
 // _____ STRUCTURE _____ //
 
-// define component placeholders for component contents (no selector here)
+// define component placeholders for component contents (no selector here except for component's id)
 @include define('tabs') {
+
   %tabs {
     list-style: none;
     padding: 0;
@@ -805,19 +806,19 @@ $color-code: #637c84;
 }
 </pre>
 
+                        <p>Don't worry about the id selector for now, we'll get back to it in the "standalone component" chapter.</p>
                         <p>First, the component imports 'sass/base/utils/__utils', which will give it access to the default
                             mixins and helpers. Thanks to the <em>define</em> mixin, all components can safely import this folder.
                         </p>
                         <p>Then, a bunch of placeholders are defined, wrapped in a <em>define</em> mixin so that they can safely be imported
                             by subComponents if needed. They are the core of the component, and define what needs to be implemented
-                            on the various classes or states of the component.
-                        </p>
+                            on the various classes or states of the component.<p>
                         <p>Below the defined wrapped placeholders is a mixin named after the component. Its role is to
                             actually bind the components placeholders to the provided classname, its "elements", and its state.
                         </p>
                         <p>By default, the component binding will also implement the default skin. If we have defined another
-                            skin, all we need to do is pass "$defaultSkin: false" when instantiating the component, and then
-                            call another skin mixin to apply.
+                            skin, all we need to do is pass "$defaultSkin: false" when instantiating the component, and
+                            call another skin binding mixin to handle the component's skin.
                         </p>
                         <p class="note">We said earlier that a component folder may have subfolders. One of those is a "_skins"
                             folder that would host different skins that we could import as needed. The other possible folders
@@ -1030,17 +1031,43 @@ $color-code: #637c84;
                             This can be useful when you want some javascript to dynamically instantiate a component and load
                             its associated CSS, instead of providing the component's CSS along with the main stylesheet.
                         </p>
-                        <p class="note">Each component folder should contain a standalone version and a HTML example, so that fellow developers
-                            know what is the expected structure HTML-wise and can test the result easily.<br>
-                            It can be really useful to maintain a project Style Guide, including every component standalone as a reference.
-                        </p>
                         <div class="exampleNote">
-                            <p>Here's what the standalone files would look like for our tabs example :</p>
+                            <p>Here's what the standalone scss file would look like for our tabs example :</p>
                             <samp class="sampleTitle">// tabs.standalone.scss</samp>
 <pre class="codeSample">
 @import '_tabs.scss';
+
+#docssaComponent__tabs-dynamicTabs {
+  content: 'loaded';
+}
+
 @include tabs('.dynamicTabs');
 </pre>
+
+                            <p>As you can see, we use an id in the standalone version of the component. It is intended
+                                for load detection : <br>when dynamically loading components from javaScript, you should
+                                first
+                                check if it hasn't already been loaded from some other place, and only load it if
+                                required.<br>
+                                We recommend using the component name, separated by a dash from the classname it is
+                                bound to,
+                                and prefixed by <em>#docssaComponent</em>. <br>
+                                This way you'll know what you're dealing with,
+                                and avoid collision with other CSS selectors.</p>
+                        </div>
+
+
+                        <p>Each component folder should also contain a standalone version and a HTML example, so
+                            that fellow developers
+                            know what is the expected structure HTML-wise and can test the result easily.<br>
+                            Components need a structure to apply on. If they didn't, a placeholder helper would be
+                            enough.<br>
+                            It can be really useful to maintain a project Style Guide, including every component
+                            standalone as a reference.
+                        </p>
+
+                        <div class="exampleNote">
+                            <p>Here's what the html sample file may look like for our tabs example :</p>
 
                             <samp class="sampleTitle">// tabs.standalone.html</samp>
 <pre class="codeSample">
@@ -1065,6 +1092,7 @@ $color-code: #637c84;
     &lt;/li&gt;
 &lt;/ul&gt;
 </pre>
+
                         </div>
                     </div>
                 </section>
@@ -1082,7 +1110,7 @@ $color-code: #637c84;
 
                         <p>In DoCSSa, we decided to follow BEM class naming convention.<br>
                             HTML class names for <em>Blocks</em> are lowerCamelCase, and the <em>Elements</em> nested
-                            within ad separated by
+                            within are separated by
                             an underscore(_). <em>Modifiers</em> are separated by a double dash(--), and they are used
                             for elements
                             <em>variants</em>. An element's <em>state</em> is written separately with a pattern that
@@ -1222,10 +1250,10 @@ $color-code: #637c84;
 #{$selector} {
   @extend %componentName;
 }
-#{$selector}_singleItem {
-  @extend %componentName_singleItem
+#{$selector}__singleItem {
+  @extend %componentName__singleItem
   &amp;:hover {
-    @extend %componentName_singleItem-altState
+    @extend %componentName__singleItem-altState
   }
 }
 </pre>
@@ -1485,28 +1513,36 @@ $breakpoints: (
                         <ol class="firstOrderList">
                             <li class="firstOrderList_item">
                                 <div class="firstOrderList_item_content">
-                                    First, you can simply write CSS code in separated files into the "specifics" folder.
+                                    First, you can simply write CSS code in separated files into the "specifics" folder,
+                                    using DoCSSa's logic.
                                 </div>
                             </li>
                             <li class="firstOrderList_item">
                                 <div class="firstOrderList_item_content">
-                                    Then, try manipulating "_helpers" to give your project more reusable code.
+                                    Then, try manipulating the provided "_helpers" and "_mixins" from the base/utils folder
+                                    to give your project more reusable code.
                                 </div>
                             </li>
                             <li class="firstOrderList_item">
                                 <div class="firstOrderList_item_content">
-                                    After that, you may write _mixins" to easily manage vendor prefixes or such helpful logic.
+                                    After that, you may write your own "_helpers" and "_mixins", tailored for your own
+                                    specific needs.
                                 </div>
                             </li>
                             <li class="firstOrderList_item">
                                 <div class="firstOrderList_item_content">
-                                    For the perenity of your projects, you may then try to convert some of your "specifics" rules into "components".<br>
+                                    For more reusability within or across your project(s), you may then try to convert some of your "specifics" rules into "components".<br>
                                     If see you are repeating the same rules on different sets of classes, you have a good candidate.
                                 </div>
                             </li>
                             <li class="firstOrderList_item">
                                 <div class="firstOrderList_item_content">
                                     Cherry on the cake, you can finally add responsive super powers to your components.
+                                </div>
+                            </li>
+                            <li class="firstOrderList_item">
+                                <div class="firstOrderList_item_content">
+                                    Been there, done that ? It's time to preach the choir ;)
                                 </div>
                             </li>
                         </ol>
@@ -1520,7 +1556,8 @@ $breakpoints: (
                             </li>
                             <li class="firstOrderList_item">
                                 <div class="firstOrderList_item_content">
-                                    Once one of them feels ready to, let her write "_helpers", and let the whole teamknow they can use them.
+                                    Once one of them feels ready to, let her write "_helpers", and let the whole team know
+                                    they can use them.
                                 </div>
                             </li>
                             <li class="firstOrderList_item">
