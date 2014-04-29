@@ -679,7 +679,19 @@ usage examples:
   color: #333333;
   text-decoration: none; }
   .mainFooterLink:hover {
-    text-decoration: underline; }
+    text-decoration: underline;
+    color: white; }
+
+.mainFooterIconLink, .mainFooterIconLink--github {
+  display: block;
+  width: 22px;
+  height: 22px;
+  float: right;
+  margin: 2px 5px; }
+
+.mainFooterIconLink--github {
+  background: url("../assets/img/github.png") center no-repeat;
+  font-size: 0; }
 
 .firstOrderList_item {
   list-style-type: square;
