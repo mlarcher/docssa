@@ -116,5 +116,19 @@
   text-decoration: none;
   &:hover {
     text-decoration: underline;
+    color: white;
   }
+}
+
+.mainFooterIconLink {
+  display: block;
+  width: 22px;
+  height: 22px;
+  float: right;
+  margin: 2px 5px;
+}
+.mainFooterIconLink--github {
+  @extend .mainFooterIconLink;
+  background: url('../assets/img/github.png') center no-repeat;
+  font-size: 0;
 }
