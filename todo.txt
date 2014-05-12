@@ -1,6 +1,7 @@
 
 /*_____ Priority 1 — urgent _____*/
 
+- Add website URL in github repo intro
 - Rename variables (eg $main-color instead of $color-blue)
 - Add a "go to top" component button on long pages
 - create a good responsive example
