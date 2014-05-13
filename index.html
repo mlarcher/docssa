@@ -189,8 +189,13 @@
 
                         <p>The main .scss file will look something like this :</p>
 
-
-                        <samp class="sampleTitle">// custom.scss</samp>
+                        <div class="sample">
+                            <ul class="sampleHeader">
+                                <li class="sampleHeader_item _is_current">
+                                    <span class="sampleHeader_link">// custom.scss</span>
+                                </li>
+                            </ul>
+                        
 <pre class="codeSample">
 @charset "UTF-8";
 
@@ -220,16 +225,17 @@
 // declarations specific to the project, organized according to the items/sections represented
 @import 'specifics/__specifics';
 </pre>
+                        </div>
 
-                        <p>As you can see, it mostly acts as an aggregator for other files, which themselves import some
-                            other scss files, and so on. With a well thought organization, this construct can prove very powerful.</p>
+                            <p>As you can see, it mostly acts as an aggregator for other files, which themselves import some
+                                other scss files, and so on. With a well thought organization, this construct can prove very powerful.</p>
 
-                        <p class="note">On a sidenote, remember that Sass is only a CSS precompiler, so you'll end up with only one .css file
-                            with all the goodies, not a bunch of HTTP requests!</p>
+                            <p class="note">On a sidenote, remember that Sass is only a CSS precompiler, so you'll end up with only one .css file
+                                with all the goodies, not a bunch of HTTP requests!</p>
 
-                        <p>Here is an overview of what a basic file system might look like :</p>
+                            <p>Here is an overview of what a basic file system might look like :</p>
 
-                        <samp class="sampleTitle">// file system</samp>
+                            <samp class="sampleTitle">// file system</samp>
 <pre class="codeSample">
 sass
 ¦   custom.scss
@@ -751,7 +757,13 @@ $color-code: #637c84;
                             component from anywhere without any risk of having our placeholders duplicated in the final css.
                         </p>
                         <p>Here's the <em>structure</em> part of our "tabs" component :</p>
-                        <samp class="sampleTitle">// components/tabs/_tabs.scss</samp>
+                        
+                        <div class="sample">
+                            <ul class="sampleHeader">
+                                <li class="sampleHeader_item _is_current">
+                                    <span class="sampleHeader_link">// components/tabs/_tabs.scss</span>
+                                </li>
+                            </ul>
 <pre class="codeSample">
 @import 'sass/base/utils/__utils';
 
@@ -805,6 +817,7 @@ $color-code: #637c84;
 
 }
 </pre>
+
 
                         <p>Don't worry about the id selector for now, we'll get back to it in the "standalone component" chapter.</p>
                         <p>First, the component imports 'sass/base/utils/__utils', which will give it access to the default
@@ -953,6 +966,10 @@ $color-code: #637c84;
     </pre>
                         <p>That's right, now that you have defined your component, using it is as easy as that!</p>
                         <p>And here is what the output css will look like :</p>
+                        
+                        
+                        
+                        
                         <samp class="sampleTitle">// in css/custom.css</samp>
 <pre class="codeSample">
 .mainMenu {
