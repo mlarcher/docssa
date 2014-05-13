@@ -5,7 +5,7 @@
   left: 50%;
   @include transform('translate(-50%, -50%)');
   text-align: center;
-  color: $color-default-white;
+  color: $color-nav-bg;
   z-index: 10;
 }
 
@@ -42,16 +42,16 @@
 
 .mainSection_body {
   padding: 10px 40px;
-  background: $color-default-white;
+  background: $color-site-title;
 }
 
 .mainSection_header {
   padding: 10px 40px;
-  background: $color-green-lighter;
+  background: $color-main-lighter;
 }
 
 // decide the kind of style we want from a config variable
-@if $variant == 'base' {
+@if $nav-variant == 'base' {
 
   @include tabs('.mainMenu');
   .mainNav {
@@ -59,7 +59,7 @@
     top: 0;
     left: 0;
     right: 0;
-    background: $color-default-white;
+    background: $color-nav-bg;
     text-align: right;
     @include box-shadow('0 3px 5px rgba(0,0,0,.3)');
     @include box-opacity(.95);
@@ -77,7 +77,7 @@
     top: 0;
     bottom: 0;
     left: 0;
-    background: $color-beige;
+    background: $color-nav-left-bg;
   }
 
   body{
@@ -88,7 +88,7 @@
 
 .mainSection_title {
   font-weight: normal;
-  color: $color-green;
+  color: $color-main;
   @include remIt('font-size', 26);
   @include remIt('line-height', 30);
 }
@@ -109,10 +109,10 @@
   right: 0;
   padding: 5px;
   text-align: center;
-  background: $color-green;
+  background: $color-main;
 }
 .mainFooterLink {
-  color: $color-grey-dark;
+  color: $color-text;
   text-decoration: none;
   &:hover {
     text-decoration: underline;

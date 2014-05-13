@@ -1,4 +1,3 @@
-
 /* _____ VARIABLES _____ */
 
 // Generic
@@ -8,23 +7,26 @@ $default-borderRadius: 4px;
 
 $containerWidth: 760px;
 
-$variant: 'base';
+$nav-variant: 'base';
 
 
 // Colors
 // ==========================================================================
 
-$color-default-black: #000;
-$color-default-white: #fff;
+$color-listitem:            #000;
+$color-article-bg:          #fff;
+$color-site-title:          #fff;
+$color-nav-bg:              #fff;
+$color-nav-left-bg:         #f1ede4;
 
-$color-green: #449888;
-$color-green-light: #5cbcaa;
-$color-green-lighter: #a8d5cd;
-$color-pink: #ee746f;
-$color-grey-dark: #333;
-$color-beige-dark: #c2c0bc;
-$color-beige: #f1ede4;
-$color-beige-light: #f8f5ec;
+$color-main:                #449888;
+$color-main-light:          #5cbcaa;
+$color-main-lighter:        #a8d5cd;
+$color-secondary:           #ee746f;
 
-$color-code: #637c84;
+$color-text:                #333;
 
+$color-code:                #637c84;
+$color-code-wrapper:        #f1ede4;
+$color-code-wrapper-dark:   #c2c0bc;
+$color-code-wrapper-light:  #f8f5ec;

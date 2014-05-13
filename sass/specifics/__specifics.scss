@@ -16,18 +16,18 @@
 
 .firstOrderList_item {
   list-style-type: square;
-  color: $color-pink;
+  color: $color-secondary;
 }
 .firstOrderList_item_content {
-  color: $color-default-black;
+  color: $color-listitem;
 }
 
 .secondaryList_item {
   list-style-type: square;
-  color: $color-pink;
+  color: $color-secondary;
 }
 .secondaryList_item_content {
-  color: $color-default-black;
+  color: $color-listitem;
 }
 
 .articleSeparator {
@@ -36,24 +36,24 @@
 
 .note {
   padding: 15px;
-  border: solid 1px transparentize($color-green-lighter, 0.7);;
-  background: transparentize($color-green-lighter, 0.8);
+  border: solid 1px transparentize($color-main-lighter, 0.7);;
+  background: transparentize($color-main-lighter, 0.8);
 }
 
 .exampleNote {
   padding: 15px;
-  border: dotted 1px $color-pink;
+  border: dotted 1px $color-secondary;
   margin-bottom: 15px;
 }
 
 .sampleTitle {
-  background: $color-beige;
+  background: $color-code-wrapper;
   display: inline-block;
   padding: 5px 20px;
 }
 .codeSample {
-  background: $color-beige-light;
-  border: solid 1px $color-beige;
+  background: $color-code-wrapper-light;
+  border: solid 1px $color-code-wrapper;
   margin-top: 0;
   padding: 20px;
   color: $color-code;
