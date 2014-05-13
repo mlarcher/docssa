@@ -62,7 +62,7 @@
   .mainContainer {
     @extend %clearfix;
     width: 100%;
-    max-width: $containerWidth;
+    max-width: #{$containerWidth}px;
     margin: 0 auto;
   }
 
