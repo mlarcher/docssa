@@ -4,6 +4,7 @@
 // import contextual entities
 @import '_main';
 @import '_responsiveExample';
+@import 'sample';
 
 
 // miscellaneous rules
@@ -44,21 +45,6 @@
   padding: 15px;
   border: dotted 1px $color-pink;
   margin-bottom: 15px;
-}
-
-.sampleTitle {
-  background: $color-beige;
-  display: inline-block;
-  padding: 5px 20px;
-}
-.codeSample {
-  background: $color-beige-light;
-  border: solid 1px $color-beige;
-  margin-top: 0;
-  padding: 20px;
-  color: $color-code;
-  @include remIt('font-size', 14);
-  line-height: 1.3;
 }
 
 

@@ -381,12 +381,12 @@ th {
       display: table; }
     .e:after {
       clear: both; } }
-.mainContainer, .a, .b, .e {
+.mainContainer, .a, .b, .e, .sampleHeader {
   *zoom: 1; }
-  .mainContainer:before, .a:before, .b:before, .e:before, .mainContainer:after, .a:after, .b:after, .e:after {
+  .mainContainer:before, .a:before, .b:before, .e:before, .sampleHeader:before, .mainContainer:after, .a:after, .b:after, .e:after, .sampleHeader:after {
     content: " ";
     display: table; }
-  .mainContainer:after, .a:after, .b:after, .e:after {
+  .mainContainer:after, .a:after, .b:after, .e:after, .sampleHeader:after {
     clear: both; }
 /* ===== PROJECT ===== */
 /* _____ VARIABLES _____ */
@@ -471,10 +471,10 @@ p {
   margin: 0 auto; }
 
 /* _____ PROJECT HELPERS _____ */
-.navLink, .externalLink {
+.sampleHeader_link, .navLink, .externalLink {
   color: #449888;
   text-decoration: none; }
-  .navLink:hover, .externalLink:hover {
+  .sampleHeader_link:hover, .navLink:hover, .externalLink:hover {
     color: #5cbcaa;
     text-decoration: underline; }
 /*!
@@ -693,6 +693,45 @@ usage examples:
   background: url("../assets/img/github.png") center no-repeat;
   font-size: 0; }
 
+.sampleHeader {
+  list-style: none;
+  padding: 0;
+  margin: 0; }
+
+.sampleHeader_item {
+  float: left;
+  background: #f1ede4; }
+  .sampleHeader_item._is_current {
+    background: #f8f5ec; }
+
+.sampleHeader_link {
+  border: none;
+  background: transparent;
+  color: #ccc;
+  padding: 10px;
+  display: block; }
+
+.sampleHeader_item._is_current .sampleHeader_link {
+  color: black; }
+
+.sampleTitle {
+  background: #f1ede4;
+  display: inline-block;
+  padding: 5px 20px; }
+
+.codeSample {
+  background: #f8f5ec;
+  border: solid 1px #f1ede4;
+  margin-top: 0;
+  padding: 20px;
+  color: #637c84;
+  font-size: 14px;
+  line-height: 1.3; }
+  .cssremunit .codeSample {
+    font-size: 0.875rem; }
+  .codeSample._is_hidden {
+    display: none; }
+
 .firstOrderList_item {
   list-style-type: square;
   color: #ee746f; }
@@ -716,19 +755,3 @@ usage examples:
   padding: 15px;
   border: dotted 1px #ee746f;
   margin-bottom: 15px; }
-
-.sampleTitle {
-  background: #f1ede4;
-  display: inline-block;
-  padding: 5px 20px; }
-
-.codeSample {
-  background: #f8f5ec;
-  border: solid 1px #f1ede4;
-  margin-top: 0;
-  padding: 20px;
-  color: #637c84;
-  font-size: 14px;
-  line-height: 1.3; }
-  .cssremunit .codeSample {
-    font-size: 0.875rem; }

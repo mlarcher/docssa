@@ -9,11 +9,14 @@
     scrollTarget = $('html, body'),
     mainHeader,
     mainFooter,
-    hashPrefix;
+    hashPrefix,
+    sampleLink;
+
 
     mainItems = $('.mainMenu_item');
     mainHeader = $('.mainHeader');
     mainFooter = $('.mainFooter');
+    sampleLink = $('.sampleHeader_link');
 
 
     mainItems.bind('click', function(e) {
@@ -72,6 +75,13 @@
     } else {
       navigateTo(mainItems.find('.mainMenu_link').filter('[href=#]').parents('li'), true);
     }
+      
+    
+    // sample switcher
+    sampleLink.click(function(){
+        $(this).closest('.sampleHeader').find('.sampleHeader_item').toggleClass('_is_current');
+        $(this).closest('.sample').find('pre').toggleClass('_is_hidden');
+    });
 
 
 
