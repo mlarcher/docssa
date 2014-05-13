@@ -9,11 +9,17 @@
     scrollTarget = $('html, body'),
     mainHeader,
     mainFooter,
-    hashPrefix;
+    hashPrefix,
+    nav,
+    navOpener,
+    gotop;
 
-    mainItems = $('.mainMenu_item');
-    mainHeader = $('.mainHeader');
-    mainFooter = $('.mainFooter');
+    mainItems   = $('.mainMenu_item');
+    mainHeader  = $('.mainHeader');
+    mainFooter  = $('.mainFooter');
+    nav         = $('.mainNav'),
+    navOpener   = $('.navOpener'),
+    gotop       = $('.goTop');
 
 
     mainItems.bind('click', function(e) {
@@ -72,6 +78,24 @@
     } else {
       navigateTo(mainItems.find('.mainMenu_link').filter('[href=#]').parents('li'), true);
     }
+      
+      
+    // Nav toggle
+    navOpener.click(function(){
+        if ($('body').hasClass('_nav_is_open')) {
+            $('body').removeClass('_nav_is_open');
+        } else {
+            $('body').addClass('_nav_is_open');
+        }
+    });
+      
+    
+    // gotop
+    gotop.click(function(event){
+        $('html,body').animate({
+          scrollTop: 0
+        }, 300);
+    });
 
 
 

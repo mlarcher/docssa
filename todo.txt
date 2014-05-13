@@ -1,8 +1,6 @@
 
 /*_____ Priority 1 — urgent _____*/
 
-- Add a "go to top" component button on long pages
-- create a good responsive example
 - Update texts (move around, prune, optimize organization and examples...)
     * Compiled code examples (tab navigation over code example to switch between sass source and compiled output)
 

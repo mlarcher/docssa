@@ -5,7 +5,7 @@
   left: 50%;
   @include transform('translate(-50%, -50%)');
   text-align: center;
-  color: $color-default-white;
+  color: $color-nav-bg;
   z-index: 10;
 }
 
@@ -42,53 +42,17 @@
 
 .mainSection_body {
   padding: 10px 40px;
-  background: $color-default-white;
+  background: $color-site-title;
 }
 
 .mainSection_header {
   padding: 10px 40px;
-  background: $color-green-lighter;
-}
-
-// decide the kind of style we want from a config variable
-@if $variant == 'base' {
-
-  @include tabs('.mainMenu');
-  .mainNav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: $color-default-white;
-    text-align: right;
-    @include box-shadow('0 3px 5px rgba(0,0,0,.3)');
-    @include box-opacity(.95);
-  }
-
-} @else {
-
-  $mainNavWidth: 200px;
-
-  @include verticalMenu('.mainMenu');
-
-  .mainNav {
-    position: fixed;
-    width: $mainNavWidth;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    background: $color-beige;
-  }
-
-  body{
-    padding-left: 200px;
-  }
-
+  background: $color-main-lighter;
 }
 
 .mainSection_title {
   font-weight: normal;
-  color: $color-green;
+  color: $color-main;
   @include remIt('font-size', 26);
   @include remIt('line-height', 30);
 }
@@ -99,36 +63,4 @@
 
 .mainSection_smallTitle {
   margin-top: 80px;
-}
-
-
-.mainFooter {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 5px;
-  text-align: center;
-  background: $color-green;
-}
-.mainFooterLink {
-  color: $color-grey-dark;
-  text-decoration: none;
-  &:hover {
-    text-decoration: underline;
-    color: white;
-  }
-}
-
-.mainFooterIconLink {
-  display: block;
-  width: 22px;
-  height: 22px;
-  float: right;
-  margin: 2px 5px;
-}
-.mainFooterIconLink--github {
-  @extend .mainFooterIconLink;
-  background: url('../assets/img/github.png') center no-repeat;
-  font-size: 0;
 }
