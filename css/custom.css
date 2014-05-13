@@ -561,6 +561,84 @@ usage examples:
 ========== SPECIFICS
 */
 /* _____ SPECIFICS _____ */
+.navOpener {
+  display: block;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  color: white;
+  background: #449888;
+  border: 1px solid white;
+  z-index: 998; }
+  .boxshadow .navOpener {
+    -webkit-box-shadow: none;
+    box-shadow: none; }
+  .csstransitions .navOpener {
+    -webkit-transition: left .2s linear;
+    -moz-transition: left .2s linear;
+    -o-transition: left .2s linear;
+    transition: left .2s linear; }
+  ._nav_is_open .navOpener {
+    left: 246px; }
+  .navOpener:before {
+    content: '☰';
+    width: 28px;
+    height: 30px;
+    line-height: 1.8;
+    display: block;
+    text-align: center; }
+    ._nav_is_open .navOpener:before {
+      content: '☓'; }
+
+.goTop {
+  position: fixed;
+  padding: 0;
+  bottom: 45px;
+  right: 40px;
+  display: block;
+  width: 0;
+  height: 0;
+  border: 20px solid transparent;
+  border-bottom-color: white;
+  background: transparent;
+  display: block;
+  text-align: center;
+  z-index: 0; }
+  .boxshadow .goTop {
+    -webkit-box-shadow: none;
+    box-shadow: none; }
+
+.mainFooter {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 5px;
+  text-align: center;
+  background: #449888;
+  z-index: 10; }
+
+.mainFooterLink {
+  color: #333333;
+  text-decoration: none; }
+  .mainFooterLink:hover {
+    text-decoration: underline;
+    color: white; }
+
+.mainFooterIconLink, .mainFooterIconLink--github {
+  display: block;
+  width: 22px;
+  height: 22px;
+  float: right;
+  margin: 2px 5px; }
+
+.mainFooterIconLink--github {
+  background: url("../assets/img/github.png") center no-repeat;
+  font-size: 0; }
+
 .mainHeader {
   position: fixed;
   top: 50%;
@@ -611,37 +689,22 @@ usage examples:
   padding: 10px 40px;
   background: #a8d5cd; }
 
-.navOpener {
-  display: block;
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  padding: 0;
-  width: 30px;
-  height: 30px;
-  color: white;
-  background: #449888;
-  border: 1px solid white;
-  z-index: 998; }
-  .boxshadow .navOpener {
-    -webkit-box-shadow: none;
-    box-shadow: none; }
-  .csstransitions .navOpener {
-    -webkit-transition: left .2s linear;
-    -moz-transition: left .2s linear;
-    -o-transition: left .2s linear;
-    transition: left .2s linear; }
-  ._nav_is_open .navOpener {
-    left: 246px; }
-  .navOpener:before {
-    content: '☰';
-    width: 28px;
-    height: 30px;
-    line-height: 1.8;
-    display: block;
-    text-align: center; }
-    ._nav_is_open .navOpener:before {
-      content: '☓'; }
+.mainSection_title {
+  font-weight: normal;
+  color: #449888;
+  font-size: 26px;
+  line-height: 30px; }
+  .cssremunit .mainSection_title {
+    font-size: 1.625rem; }
+  .cssremunit .mainSection_title {
+    line-height: 1.875rem; }
+
+.mainSection_subtitle {
+  margin-top: 30px;
+  margin-bottom: 20px; }
+
+.mainSection_smallTitle {
+  margin-top: 80px; }
 
 .mainNav {
   position: absolute;
@@ -674,50 +737,6 @@ usage examples:
   color: #333333; }
   ._is_current .mainMenu_link {
     color: #5cbcaa; }
-
-.mainSection_title {
-  font-weight: normal;
-  color: #449888;
-  font-size: 26px;
-  line-height: 30px; }
-  .cssremunit .mainSection_title {
-    font-size: 1.625rem; }
-  .cssremunit .mainSection_title {
-    line-height: 1.875rem; }
-
-.mainSection_subtitle {
-  margin-top: 30px;
-  margin-bottom: 20px; }
-
-.mainSection_smallTitle {
-  margin-top: 80px; }
-
-.mainFooter {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 5px;
-  text-align: center;
-  background: #449888; }
-
-.mainFooterLink {
-  color: #333333;
-  text-decoration: none; }
-  .mainFooterLink:hover {
-    text-decoration: underline;
-    color: white; }
-
-.mainFooterIconLink, .mainFooterIconLink--github {
-  display: block;
-  width: 22px;
-  height: 22px;
-  float: right;
-  margin: 2px 5px; }
-
-.mainFooterIconLink--github {
-  background: url("../assets/img/github.png") center no-repeat;
-  font-size: 0; }
 
 @media (min-width: 900px) {
   .mainMenu_item {

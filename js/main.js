@@ -11,13 +11,15 @@
     mainFooter,
     hashPrefix,
     nav,
-    navOpener;
+    navOpener,
+    gotop;
 
     mainItems   = $('.mainMenu_item');
     mainHeader  = $('.mainHeader');
     mainFooter  = $('.mainFooter');
     nav         = $('.mainNav'),
-    navOpener   = $('.navOpener');
+    navOpener   = $('.navOpener'),
+    gotop       = $('.goTop');
 
 
     mainItems.bind('click', function(e) {
@@ -85,6 +87,14 @@
         } else {
             $('body').addClass('_nav_is_open');
         }
+    });
+      
+    
+    // gotop
+    gotop.click(function(event){
+        $('html,body').animate({
+          scrollTop: 0
+        }, 300);
     });
 
 

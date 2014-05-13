@@ -1,0 +1,55 @@
+// decide the kind of style we want from a config variable
+@if $nav-variant == 'base' {
+    .mainNav {
+        position: absolute;
+        width: #{$left-nav-width}px;
+        top: 0;
+        bottom: 0;
+        left: #{-1 * $left-nav-width}px;
+        background: $color-nav-bg;
+        @include transition('left .2s linear');
+        @include box-shadow(0 3px 3px 3px rgba(0,0,0,.3));
+        z-index: 999;
+        
+        ._nav_is_open & {
+            left: 0;
+        }
+    }
+
+    .mainMenu {
+        list-style: none;
+        padding: 0;
+    }
+
+    .mainMenu_item {
+        padding: 20px;
+        border-bottom: 1px solid $color-main-lighter;
+    }
+
+    .mainMenu_link {
+        color: $color-text;
+        @extend %basicClickable;
+        
+        ._is_current & {
+            color: $color-main-light;
+        }
+    }
+
+} @else {
+
+  @include verticalMenu('.mainMenu');
+
+  .mainNav {
+    position: fixed;
+    width: $left-nav-width;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background: $color-nav-left-bg;
+  }
+
+  body{
+    padding-left: 200px;
+  }
+
+}
