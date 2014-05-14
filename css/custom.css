@@ -382,12 +382,12 @@ th {
       display: table; }
     .e:after {
       clear: both; } }
-.mainContainer, .a, .b, .e, .sampleHeader {
+.mainContainer, .repoWrapper, .a, .b, .e, .sampleHeader {
   *zoom: 1; }
-  .mainContainer:before, .a:before, .b:before, .e:before, .sampleHeader:before, .mainContainer:after, .a:after, .b:after, .e:after, .sampleHeader:after {
+  .mainContainer:before, .repoWrapper:before, .a:before, .b:before, .e:before, .sampleHeader:before, .mainContainer:after, .repoWrapper:after, .a:after, .b:after, .e:after, .sampleHeader:after {
     content: " ";
     display: table; }
-  .mainContainer:after, .a:after, .b:after, .e:after, .sampleHeader:after {
+  .mainContainer:after, .repoWrapper:after, .a:after, .b:after, .e:after, .sampleHeader:after {
     clear: both; }
 /* ===== PROJECT ===== */
 /* _____ VARIABLES _____ */
@@ -627,17 +627,35 @@ usage examples:
     text-decoration: underline;
     color: white; }
 
-.mainFooterIconLink, .mainFooterIconLink--github {
+.mainFooterIconLink, .repoWrapper_link {
   display: block;
   width: 22px;
   height: 22px;
   float: right;
   margin: 2px 5px; }
 
-.mainFooterIconLink--github {
+.repoWrapper {
+  width: 255px;
+  list-style: none;
+  margin: 10px auto; }
+
+.repoWrapper_item {
+  float: left; }
+
+.repoWrapper_iframe {
+  margin-bottom: -6px; }
+
+.repoWrapper_link {
   background: url("../assets/img/github.png") center no-repeat;
   font-size: 0; }
 
+@media (min-width: 900px) {
+  .repoWrapper {
+    position: absolute;
+    right: 10px;
+    top: 3px;
+    margin: 0;
+    width: auto; } }
 .mainHeader {
   position: fixed;
   top: 50%;
