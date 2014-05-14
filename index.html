@@ -61,6 +61,7 @@
                     </li>
                 </ul>
             </nav>
+            <button class="navOpener"></button>
 
             <article class="mainContent">
 
@@ -475,28 +476,31 @@ sass
 // Generic
 // ==========================================================================
 
-$default-borderRadius: 4px;
+$default-borderRadius: 4;
+$containerWidth: 760;
+$left-nav-width: 200;
 
-$containerWidth: 760px;
-
-$variant: 'base';
+$nav-variant: 'base';
 
 
 // Colors
 // ==========================================================================
 
-$color-default-black: #000;
-$color-default-white: #fff;
+$color-default-light:       #fff;
+$color-default-dark:        #333;
+$color-default-darker:      #000;
 
-$color-green: #449888;
-$color-green-light: #5cbcaa;
-$color-pink: #ee746f;
-$color-grey-dark: #333;
-$color-beige-dark: #c2c0bc;
-$color-beige: #f1ede4;
-$color-beige-light: #f8f5ec;
+$color-main:                #449888;
+$color-main-light:          #5cbcaa;
+$color-main-lighter:        #a8d5cd;
 
-$color-code: #637c84;
+$color-secondary:           #ee746f;
+
+$color-alt:                 #f1ede4;
+$color-alt-dark:            #c2c0bc;
+$color-alt-light:           #f8f5ec;
+
+$color-alt2:                #637c84;
 </pre>
 
                                 </div>
@@ -1628,6 +1632,8 @@ $breakpoints: (
             </footer>
 
         </div>
+        
+        <button class="goTop"></button>
 
         <script src="js/jquery.min.js"></script>
         <script src="js/main.js" async></script>

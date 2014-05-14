@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*!
 ========== INIT
 */
@@ -471,10 +472,10 @@ p {
   margin: 0 auto; }
 
 /* _____ PROJECT HELPERS _____ */
-.sampleHeader_link, .navLink, .externalLink {
+.mainMenu_link, .sampleHeader_link, .navLink, .externalLink {
   color: #449888;
   text-decoration: none; }
-  .sampleHeader_link:hover, .navLink:hover, .externalLink:hover {
+  .mainMenu_link:hover, .sampleHeader_link:hover, .navLink:hover, .externalLink:hover {
     color: #5cbcaa;
     text-decoration: underline; }
 /*!
@@ -483,51 +484,25 @@ p {
 /* ===== UTILS ===== */
 /* _____ SYSTEM TOOLS _____ */
 /* _____ MIXINS _____ */
-.mainMenu {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-size: 0;
-  display: inline-block; }
-
-.mainMenu_item {
-  font-size: 18px;
-  padding: 10px 0;
-  display: inline-block;
-  vertical-align: bottom; }
-  .cssremunit .mainMenu_item {
-    font-size: 1.125rem; }
-
-.mainMenu_link {
-  padding: 0 10px; }
-
+@media (min-width: 900px) {
+  .mainMenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0;
+    display: inline-block; } }
+@media (min-width: 900px) {
+  .mainMenu_item {
+    font-size: 18px;
+    padding: 10px 0;
+    display: inline-block;
+    vertical-align: bottom; }
+    .cssremunit .mainMenu_item {
+      font-size: 1.125rem; } }
+@media (min-width: 900px) {
+  .mainMenu_link {
+    padding: 0 10px; } }
 /* _____ VARIABLES _____ */
-.mainMenu_item {
-  border-bottom: solid 3px transparent; }
-
-.mainMenu_item._is_current {
-  border-bottom: solid 3px #449888; }
-
-.mainMenu_item:hover {
-  border-bottom: solid 3px #5cbcaa; }
-
-.mainMenu_link {
-  border-left: solid 1px #449888;
-  text-decoration: none;
-  color: #449888; }
-
-.mainMenu_item:first-child .mainMenu_link {
-  border-left: inherit; }
-
-.mainMenu_link:hover {
-  color: #5cbcaa; }
-
-.mainMenu_item._is_current .mainMenu_link {
-  color: #5cbcaa; }
-
-.mainMenu_item--highlighted .mainMenu_link {
-  color: #333333; }
-
 /* ===== UTILS ===== */
 /* _____ SYSTEM TOOLS _____ */
 /* _____ MIXINS _____ */
@@ -586,6 +561,83 @@ usage examples:
 ========== SPECIFICS
 */
 /* _____ SPECIFICS _____ */
+.navOpener {
+  display: block;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  color: white;
+  background: #449888;
+  border: 1px solid white;
+  z-index: 998; }
+  .boxshadow .navOpener {
+    -webkit-box-shadow: none;
+    box-shadow: none; }
+  .csstransitions .navOpener {
+    -webkit-transition: left .2s linear;
+    -moz-transition: left .2s linear;
+    -o-transition: left .2s linear;
+    transition: left .2s linear; }
+  ._nav_is_open .navOpener {
+    left: 246px; }
+  .navOpener:before {
+    content: '☰';
+    width: 28px;
+    height: 30px;
+    line-height: 1.8;
+    display: block;
+    text-align: center; }
+    ._nav_is_open .navOpener:before {
+      content: '☓'; }
+
+.goTop {
+  position: fixed;
+  padding: 0;
+  bottom: 10px;
+  right: 10px;
+  display: block;
+  width: 0;
+  height: 0;
+  border: 20px solid transparent;
+  border-bottom-color: white;
+  background: transparent;
+  text-align: center;
+  z-index: 0; }
+  .boxshadow .goTop {
+    -webkit-box-shadow: none;
+    box-shadow: none; }
+
+.mainFooter {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 5px;
+  text-align: center;
+  background: #449888;
+  z-index: 10; }
+
+.mainFooterLink {
+  color: #333333;
+  text-decoration: none; }
+  .mainFooterLink:hover {
+    text-decoration: underline;
+    color: white; }
+
+.mainFooterIconLink, .mainFooterIconLink--github {
+  display: block;
+  width: 22px;
+  height: 22px;
+  float: right;
+  margin: 2px 5px; }
+
+.mainFooterIconLink--github {
+  background: url("../assets/img/github.png") center no-repeat;
+  font-size: 0; }
+
 .mainHeader {
   position: fixed;
   top: 50%;
@@ -636,19 +688,6 @@ usage examples:
   padding: 10px 40px;
   background: #a8d5cd; }
 
-.mainNav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: white;
-  text-align: right;
-  opacity: 0.95;
-  filter: alpha(opacity=95); }
-  .boxshadow .mainNav {
-    -webkit-box-shadow: 0 3px 5px rgba(0,0,0,.3);
-    box-shadow: 0 3px 5px rgba(0,0,0,.3); }
-
 .mainSection_title {
   font-weight: normal;
   color: #449888;
@@ -666,33 +705,71 @@ usage examples:
 .mainSection_smallTitle {
   margin-top: 80px; }
 
-.mainFooter {
-  position: fixed;
+.mainNav {
+  position: absolute;
+  width: 200px;
+  top: 0;
   bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 5px;
-  text-align: center;
-  background: #449888; }
+  left: -200px;
+  background: white;
+  z-index: 999; }
+  .csstransitions .mainNav {
+    -webkit-transition: left .2s linear;
+    -moz-transition: left .2s linear;
+    -o-transition: left .2s linear;
+    transition: left .2s linear; }
+  .boxshadow .mainNav {
+    -webkit-box-shadow: 0 3px 3px 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 3px 3px 3px rgba(0, 0, 0, 0.3); }
+  ._nav_is_open .mainNav {
+    left: 0; }
 
-.mainFooterLink {
-  color: #333333;
-  text-decoration: none; }
-  .mainFooterLink:hover {
-    text-decoration: underline;
-    color: white; }
+.mainMenu {
+  list-style: none;
+  padding: 0; }
 
-.mainFooterIconLink, .mainFooterIconLink--github {
-  display: block;
-  width: 22px;
-  height: 22px;
-  float: right;
-  margin: 2px 5px; }
+.mainMenu_item {
+  padding: 20px;
+  border-bottom: 1px solid #a8d5cd; }
 
-.mainFooterIconLink--github {
-  background: url("../assets/img/github.png") center no-repeat;
-  font-size: 0; }
+.mainMenu_link {
+  color: #333333; }
+  ._is_current .mainMenu_link {
+    color: #5cbcaa; }
 
+@media (min-width: 900px) {
+  .mainMenu_item {
+    border: none;
+    padding: 0;
+    line-height: 2.5; }
+    .mainMenu_item._is_current {
+      border-bottom: 3px solid #5cbcaa; }
+
+  .mainMenu_item:first-child .mainMenu_link {
+    border-left: none; }
+
+  .mainMenu_link {
+    text-decoration: none;
+    color: #333333;
+    border-left: 1px solid #449888; }
+
+  .navOpener {
+    display: none; }
+
+  .mainNav {
+    position: fixed;
+    width: auto;
+    bottom: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    text-align: right;
+    opacity: 0.95;
+    filter: alpha(opacity=95); }
+    .boxshadow .mainNav {
+      -webkit-box-shadow: 0 3px 5px rgba(0,0,0,.3);
+      box-shadow: 0 3px 5px rgba(0,0,0,.3); } }
 .sampleHeader {
   list-style: none;
   padding: 0;
@@ -755,3 +832,19 @@ usage examples:
   padding: 15px;
   border: dotted 1px #ee746f;
   margin-bottom: 15px; }
+
+.sampleTitle {
+  background: #f1ede4;
+  display: inline-block;
+  padding: 5px 20px; }
+
+.codeSample {
+  background: #f8f5ec;
+  border: solid 1px #f1ede4;
+  margin-top: 0;
+  padding: 20px;
+  color: #637c84;
+  font-size: 14px;
+  line-height: 1.3; }
+  .cssremunit .codeSample {
+    font-size: 0.875rem; }

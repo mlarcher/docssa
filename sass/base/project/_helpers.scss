@@ -4,11 +4,11 @@
   /* _____ PROJECT HELPERS _____ */
 
   @include _add(basicClickable) {
-    color: $color-green;
+    color: $color-main;
     text-decoration: none;
 
     &:hover {
-      color: $color-green-light;
+      color: $color-main-light;
       text-decoration: underline;
     }
   }

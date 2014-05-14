@@ -44,11 +44,11 @@
 @include define('verticalMenu-skin-default') {
 
   %verticalMenu-skin-default {
-    background: $color-beige;
+    background: $color-alt;
   }
 
   %verticalMenu-skin-default-item {
-    background: $color-green-light;
+    background: $color-main-light;
     border-top: solid 1px #fff;
   }
 
@@ -57,7 +57,7 @@
   }
 
   %verticalMenu-skin-default-item_hover {
-    background: $color-green;
+    background: $color-main;
   }
 
   %verticalMenu-skin-default-item_link {
@@ -70,8 +70,8 @@
   }
 
   %verticalMenu-skin-default-item_current {
-    background: $color-green;
-    border-top: solid 1px $color-beige;
+    background: $color-main;
+    border-top: solid 1px $color-alt;
   }
 
   %verticalMenu-skin-default-item_current_link {
