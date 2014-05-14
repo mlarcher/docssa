@@ -6,9 +6,9 @@
     padding: 0;
     width: 30px;
     height: 30px;
-    color: $color-opener;
+    color: $color-default-light;
     background: $color-main;
-    border: 1px solid $color-opener;
+    border: 1px solid $color-default-light;
     z-index: 998;
     @include box-shadow(none);
     @include transition('left .2s linear');
@@ -34,15 +34,14 @@
 .goTop {
     position: fixed;
     padding: 0;
-    bottom: 45px;
-    right: 40px;
+    bottom: 10px;
+    right: 10px;
     display: block;
     width: 0;
     height: 0;
     border: 20px solid transparent;
-    border-bottom-color: $color-gotop;
+    border-bottom-color: $color-default-light;
     background: transparent;
-    display: block;
     text-align: center;
     @include box-shadow(none);
     z-index: 0;

@@ -8,6 +8,7 @@
 @import 'nav';
 @import 'responsiveExample';
 @import 'responsiveNav';
+@import 'sample';
 
 
 // miscellaneous rules
@@ -23,7 +24,7 @@
   color: $color-secondary;
 }
 .firstOrderList_item_content {
-  color: $color-listitem;
+  color: $color-default-darker;
 }
 
 .secondaryList_item {
@@ -31,7 +32,7 @@
   color: $color-secondary;
 }
 .secondaryList_item_content {
-  color: $color-listitem;
+  color: $color-default-darker;
 }
 
 .articleSeparator {
@@ -51,16 +52,16 @@
 }
 
 .sampleTitle {
-  background: $color-code-wrapper;
+  background: $color-alt;
   display: inline-block;
   padding: 5px 20px;
 }
 .codeSample {
-  background: $color-code-wrapper-light;
-  border: solid 1px $color-code-wrapper;
+  background: $color-alt-light;
+  border: solid 1px $color-alt;
   margin-top: 0;
   padding: 20px;
-  color: $color-code;
+  color: $color-alt2;
   @include remIt('font-size', 14);
   line-height: 1.3;
 }

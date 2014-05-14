@@ -44,7 +44,7 @@
 @include define('verticalMenu-skin-default') {
 
   %verticalMenu-skin-default {
-    background: $color-code-wrapper;
+    background: $color-alt;
   }
 
   %verticalMenu-skin-default-item {
@@ -71,7 +71,7 @@
 
   %verticalMenu-skin-default-item_current {
     background: $color-main;
-    border-top: solid 1px $color-code-wrapper;
+    border-top: solid 1px $color-alt;
   }
 
   %verticalMenu-skin-default-item_current_link {

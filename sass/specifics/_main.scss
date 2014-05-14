@@ -5,7 +5,7 @@
   left: 50%;
   @include transform('translate(-50%, -50%)');
   text-align: center;
-  color: $color-nav-bg;
+  color: $color-default-light;
   z-index: 10;
 }
 
@@ -42,7 +42,7 @@
 
 .mainSection_body {
   padding: 10px 40px;
-  background: $color-site-title;
+  background: $color-default-light;
 }
 
 .mainSection_header {
