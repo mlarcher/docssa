@@ -605,7 +605,8 @@ usage examples:
   border-bottom-color: white;
   background: transparent;
   text-align: center;
-  z-index: 0; }
+  z-index: 0;
+  font-size: 0; }
   .boxshadow .goTop {
     -webkit-box-shadow: none;
     box-shadow: none; }
