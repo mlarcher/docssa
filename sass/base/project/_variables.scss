@@ -13,22 +13,18 @@ $nav-variant: 'base';
 // Colors
 // ==========================================================================
 
-$color-listitem:            #000;
-$color-article-bg:          #fff;
-$color-site-title:          #fff;
-$color-nav-bg:              #fff;
-$color-nav-left-bg:         #f1ede4;
-$color-opener:              #fff;
-$color-gotop:               #fff;
+$color-default-light:       #fff;
+$color-default-dark:        #333;
+$color-default-darker:      #000;
 
 $color-main:                #449888;
 $color-main-light:          #5cbcaa;
 $color-main-lighter:        #a8d5cd;
+
 $color-secondary:           #ee746f;
 
-$color-text:                #333;
+$color-alt:                 #f1ede4;
+$color-alt-dark:            #c2c0bc;
+$color-alt-light:           #f8f5ec;
 
-$color-code:                #637c84;
-$color-code-wrapper:        #f1ede4;
-$color-code-wrapper-dark:   #c2c0bc;
-$color-code-wrapper-light:  #f8f5ec;
+$color-alt2:                #637c84;

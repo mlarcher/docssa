@@ -9,7 +9,7 @@
     z-index: 10;
 }
 .mainFooterLink {
-  color: $color-text;
+  color: $color-default-dark;
   text-decoration: none;
   &:hover {
     text-decoration: underline;
@@ -24,8 +24,35 @@
   float: right;
   margin: 2px 5px;
 }
-.mainFooterIconLink--github {
+
+
+.repoWrapper {
+    width: 362px;
+    @extend %clearfix;
+    list-style: none;
+    margin: 10px auto;
+} 
+
+.repoWrapper_item {
+    float: left;
+}
+
+.repoWrapper_element {
+    margin-bottom: -6px;
+}
+
+.repoWrapper_link {
   @extend .mainFooterIconLink;
   background: url('../assets/img/github.png') center no-repeat;
   font-size: 0;
+}
+
+@include breakpoint(medium) {
+    .repoWrapper {
+        position: absolute;
+        right: 10px;
+        top: 3px;
+        margin: 0;
+        width: auto;
+    }   
 }

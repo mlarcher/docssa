@@ -1,0 +1,49 @@
+
+.sampleHeader {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    @extend %clearfix;
+}
+
+.sampleHeader_item {
+    float: left;
+    background: $color-alt;
+    
+    &._is_current {
+        background: $color-alt-light;
+    }
+}
+
+.sampleHeader_link {
+    @extend %basicClickable;
+    border: none;
+    background: transparent;
+    color: #ccc;
+    padding: 10px;
+    display: block;
+}
+
+.sampleHeader_item._is_current .sampleHeader_link {
+    color: $color-default-darker;
+}
+
+.sampleTitle {
+    background: $color-alt;
+    display: inline-block;
+    padding: 5px 20px;
+}
+
+.codeSample {
+    background: $color-alt-light;
+    border: solid 1px $color-alt;
+    margin-top: 0;
+    padding: 20px;
+    color: $color-alt2;
+    @include remIt('font-size', 14);
+    line-height: 1.3;
+    
+    &._is_hidden {
+        display: none;
+    }
+}

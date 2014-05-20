@@ -10,16 +10,16 @@
     mainHeader,
     mainFooter,
     hashPrefix,
-    nav,
     navOpener,
-    gotop;
+    goTop,
+    sampleLink,
 
     mainItems   = $('.mainMenu_item');
     mainHeader  = $('.mainHeader');
     mainFooter  = $('.mainFooter');
-    nav         = $('.mainNav'),
-    navOpener   = $('.navOpener'),
-    gotop       = $('.goTop');
+    navOpener   = $('.navOpener');
+    goTop       = $('.goTop');
+    sampleLink  = $('.sampleHeader_link');
 
 
     mainItems.bind('click', function(e) {
@@ -79,6 +79,13 @@
       navigateTo(mainItems.find('.mainMenu_link').filter('[href=#]').parents('li'), true);
     }
       
+    
+    // sample switcher
+    sampleLink.click(function(){
+        $(this).closest('.sampleHeader').find('.sampleHeader_item').toggleClass('_is_current');
+        $(this).closest('.sample').find('pre').toggleClass('_is_hidden');
+    });
+      
       
     // Nav toggle
     navOpener.click(function(){
@@ -91,7 +98,7 @@
       
     
     // gotop
-    gotop.click(function(event){
+    goTop.click(function(event){
         $('html,body').animate({
           scrollTop: 0
         }, 300);

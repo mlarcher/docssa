@@ -23,7 +23,7 @@
     .mainMenu_link {
         @include _use(tabs_link);
         text-decoration: none;
-        color: $color-text;
+        color: $color-default-dark;
         border-left: 1px solid $color-main;
         
         
@@ -39,7 +39,7 @@
         top: 0;
         left: 0;
         right: 0;
-        background: $color-nav-bg;
+        background: $color-default-light;
         text-align: right;
         @include box-shadow('0 3px 5px rgba(0,0,0,.3)');
         @include box-opacity(.95);

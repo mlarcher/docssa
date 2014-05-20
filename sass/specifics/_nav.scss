@@ -6,7 +6,7 @@
         top: 0;
         bottom: 0;
         left: #{-1 * $left-nav-width}px;
-        background: $color-nav-bg;
+        background: $color-default-light;
         @include transition('left .2s linear');
         @include box-shadow(0 3px 3px 3px rgba(0,0,0,.3));
         z-index: 999;
@@ -27,7 +27,7 @@
     }
 
     .mainMenu_link {
-        color: $color-text;
+        color: $color-default-dark;
         @extend %basicClickable;
         
         ._is_current & {
@@ -45,7 +45,7 @@
     top: 0;
     bottom: 0;
     left: 0;
-    background: $color-nav-left-bg;
+    background: $color-default-light;
   }
 
   body{
