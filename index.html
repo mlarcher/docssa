@@ -199,7 +199,7 @@
                                     <span class="sampleHeader_link">// custom.scss</span>
                                 </li>
                             </ul>
-                        
+
 <pre class="codeSample">
 @charset "UTF-8";
 
@@ -308,8 +308,8 @@ sass
                                 </div>
                             </li>
                         </ul>
-                        <p class="note">Both summary index for those folders import the <em>base/_config.scss</em> file which contains
-                            configuration infos required by both the system and the project. If you're wondering why we don't
+                        <p class="note">Both summary files (__project.scss and __utils.scss) for those folders import the <em>base/_config.scss</em> file which contains
+                            configuration information required by both the system and the project. If you're wondering why we don't
                             import the config from the __base.scss file, you're asking yourself the right questions! We had to
                             stray a bit from our convention about sass files organization on that one in order to ease the standalone components generation.
                             We assumed it was better to import the file twice in "base" than once in "base" and then once for each
@@ -369,7 +369,7 @@ sass
                                         bit like mixins, but instead of placing a set of CSS rules within the selector
                                         implementing
                                         them, they add that selector to the list of selectors on which to apply a set of CSS rules.<br>
-                                        This may not seem as much,, but you'll see some of the awesome stuff we can do with
+                                        This may not seem as much, but you'll see some of the awesome stuff we can do with
                                         it in the
                                         components section.</p>
                                 </div>
@@ -764,7 +764,7 @@ $color-alt2:                #637c84;
                             component from anywhere without any risk of having our placeholders duplicated in the final css.
                         </p>
                         <p>Here's the <em>structure</em> part of our "tabs" component :</p>
-                        
+
                         <div class="sample">
                             <ul class="sampleHeader">
                                 <li class="sampleHeader_item _is_current">
@@ -973,10 +973,10 @@ $color-alt2:                #637c84;
     </pre>
                         <p>That's right, now that you have defined your component, using it is as easy as that!</p>
                         <p>And here is what the output css will look like :</p>
-                        
-                        
-                        
-                        
+
+
+
+
                         <samp class="sampleTitle">// in css/custom.css</samp>
 <pre class="codeSample">
 .mainMenu {
@@ -1631,7 +1631,7 @@ $breakpoints: (
             <footer class="mainFooter">
                 Presented by <a class="mainFooterLink" href="https://twitter.com/larchermatthieu">Matthieu Larcher</a> &amp;
                 <a class="mainFooterLink" href="https://twitter.com/_faz">Fabien Zibi</a>
-                
+
                 <ul class="repoWrapper">
                     <li class="repoWrapper_item">
                         <iframe class="repoWrapper_iframe" src="http://ghbtns.com/github-btn.html?user=mlarcher&repo=docssa&type=fork&count=true" height="20" width="90" frameborder="0" scrolling="0" style="width:90px; height: 20px;" allowTransparency="true"></iframe>
