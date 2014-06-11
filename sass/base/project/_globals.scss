@@ -25,7 +25,7 @@
     width: 100%;
     color: #000;
     min-height: 100%;
-    @include radial-gradient($color-green-light, $color-green);
+    @include radial-gradient($color-main-light, $color-main);
   }
 
   h1 {
@@ -62,7 +62,7 @@
   .mainContainer {
     @extend %clearfix;
     width: 100%;
-    max-width: $containerWidth;
+    max-width: #{$containerWidth}px;
     margin: 0 auto;
   }
 

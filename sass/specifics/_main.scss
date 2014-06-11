@@ -5,7 +5,7 @@
   left: 50%;
   @include transform('translate(-50%, -50%)');
   text-align: center;
-  color: $color-default-white;
+  color: $color-default-light;
   z-index: 10;
 }
 
@@ -28,92 +28,39 @@
   margin: 65px 0 50px;
 }
 
-// only hide mainArticles by default if js is present to reveal them
-.js .mainArticle {
+// only hide mainSections by default if js is present to reveal them
+.js .mainSection {
   display: none;
 }
-.js .mainArticle._is_current {
+.js .mainSection._is_current {
   display: block;
 }
 
-.mainArticle {
+.mainSection {
   //padding: 10px 40px;
 }
 
-.mainArticle_body {
+.mainSection_body {
   padding: 10px 40px;
-  background: $color-default-white;
+  background: $color-default-light;
 }
 
-.mainArticle_header {
+.mainSection_header {
   padding: 10px 40px;
-  background: $color-green-lighter;
+  background: $color-main-lighter;
 }
 
-// decide the kind of style we want from a config variable
-@if $variant == 'base' {
-
-  @include tabs('.mainMenu');
-  .mainNav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: $color-default-white;
-    text-align: right;
-    @include box-shadow('0 3px 5px rgba(0,0,0,.3)')
-  }
-
-} @else {
-
-  $mainNavWidth: 200px;
-
-  @include verticalMenu('.mainMenu');
-
-  .mainNav {
-    position: fixed;
-    width: $mainNavWidth;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    background: $color-beige;
-  }
-
-  body{
-    padding-left: 200px;
-  }
-
-}
-
-.mainArticle_title {
+.mainSection_title {
   font-weight: normal;
-  color: $color-green;
+  color: $color-main;
   @include remIt('font-size', 26);
   @include remIt('line-height', 30);
 }
-.mainArticle_subtitle {
+.mainSection_subtitle {
   margin-top: 30px;
   margin-bottom: 20px;
 }
 
-.mainArticle_smallTitle {
+.mainSection_smallTitle {
   margin-top: 80px;
-}
-
-
-.mainFooter {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 5px;
-  text-align: center;
-  background: $color-green;
-}
-.mainFooterLink {
-  color: $color-grey-dark;
-  text-decoration: none;
-  &:hover {
-    text-decoration: underline;
-  }
 }

@@ -1,0 +1,123 @@
+
+/* _____ SYSTEM TOOLS _____ */
+
+// define
+// this mixin makes it possible to have a file imported at multiple place and only be output the first time it is called
+// it is used for placeholders to prevent them from being repeated by each file depending on them
+
+$modules: () !default;
+@mixin define($uniqeRef) {
+  @if not index($modules, $uniqeRef) {
+    $modules: append($modules, $uniqeRef);
+    @content;
+  }
+}
+
+// getPrefixes
+// this function is used by mixins to set the proper progressive enhancement prefixes
+@function getPrefix($feature, $useModernizr: true) {
+  $yesPrefix: '';
+  $noPrefix: '';
+  @if $useModernizr {
+    $yesPrefix: '.' + $feature;
+    $noPrefix: '.no-' + $feature;
+  }
+  @return (yes: $yesPrefix, no: $noPrefix);
+}
+
+// system variables
+$default-breakpoint: root;
+$current-breakpoint: $default-breakpoint;
+$placeholders: ();
+
+
+// breakpoint
+// this mixin needs to be used to enter a @media that will let use use cross-media placeholders
+// ex:
+//@include breakpoint(medium) {
+//  .selector {
+//    @include _use(clearfix);
+//  }
+//}
+@mixin breakpoint($breakpoint) {
+  // Get the width from the keyword `$breakpoint`
+  // Or `null` if the keyword doesn't exist in `$breakpoints` map
+  $value: map-get($breakpoints, $breakpoint);
+
+  // If `$breakpoint` exists as a key in `$breakpoints`
+  @if $value != null {
+    // Update `$current-breakpoint`
+    $current-breakpoint: $breakpoint !global;
+
+    // Open a media query block
+    @media (min-width: $value) {
+      // Let the user dump content
+      @content;
+    }
+
+    // Then reset `$current-breakpoint` to `$default-breakpoint` (root)
+    $current-breakpoint: $default-breakpoint !global;
+  }
+
+    // If `$breakpoint` doesn't exist in `$breakpoints`,
+    // Warn the user and do nothing
+  @else {
+    @warn "Invalid breakpoint `#{$breakpoint}`.";
+  }
+}
+
+// placeholder
+
+@mixin _add($name) {
+  // If placeholder doesn't exist yet in `$placeholders` list
+  @if not index($placeholders, $name) {
+    // Store its name
+    $placeholders: append($placeholders, $name) !global;
+
+    // At root level
+    @at-root {
+      // Looping through `$breakpoints`
+      @each $breakpoint, $value in $breakpoints {
+        // Opening a media query block
+        @media (min-width: $value) {
+
+          // set the current-breakpoint so that nested calls to _use can work
+          $current-breakpoint: $breakpoint !global;
+
+          // Generating a placeholder
+          // Called $name-$breakpoint
+          %#{$name}-#{$breakpoint} {
+            // dump the content
+            @content;
+          }
+
+          // reset current-breakpoint
+          $current-breakpoint: $default-breakpoint !global;
+        }
+      }
+
+      // And dumping a placeholder out of any media query as well
+      // so basically at root level
+      %#{$name} {
+        @content;
+      }
+    }
+  }
+
+    // If placeholder already exists, just warn the user
+  @else {
+    @warn "Placeholder `#{$name}` already exists.";
+  }
+}
+
+// placeholder implementor
+
+@mixin _use($name) {
+
+  @if $current-breakpoint == $default-breakpoint {
+    @extend %#{$name} !optional;
+  } @else {
+    @extend %#{$name}-#{$current-breakpoint} !optional;
+  }
+
+}

@@ -1,0 +1,47 @@
+
+
+@include breakpoint(medium) {
+    
+    .mainMenu {
+        @include _use(tabs);
+        
+    }
+    .mainMenu_item {
+        border: none;
+        padding: 0;
+        line-height: 2.5;
+        @include _use(tabs_item);
+        &._is_current {
+            border-bottom: 3px solid $color-main-light;
+        }
+    }
+    
+    .mainMenu_item:first-child .mainMenu_link {
+        border-left: none;
+    }
+    
+    .mainMenu_link {
+        @include _use(tabs_link);
+        text-decoration: none;
+        color: $color-default-dark;
+        border-left: 1px solid $color-main;
+        
+        
+    }
+    .navOpener {
+        display :none;
+    }
+    
+    .mainNav {
+        position: fixed;
+        width: auto;
+        bottom: auto;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: $color-default-light;
+        text-align: right;
+        @include box-shadow('0 3px 5px rgba(0,0,0,.3)');
+        @include box-opacity(.95);
+      }
+}

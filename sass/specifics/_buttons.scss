@@ -1,0 +1,49 @@
+.navOpener {
+    display: block;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    color: $color-default-light;
+    background: $color-main;
+    border: 1px solid $color-default-light;
+    z-index: 998;
+    @include box-shadow(none);
+    @include transition('left .2s linear');
+
+    ._nav_is_open & {
+        left: #{$left-nav-width + 46}px;;
+    }
+
+    &:before {
+        content: '☰';
+        width: 28px;
+        height: 30px;
+        line-height: 1.8;
+        display: block;
+        text-align: center;
+
+        ._nav_is_open & {
+            content: '☓';
+        }
+    }
+}
+
+.goTop {
+    position: fixed;
+    padding: 0;
+    bottom: 10px;
+    right: 10px;
+    display: block;
+    width: 0;
+    height: 0;
+    border: 20px solid transparent;
+    border-bottom-color: $color-default-light;
+    background: transparent;
+    text-align: center;
+    @include box-shadow(none);
+    z-index: 0;
+    font-size: 0;
+}

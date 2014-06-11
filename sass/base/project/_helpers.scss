@@ -3,12 +3,12 @@
 
   /* _____ PROJECT HELPERS _____ */
 
-  %basicClickable {
-    color: $color-green;
+  @include _add(basicClickable) {
+    color: $color-main;
     text-decoration: none;
 
     &:hover {
-      color: $color-green-light;
+      color: $color-main-light;
       text-decoration: underline;
     }
   }

@@ -5,7 +5,7 @@
 
 // define component placeholders for component contents (no selector here)
 @include define('tabs') {
-  %tabs {
+  @include _add(tabs) {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -13,14 +13,14 @@
     display: inline-block;
   }
 
-  %tabs_item{
+  @include _add(tabs_item) {
     @include remIt(font-size, 18);
     padding: 10px 0;
     display: inline-block;
     vertical-align: bottom;
   }
 
-  %tabs_link {
+  @include _add(tabs_link) {
     padding: 0 10px;
   }
 
@@ -63,18 +63,18 @@
   }
 
   %tabs-skin-default__item_current {
-    border-bottom: solid 3px $color-green;
+    border-bottom: solid 3px $color-main;
   }
 
   %tabs-skin-default__item_hover {
-    border-bottom: solid 3px $color-green-light;
+    border-bottom: solid 3px $color-main-light;
   }
 
 
   %tabs-skin-default__link {
-    border-left: solid 1px $color-green;
+    border-left: solid 1px $color-main;
     text-decoration: none;
-    color: $color-green;
+    color: $color-main;
   }
 
   %tabs-skin-default__link_first {
@@ -82,15 +82,15 @@
   }
 
   %tabs-skin-default__item_hover_link {
-    color: $color-green-light;
+    color: $color-main-light;
   }
 
   %tabs-skin-default__item_current_link {
-    color: $color-green-light;
+    color: $color-main-light;
   }
 
   %tabs-skin-default__item_highlighted {
-    color: $color-grey-dark;
+    color: $color-default-dark;
   }
 
 }
