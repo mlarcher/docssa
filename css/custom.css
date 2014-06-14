@@ -605,7 +605,8 @@ usage examples:
   border-bottom-color: white;
   background: transparent;
   text-align: center;
-  z-index: 0; }
+  z-index: 0;
+  font-size: 0; }
   .boxshadow .goTop {
     -webkit-box-shadow: none;
     box-shadow: none; }
@@ -635,14 +636,14 @@ usage examples:
   margin: 2px 5px; }
 
 .repoWrapper {
-  width: 255px;
+  width: 362px;
   list-style: none;
   margin: 10px auto; }
 
 .repoWrapper_item {
   float: left; }
 
-.repoWrapper_iframe {
+.repoWrapper_element {
   margin-bottom: -6px; }
 
 .repoWrapper_link {

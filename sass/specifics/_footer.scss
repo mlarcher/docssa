@@ -27,7 +27,7 @@
 
 
 .repoWrapper {
-    width: 255px;
+    width: 362px;
     @extend %clearfix;
     list-style: none;
     margin: 10px auto;
@@ -37,7 +37,7 @@
     float: left;
 }
 
-.repoWrapper_iframe {
+.repoWrapper_element {
     margin-bottom: -6px;
 }
 
