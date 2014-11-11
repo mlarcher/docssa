@@ -326,7 +326,7 @@ sass
                             <li class="secondaryList_item">
                                 <div class="secondaryList_item_content">
                                     <p><em>_system</em> is a special file the contains tools used by DoCSSa.<br>
-                                        Most notably, it contains a <em>define</em> mixin used to allow inclusion of placeholders
+                                        Most notably, it contains a <em>importOnce</em> mixin used to allow inclusion of placeholders
                                         from several places without generating duplicate content, and <em>_add()/_use()</em> mixins for
                                       handling cross media placeholders.
                                     </p>
@@ -338,7 +338,7 @@ sass
                                         But when
                                         generating the whole project's CSS, we don't want that multiple import to screw up the
                                         output.
-                                        <em>define</em> is a simple mixin taking advantage of the <em>@content</em> instruction Sass
+                                        <em>importOnce</em> is a simple mixin taking advantage of the <em>@content</em> instruction Sass
                                         provides, which
                                         allows us in the end to have a clean .css file even though we import our placeholders file several
                                         times
@@ -761,7 +761,7 @@ $color-alt2:                #637c84;
                         <h3 class="mainSection_smallTitle" id="components_definition">Component's definition</h3>
                         <p>The component definition file contains two sets of placeholders
                             named after the component's name, and two mixins. One set is for the component structure, one for
-                            the component's skin. Placeholders are wrapped in a <em>define</em> mixin, so that we can import the
+                            the component's skin. Placeholders are wrapped in a <em>importOnce</em> mixin, so that we can import the
                             component from anywhere without any risk of having our placeholders duplicated in the final css.
                         </p>
                         <p>Here's the <em>structure</em> part of our "tabs" component :</p>
@@ -778,7 +778,7 @@ $color-alt2:                #637c84;
 // _____ STRUCTURE _____ //
 
 // define component placeholders for component contents (no selector here except for component's id)
-@include define('tabs') {
+@include importOnce('tabs') {
 
   %tabs {
     list-style: none;
@@ -829,9 +829,9 @@ $color-alt2:                #637c84;
 
                         <p>Don't worry about the id selector for now, we'll get back to it in the "standalone component" chapter.</p>
                         <p>First, the component imports 'sass/base/utils/__utils', which will give it access to the default
-                            mixins and helpers. Thanks to the <em>define</em> mixin, all components can safely import this folder.
+                            mixins and helpers. Thanks to the <em>importOnce</em> mixin, all components can safely import this folder.
                         </p>
-                        <p>Then, a bunch of placeholders are defined, wrapped in a <em>define</em> mixin so that they can safely be imported
+                        <p>Then, a bunch of placeholders are defined, wrapped in a <em>importOnce</em> mixin so that they can safely be imported
                             by subComponents if needed. They are the core of the component, and define what needs to be implemented
                             on the various classes or states of the component.<p>
                         <p>Below the defined wrapped placeholders is a mixin named after the component. Its role is to
@@ -856,7 +856,7 @@ $color-alt2:                #637c84;
 
 
 // define component placeholders for component skin (no selector here)
-@include define('tabs-skin-default') {
+@include importOnce('tabs-skin-default') {
 
   %tabs-skin-default__item {
     border-bottom: solid 3px transparent;

@@ -1,12 +1,12 @@
 
 /* _____ SYSTEM TOOLS _____ */
 
-// define
+// importOnce
 // this mixin makes it possible to have a file imported at multiple place and only be output the first time it is called
 // it is used for placeholders to prevent them from being repeated by each file depending on them
 
 $modules: () !default;
-@mixin define($uniqeRef) {
+@mixin importOnce($uniqeRef) {
   @if not index($modules, $uniqeRef) {
     $modules: append($modules, $uniqeRef);
     @content;

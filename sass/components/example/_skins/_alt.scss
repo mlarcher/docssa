@@ -1,8 +1,8 @@
 
 /* **** EXAMPLE COMPONENT SKIN ALT **** */
 
-// define component placeholders for component skin (no selector here)
-@include define('example-skin-alt') {
+// defin component placeholders for component skin (no selector here)
+@include importOnce('example-skin-alt') {
   %example-skin-alt {
     background: #fff;
     color: green;
