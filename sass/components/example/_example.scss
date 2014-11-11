@@ -18,7 +18,7 @@ usage examples:
 /* **** EXAMPLE COMPONENT **** */
 
 // define component placeholders for component contents (no selector here)
-@include define('example') {
+@include importOnce('example') {
   %example {
     padding: 10px;
   }
@@ -94,7 +94,7 @@ usage examples:
 /* **** EXAMPLE COMPONENT SKIN **** */
 
 // define component placeholders for component skin (no selector here)
-@include define('example_skin') {
+@include importOnce('example_skin') {
   %example-skin-default {
     background: #eee;
     color: blue;

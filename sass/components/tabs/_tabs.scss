@@ -4,7 +4,7 @@
 // _____ STRUCTURE _____ //
 
 // define component placeholders for component contents (no selector here)
-@include define('tabs') {
+@include importOnce('tabs') {
   @include _add(tabs) {
     list-style: none;
     padding: 0;
@@ -56,7 +56,7 @@
 
 
 // define component placeholders for component skin (no selector here)
-@include define('tabs-skin-default') {
+@include importOnce('tabs-skin-default') {
 
   %tabs-skin-default__item {
     border-bottom: solid 3px transparent;

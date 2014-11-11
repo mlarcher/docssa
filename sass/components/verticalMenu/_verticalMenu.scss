@@ -5,7 +5,7 @@
 // _____ STRUCTURE _____ //
 
 // define component placeholders for component contents (no selector here)
-@include define('verticalMenu') {
+@include importOnce('verticalMenu') {
   %verticalMenu {
     list-style: none;
     padding: 10px 0;
@@ -41,7 +41,7 @@
 // _____ SKIN _____ //
 
 // define component placeholders for component skin (no selector here)
-@include define('verticalMenu-skin-default') {
+@include importOnce('verticalMenu-skin-default') {
 
   %verticalMenu-skin-default {
     background: $color-alt;

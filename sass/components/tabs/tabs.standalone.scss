@@ -6,3 +6,10 @@
 }
 
 @include tabs('.dynamicTabs');
+.submitTrigger {
+  margin-top: 10px;
+}
+
+.myContainer {
+  @include border-radius(5px);
+}
