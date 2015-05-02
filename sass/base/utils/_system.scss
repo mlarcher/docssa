@@ -8,7 +8,7 @@
 $modules: () !default;
 @mixin importOnce($uniqeRef) {
   @if not index($modules, $uniqeRef) {
-    $modules: append($modules, $uniqeRef);
+    $modules: append($modules, $uniqeRef) !global;
     @content;
   }
 }
