@@ -232,15 +232,15 @@
 </pre>
                         </div>
 
-                            <p>As you can see, it mostly acts as an aggregator for other files, which themselves import some
-                                other scss files, and so on. With a well thought organization, this construct can prove very powerful.</p>
+                        <p>As you can see, it mostly acts as an aggregator for other files, which themselves import some
+                            other scss files, and so on. With a well thought organization, this construct can prove very powerful.</p>
 
-                            <p class="note">On a sidenote, remember that Sass is only a CSS precompiler, so you'll end up with only one .css file
-                                with all the goodies, not a bunch of HTTP requests!</p>
+                        <p class="note">On a sidenote, remember that Sass is only a CSS precompiler, so you'll end up with only one .css file
+                            with all the goodies, not a bunch of HTTP requests!</p>
 
-                            <p>Here is an overview of what a basic file system might look like :</p>
+                        <p>Here is an overview of what a basic file system might look like :</p>
 
-                            <samp class="sampleTitle">// file system</samp>
+                        <samp class="sampleTitle">// file system</samp>
 <pre class="codeSample">
 sass
 ¦   custom.scss
@@ -826,6 +826,7 @@ $color-alt2:                #637c84;
 }
 </pre>
 
+                        </div>
 
                         <p>Don't worry about the id selector for now, we'll get back to it in the "standalone component" chapter.</p>
                         <p>First, the component imports 'sass/base/utils/__utils', which will give it access to the default
@@ -833,7 +834,7 @@ $color-alt2:                #637c84;
                         </p>
                         <p>Then, a bunch of placeholders are defined, wrapped in a <em>importOnce</em> mixin so that they can safely be imported
                             by subComponents if needed. They are the core of the component, and define what needs to be implemented
-                            on the various classes or states of the component.<p>
+                            on the various classes or states of the component.</p>
                         <p>Below the defined wrapped placeholders is a mixin named after the component. Its role is to
                             actually bind the components placeholders to the provided classname, its "elements", and its state.
                         </p>
