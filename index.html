@@ -274,8 +274,6 @@ sass
 ¦   ¦
 ¦   +---tabs
 ¦   ¦       _tabs.scss
-¦   ¦       tabs.standalone.scss
-¦   ¦       tabs.standalone.html
 ¦   ¦
 ¦   +---verticalMenu
 ¦           _verticalMenu.scss
@@ -310,14 +308,10 @@ sass
                                 </div>
                             </li>
                         </ul>
-                        <p class="note">Both summary files (__project.scss and __utils.scss) for those folders import the <em>base/_config.scss</em> file which contains
-                            configuration information required by both the system and the project. If you're wondering why we don't
-                            import the config from the __base.scss file, you're asking yourself the right questions! We had to
-                            stray a bit from our convention about sass files organization on that one in order to ease the standalone components generation.
-                            We assumed it was better to import the file twice in "base" than once in "base" and then once for each
-                            component declaration.<br>
-                            As of today, this file contains $baseFontSize which is required for the
-                            "remIt" mixin, and $breakpoints which is required for cross-media placeholders.</p>
+                        <p class="note">It also imports the <em>base/_config.scss</em> file which contains
+                            configuration information required by both the system and the project. <br>
+                            As of today, this file only contains $baseFontSize which is required for the
+                            "remIt" mixin.</p>
                         <p>
                             <strong id="fileStructure_base_utils">Utils</strong> contains only things that don't need to change
                             from a project to another. As of today,
@@ -717,14 +711,10 @@ $color-alt2:                #637c84;
                             That's what we believe a "framework" should be anyway.
                         </p>
                         <h2 class="mainSection_subtitle">Description</h2>
-                        <p>When looking at a component folder, you may see three files, and eventually some subfolders.
+                        <p>When looking at a component folder, you will see one file, and eventually some subfolders.
                             Let's take a <em>Tabs</em> component as an example, as probably everyone has already seen a tabbed
-                            navigation in a page. The files in the Tabs folder would be: <em>_tabs.scss</em>, <em>tabs.standalone.scss</em>,
-                            and <em>tabs.standalone.html</em>.
-                        </p>
-                        <p>The underscore prefixed file (_tabs.scss) is the component definition. It is the only essential file for the
-                            component, the others are optional.<br>
-                            Let's look at it in details.
+                            navigation in a page. The file in the Tabs folder would be: <em>_tabs.scss</em>.<br>
+                            It is the component definition. Let's look at it in details.
                         </p>
                         <h3 class="mainSection_smallTitle" id="components_definition">Component's definition</h3>
                         <p>The component definition file contains two sets of placeholders
@@ -741,7 +731,6 @@ $color-alt2:                #637c84;
                                 </li>
                             </ul>
 <pre class="codeSample">
-@import 'sass/base/utils/__utils';
 
 // _____ STRUCTURE _____ //
 
@@ -796,11 +785,7 @@ $color-alt2:                #637c84;
 
                         </div>
 
-                        <p>Don't worry about the id selector for now, we'll get back to it in the "standalone component" chapter.</p>
-                        <p>First, the component imports 'sass/base/utils/__utils', which will give it access to the default
-                            mixins and helpers. Thanks to the <em>importOnce</em> mixin, all components can safely import this folder.
-                        </p>
-                        <p>Then, a bunch of placeholders are defined, wrapped in a <em>importOnce</em> mixin so that they can safely be imported
+                        <p>First, a bunch of placeholders are defined, wrapped in a <em>importOnce</em> mixin so that they can safely be imported
                             by subComponents if needed. They are the core of the component, and define what needs to be implemented
                             on the various classes or states of the component.</p>
                         <p>Below the defined wrapped placeholders is a mixin named after the component. Its role is to
@@ -910,10 +895,6 @@ $color-alt2:                #637c84;
                         <p>As you can see, it is very close to the structure part. Actually it is placed inside the component's
                             folder for simplicity, but it could very well reside in a _skins folder right away.
                         </p>
-                        <p>As the "skin" part of the component is usually project related, it makes sense that it imports
-                            the _variables and _helpers files. This is only a requirement when generating standalone CSS, as those
-                            files would be already imported from the custom.scss file in the context of your project.
-                        </p>
                         <p class="note">We recommend that the "structure" part of the component doesn't make use of any
                             project variable in order to stay as generic and reusable as possible.<br>
                             Usually that is not a problem, but if for some reason you need to import the project variables anyhow for you
@@ -1015,76 +996,6 @@ $color-alt2:                #637c84;
 @include tabs('.articleTabs', $defaultSkin: false);
 @include tabs-skin-alternate('.articleTabs');
 </pre>
-                        <h2 class="mainSection_subtitle" id="components_standalone">Standalone component</h2>
-                        <p>The _tabs.scss file is really the only one needed for your component, as long as it includes a skin
-                            for the component. But there are two other files that we presented earlier : <em>tabs.standalone.scss</em>
-                            and <em>tabs.standalone.html</em>.<br>
-                            Those are here to provide a version of the component already bound to a classname, and
-                            an html template describing what the associated markup should look like.<br>
-                            As the tabs.standalone.scss file isn't prefixed with an underscore, it will get rendered by Sass into a .css file.
-                            This can be useful when you want some javascript to dynamically instantiate a component and load
-                            its associated CSS, instead of providing the component's CSS along with the main stylesheet.
-                        </p>
-                        <div class="exampleNote">
-                            <p>Here's what the standalone scss file would look like for our tabs example :</p>
-                            <samp class="sampleTitle">// tabs.standalone.scss</samp>
-<pre class="codeSample">
-@import '_tabs.scss';
-
-#docssaComponent__tabs-dynamicTabs {
-  content: 'loaded';
-}
-
-@include tabs('.dynamicTabs');
-</pre>
-
-                            <p>As you can see, we use an id in the standalone version of the component. It is intended
-                                for load detection : <br>when dynamically loading components from javaScript, you should
-                                first check if it hasn't already been loaded from some other place, and only load it if
-                                required.<br>
-                                We recommend using the component name, separated by a dash from the classname it is
-                                bound to, and prefixed by <em>#docssaComponent</em>. <br>
-                                This way you'll know what you're dealing with,
-                                and avoid collision with other CSS selectors.</p>
-                        </div>
-
-
-                        <p>Each component folder should also contain a standalone version and a HTML example, so
-                            that fellow developers know what is the expected structure HTML-wise and can test the result easily.<br>
-                            Components need a structure to apply on. If they didn't, a placeholder helper would be
-                            enough.<br>
-                            It can be really useful to maintain a project Style Guide, including every component
-                            standalone as a reference.
-                        </p>
-
-                        <div class="exampleNote">
-                            <p>Here's what the html sample file may look like for our tabs example :</p>
-
-                            <samp class="sampleTitle">// tabs.standalone.html</samp>
-<pre class="codeSample">
-&lt;ul class="dynamicTabs"&gt;
-    &lt;li class="dynamicTabs_item"&gt;
-        &lt;a class="dynamicTabs_link" href="#tabContent1"&gt;tabContent1&lt;/a&gt;
-    &lt;/li&gt;
-    &lt;li class="dynamicTabs_item"&gt;
-        &lt;a class="dynamicTabs_link" href="#tabContent2"&gt;tabContent2&lt;/a&gt;
-    &lt;/li&gt;
-    &lt;li class="dynamicTabs_item"&gt;
-        &lt;a class="dynamicTabs_link" href="#tabContent3"&gt;tabContent3&lt;/a&gt;
-    &lt;/li&gt;
-    &lt;li class="dynamicTabs_item"&gt;
-        &lt;a class="dynamicTabs_link" href="#tabContent4"&gt;tabContent4&lt;/a&gt;
-    &lt;/li&gt;
-    &lt;li class="dynamicTabs_item"&gt;
-        &lt;a class="dynamicTabs_link" href="#tabContent5"&gt;tabContent5&lt;/a&gt;
-    &lt;/li&gt;
-    &lt;li class="dynamicTabs_item"&gt;
-        &lt;a class="dynamicTabs_link" href="#tabContent6"&gt;tabContent6&lt;/a&gt;
-    &lt;/li&gt;
-&lt;/ul&gt;
-</pre>
-
-                        </div>
                     </div>
                 </section>
 
@@ -1177,8 +1088,7 @@ $color-alt2:                #637c84;
                             Structure" section.</p>
 
                         <p>Each file is lowerCamelCase named and prefixed by an underscore(_) so that it is considered
-                            by the Sass compiler as a partial and not rendered to a standalone CSS file. The only exception
-                            to this rule is the components' standalone versions (see the "Components" section for details about this).
+                            by the Sass compiler as a partial and not rendered to a standalone CSS file.
                         </p>
 
                         <p>
