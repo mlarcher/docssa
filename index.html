@@ -91,29 +91,29 @@
 
                         <ul class="firstOrderList">
                             <li class="firstOrderList_item">
-                                        <span class="firstOrderList_item_content">
-                                            DoCSSa lets you define snippets of style you can reuse everywhere, without repeating yourself,
-                                            while keeping the flexibility you need and correct semantics.
-                                        </span>
+                                <span class="firstOrderList_item_content">
+                                    DoCSSa lets you define snippets of style you can reuse everywhere, without repeating yourself,
+                                    while keeping the flexibility you need and correct semantics.
+                                </span>
                             </li>
                             <li class="firstOrderList_item">
-                                        <span class="firstOrderList_item_content">
-                                            DoCSSa is scalable and maintainable. It is based on Sass, and suggests a file structure that
-                                            allows for small, modular components. As most thing have a dedicated place, the developers can
-                                            easily find the part they have to work on, update it, remove obsolete rules, etc.
-                                        </span>
+                                <span class="firstOrderList_item_content">
+                                    DoCSSa is scalable and maintainable. It is based on Sass, and suggests a file structure that
+                                    allows for small, modular components. As most thing have a dedicated place, the developers can
+                                    easily find the part they have to work on, update it, remove obsolete rules, etc.
+                                </span>
                             </li>
                             <li class="firstOrderList_item">
-                                        <span class="firstOrderList_item_content">
-                                            DoCSSa keeps your CSS from leaking to unwanted places by using a naming convention for classnames,
-                                            which reflects the modularity of the reusable blocks at work and their constitutive elements.
-                                        </span>
+                                <span class="firstOrderList_item_content">
+                                    DoCSSa keeps your CSS from leaking to unwanted places by using a naming convention for classnames,
+                                    which reflects the modularity of the reusable blocks at work and their constitutive elements.
+                                </span>
                             </li>
                             <li class="firstOrderList_item">
-                                        <span class="firstOrderList_item_content">
-                                            DoCSSa is easy to setup and as flexible as you want it to be. It's only a starting point. Where
-                                            you go from it is up to you and your team!
-                                        </span>
+                                <span class="firstOrderList_item_content">
+                                    DoCSSa is easy to setup and as flexible as you want it to be. It's only a starting point. Where
+                                    you go from it is up to you and your team!
+                                </span>
                             </li>
                         </ul>
 
@@ -331,18 +331,15 @@ sass
                                       handling cross media placeholders.
                                     </p>
 
-                                    <p class="note">To have a
-                                        specific
+                                    <p class="note">To have a specific
                                         component's CSS file rendered, the component's .scss file needs to import the placeholders
                                         contained in <em>_helpers.scss</em>.
-                                        But when
-                                        generating the whole project's CSS, we don't want that multiple import to screw up the
+                                        But when generating the whole project's CSS, we don't want that multiple import to screw up the
                                         output.
                                         <em>importOnce</em> is a simple mixin taking advantage of the <em>@content</em> instruction Sass
                                         provides, which
                                         allows us in the end to have a clean .css file even though we import our placeholders file several
-                                        times
-                                        from various places. Dig in the provided example structure if you want to find out how
+                                        times from various places. Dig in the provided example structure if you want to find out how
                                         this works.
                                     </p>
 
@@ -362,41 +359,29 @@ sass
                                     </p>
 
                                     <p class="note">Placeholders have been a great addition to Sass. They are the magic that allows us to have
-                                        an
-                                        object
-                                        oriented
-                                        architecture without polluting the markup. For those not familiar with placeholders,
-                                        they work a
-                                        bit like mixins, but instead of placing a set of CSS rules within the selector
-                                        implementing
-                                        them, they add that selector to the list of selectors on which to apply a set of CSS rules.<br>
+                                        an object oriented architecture without polluting the markup. For those not familiar with placeholders,
+                                        they work a bit like mixins, but instead of placing a set of CSS rules within the selector
+                                        implementing them, they add that selector to the list of selectors on which to apply a set of CSS rules.<br>
                                         This may not seem as much, but you'll see some of the awesome stuff we can do with
-                                        it in the
-                                        components section.</p>
+                                        it in the components section.</p>
                                 </div>
                             </li>
                             <li class="secondaryList_item">
                                 <div class="secondaryList_item_content">
                                     <p><strong>_mixins</strong> have quite the same purpose as placeholders,
                                         but they do require parameters.
-                                        Mixins are
-                                        particularily useful for handling vendor prefixes and fallbacks. For example, DoCSSa comes with
-                                        a
-                                        linear-gradient mixin that compiles to all required vendor prefixes (and only those required!)
-                                        and generates a
-                                        fallback color from the input values for browsers that don't support linear-gradient at all.
-                                        DoCSSa
-                                        recommends using Modernizr for feature detection and progressive enhancement, and the provided
-                                        mixins
-                                        implementing CSS3 features rely on it by default for their output, even though it can be
+                                        Mixins are particularily useful for handling vendor prefixes and fallbacks. For example, DoCSSa comes with
+                                        a linear-gradient mixin that compiles to all required vendor prefixes (and only those required!)
+                                        and generates a fallback color from the input values for browsers that don't support linear-gradient at all.
+                                        DoCSSa recommends using Modernizr for feature detection and progressive enhancement, and the provided
+                                        mixins implementing CSS3 features rely on it by default for their output, even though it can be
                                         disabled at include time.<br>
                                     </p>
 
                                     <p class="note">Mixins, like placeholders, can accumulate and enrich your library
                                         with no cost, as they are only compiled when used.<br>
                                         Mixins are a great way to avoid repetition when coding, but they end up in code
-                                        repetition
-                                        in the css output. That's why we only use them when they have to output something that
+                                        repetition n the css output. That's why we only use them when they have to output something that
                                         needs to be configured.
                                         For generic code that can be reused as-is, we use placeholder helpers instead.</p>
 
@@ -563,46 +548,33 @@ $color-alt2:                #637c84;
 
                         <p>The "specifics" folder is your common playground. It is where you'll place the rules that don't belong
                             in the "base" or "components" folders. Until you become fluent with DoCSSa's organization rules, what will
-                            eventually
-                            end up in a component will probably exist in here first.</p>
+                            eventually end up in a component will probably exist in here first.</p>
 
                         <p>Specifics is the closest thing to your usual CSS file, except for it's organization. Everything in there
                             is split and dispatched in files and folders according to what they apply to.</p>
 
                         <p>By convention, we're using two underscores(__) as a prefix for files that act (mostly) as an import
-                            summary,
-                            and only one underscore(_) for files which are content only. This usually evolves with the
-                            project: you
-                            begin with an underscore prefixed file, you add another one, and at some point you stop calling them
+                            summary, and only one underscore(_) for files which are content only. This usually evolves with the
+                            project: you begin with an underscore prefixed file, you add another one, and at some point you stop calling them
                             directly from the main .scss file and you reorganize them in a folder with a summary file. </p>
                         <aside class="exampleNote">
                             <p>For example you might begin writing some rules in specifics/__specifics.scss, and as it grows
-                                realize that
-                                you have a bunch of rules all related to the popin windows. You'd then move those rules in a
-                                _popin.scss
-                                file and import that file from __specifics.scss.</p>
+                                realize that you have a bunch of rules all related to the popin windows. You'd then move those rules in a
+                                _popin.scss file and import that file from __specifics.scss.</p>
 
                             <p>
-                                After a while, you'll notice that you added
-                                some rules for a
+                                After a while, you'll notice that you added some rules for a
                                 bunch of specific popins on your site. That would be a good time to create a "popins" folder and
-                                split
-                                the specific popin rules to different files in that folder (say, popins/_popin-loginForm.scss
-                                and
-                                popins/_popin-congratulations.scss).<br>
+                                split the specific popin rules to different files in that folder (say, popins/_popin-loginForm.scss
+                                and popins/_popin-congratulations.scss).<br>
                                 Instead of importing _popins.scss from __specifics.scss, you'd then import popins/__popins.scss
-                                instead,
-                                and let this summary file import all the specific popins required for your project.</p>
+                                instead, and let this summary file import all the specific popins required for your project.</p>
 
                             <p>This allow you to have all your feature related files in the same folder, and one summary
-                                specific to that kind
-                                of feature which can import or leave out the files in its section as easily as commenting out a
-                                line. If
-                                at some point you realize that you don't want to use the congratulations popin anymore, all you
-                                have to do
-                                is to comment out the line importing its definition file (_popin-congratulations.scss) from the
-                                popins summary
-                                (popins/__popins.scss).</p>
+                                specific to that kind of feature which can import or leave out the files in its section as easily as commenting out a
+                                line. If at some point you realize that you don't want to use the congratulations popin anymore, all you
+                                have to do is to comment out the line importing its definition file (_popin-congratulations.scss) from the
+                                popins summary (popins/__popins.scss).</p>
                         </aside>
 
                         <p class="note">DoCSSa encourages you to keep your definitions tidy and reorganize in subfolders as soon as it makes
@@ -626,8 +598,7 @@ $color-alt2:                #637c84;
                             file as a classic @import.</p>
 
                         <p class="note"><em>_normalize.scss</em> is an excellent candidate for this section, along with more project specific
-                            third
-                            party CSS.</p>
+                            third party CSS.</p>
                     </div>
 
                 </section>
@@ -645,13 +616,11 @@ $color-alt2:                #637c84;
                         <p>Components are an important part of DoCSSa. They are intended to be as reusable and
                             extendable as possible. Ideally, they should be reusable in a totally different project without
                             writing any additionnal code. They are, along with the placeholder helpers, the "Deferred Object" part of DoCCSa,
-                            thanks to the power of
-                            placeholders and mixins.
+                            thanks to the power of placeholders and mixins.
                         </p>
                         <p>We say the Object is Deferred because its core resides in an abstraction (the placeholders)
                             instead of being tied to a classname. DoCSSa's components are class agnostic. They are made of placeholders
-                            and mixins. The placeholders
-                            define a component, and a component mixin is in charge of binding those placeholders to one
+                            and mixins. The placeholders define a component, and a component mixin is in charge of binding those placeholders to one
                             or several HTML class(es). Thanks to the BEM naming convention, the class passed to the component mixin can be
                             a prefix for other classes onto which to bind placeholder functionalities.
                         </p>
@@ -665,14 +634,13 @@ $color-alt2:                #637c84;
                             having a "red" class helper mean the color is going to be purple!
                         </p>
                         <p class="exampleNote">
-                            For example, instead of having a link with the "button red"
-                            classes, you can give it a "navTrigger" class and bind a button component with a red skin to it. You could
+                            For example, instead of having a link with the "button red" classes, you can give it a "navTrigger"
+                            class and bind a button component with a red skin to it. You could
                             also use the same component on a "submitTrigger" class so that both look the same. When time comes
                             to have a different look for your submits, all you have to do is bind the submitTrigger to another component
                             and you're done, without affecting the navTriggers and without touching the markup.
                         </p>
-                        <p>If you need a component
-                            with a slightly different behaviour than the original one, you have two options : you can pass a parameter to
+                        <p>If you need a component with a slightly different behaviour than the original one, you have two options : you can pass a parameter to
                             the mixin to change the binding (or rules), or you can create a subComponent that will import the component's
                             definition to get access to its placeholders, and make a new mixin that will handle the altered implementation.
                         </p>
@@ -725,8 +693,7 @@ $color-alt2:                #637c84;
                             <li><p><strong>Structure(layout) should be dissociated from skin(paint)</strong>.</p>
 
                                 <p class="note">For example, background color, images, text colors, etc. should go into the skin section of the
-                                    component,
-                                    not in its core definition. That way, you can create additional styles for them without
+                                    component, not in its core definition. That way, you can create additional styles for them without
                                     altering their expected behaviour as a component, and choose what visual style you want when binding
                                     the component to a classname.</p>
                             </li>
@@ -1072,20 +1039,17 @@ $color-alt2:                #637c84;
 
                             <p>As you can see, we use an id in the standalone version of the component. It is intended
                                 for load detection : <br>when dynamically loading components from javaScript, you should
-                                first
-                                check if it hasn't already been loaded from some other place, and only load it if
+                                first check if it hasn't already been loaded from some other place, and only load it if
                                 required.<br>
                                 We recommend using the component name, separated by a dash from the classname it is
-                                bound to,
-                                and prefixed by <em>#docssaComponent</em>. <br>
+                                bound to, and prefixed by <em>#docssaComponent</em>. <br>
                                 This way you'll know what you're dealing with,
                                 and avoid collision with other CSS selectors.</p>
                         </div>
 
 
                         <p>Each component folder should also contain a standalone version and a HTML example, so
-                            that fellow developers
-                            know what is the expected structure HTML-wise and can test the result easily.<br>
+                            that fellow developers know what is the expected structure HTML-wise and can test the result easily.<br>
                             Components need a structure to apply on. If they didn't, a placeholder helper would be
                             enough.<br>
                             It can be really useful to maintain a project Style Guide, including every component
@@ -1145,15 +1109,11 @@ $color-alt2:                #637c84;
 
                         <p class="note">
                             <em>Variants</em> are dissociated from <em>states</em> because they play a different role,
-                            and it appeared
-                            that with our components architecture, having a simple "_is_current" class for our items'
-                            "current" state was
-                            way more
-                            effective than a "mainMenu_item--current" when it came to modifying the state through
+                            and it appeared that with our components architecture, having a simple "_is_current" class for our items'
+                            "current" state was way more effective than a "mainMenu_item--current" when it came to modifying the state through
                             javascript.<br>
                             BEM modifiers are now exclusively used for visual variants that don't change over time. For
-                            example,
-                            if a tab needs to be highlighted so that it stand out, it is applied a variant.<br>
+                            example, if a tab needs to be highlighted so that it stand out, it is applied a variant.<br>
                             By opposition, a "state" is something that is supposed to be handled by javascript and
                             change over time.
                         </p>
@@ -1195,25 +1155,19 @@ $color-alt2:                #637c84;
                             page.
                         </div>
                         <p>At first, the BEM notation style can seem quite verbose and put off some developers, but it
-                            is very
-                            powerful and allows us to go way behind old school naming conventions.<br>
+                            is very powerful and allows us to go way behind old school naming conventions.<br>
                             It has to be tamed, though, and a classic beginner's mistake is to reflect the position of
-                            each
-                            element in the component's DOM in its class name. To avoid that, we recommend that you look
-                            at your
-                            low level elements first (those deeper in the DOM tree) and wonder if they could exist
-                            elsewhere in the page
-                            or in the component.
+                            each element in the component's DOM in its class name. To avoid that, we recommend that you look
+                            at your low level elements first (those deeper in the DOM tree) and wonder if they could exist
+                            elsewhere in the page or in the component.
                             Going up the tree, you can identify your most basic reusable components and set the names
                             accordingly.
                         </p>
 
                         <p class="exampleNote">
                             For example, in our example above, the "mainMenu_link" class doesn't need to reflect the
-                            fact that it
-                            is contained in a "mainMenu_item", this doesn't really matter to the link, so there is no
-                            reason to
-                            specify it in its name.
+                            fact that it is contained in a "mainMenu_item", this doesn't really matter to the link, so there is no
+                            reason to specify it in its name.
                         </p>
 
                         <h2 class="mainSection_subtitle">Sass files</h2>
@@ -1222,54 +1176,39 @@ $color-alt2:                #637c84;
                             Structure" section.</p>
 
                         <p>Each file is lowerCamelCase named and prefixed by an underscore(_) so that it is considered
-                            by the Sass compiler
-                            as a partial and
-                            not rendered to a standalone CSS file. The only exception to this rule is the components'
-                            standalone
-                            versions (see the "Components" section for details about this).
+                            by the Sass compiler as a partial and not rendered to a standalone CSS file. The only exception
+                            to this rule is the components' standalone versions (see the "Components" section for details about this).
                         </p>
 
                         <p>
                             Each folder has a single entry point in charge of importing other partial Sass files. This
-                            file is
-                            named after the folder's name, and is prefixed with two underscores(__) so that it always
-                            appears on top
-                            in the files list. It imports only the files in its own folder, except for other summary
-                            index located in
-                            a direct subfolder. This way, you always can handle your imports very easily and stop the
-                            imports
-                            of nested files at any level.<br>
+                            file is named after the folder's name, and is prefixed with two underscores(__) so that it always
+                            appears on top in the files list. It imports only the files in its own folder, except for other summary
+                            index located in a direct subfolder. This way, you always can handle your imports very easily and stop the
+                            imports of nested files at any level.<br>
                             Components definition files should have the same name as the component's folder name, and
-                            have a
-                            single underscore prefix.
+                            have a single underscore prefix.
                         </p>
 
                         <h2>Sass contents</h2>
 
                         <p>For placeholders, used in the _helpers files or the components definitions, we recommend a
-                            mix of lowerCamelCase,
-                            dashes(-) and underscores(_). Helpers and components prefix should stick to lowerCamelCase,
-                            while components
-                            placeholders should include the component's prefix and separate sub parts from it with a
-                            dash or underscore.
-                            Sass treats dashes and underscores as if they were the same character, so they are totally
+                            mix of lowerCamelCase, dashes(-) and underscores(_). Helpers and components prefix should stick to lowerCamelCase,
+                            while components placeholders should include the component's prefix and separate sub parts from it with a
+                            dash or underscore. Sass treats dashes and underscores as if they were the same character, so they are totally
                             invertible.
                         </p>
 
                         <p class="note">
                             Note that those are only guidelines, and if for any reason you prefer to go with another
-                            convention
-                            in your project, you're free to do so. HTML classes and file names conventions have a
-                            rationale behind
-                            them which offers you some advantages, but for the sass files contents it's really just a
-                            matter of
-                            preference. We offer a suggestion only to provide some common ground for DoCSSa users.
+                            convention in your project, you're free to do so. HTML classes and file names conventions have a
+                            rationale behind them which offers you some advantages, but for the sass files contents it's really just a
+                            matter of preference. We offer a suggestion only to provide some common ground for DoCSSa users.
                         </p>
 
                         <div class="exampleNote">
                             <p>For example, you could pass ".myExampleClass" as a selector to a component mixin for an
-                                implementation that
-                                would look like this :
+                                implementation that would look like this :
                             </p>
                             <samp class="sampleTitle">// example</samp>
 <pre class="codeSample">
@@ -1287,10 +1226,8 @@ $color-alt2:                #637c84;
                         <h2>SASS variables</h2>
 
                         <p>Sass variable names should be composed of dash(-) separated parts, with each part sorted from
-                            the most
-                            generic to the most specific variable characteristic. This is quite useful in most IDE as
-                            you can take
-                            advantage of autocompletion.
+                            the most generic to the most specific variable characteristic. This is quite useful in most IDE as
+                            you can take advantage of autocompletion.
                         </p>
 
                         <div class="exampleNote">
