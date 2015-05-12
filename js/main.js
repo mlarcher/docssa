@@ -78,15 +78,15 @@
     } else {
       navigateTo(mainItems.find('.mainMenu_link').filter('[href=#]').parents('li'), true);
     }
-      
-    
+
+
     // sample switcher
     sampleLink.click(function(){
         $(this).closest('.sampleHeader').find('.sampleHeader_item').toggleClass('_is_current');
         $(this).closest('.sample').find('pre').toggleClass('_is_hidden');
     });
-      
-      
+
+
     // Nav toggle
     navOpener.click(function(){
         if ($('body').hasClass('_nav_is_open')) {
@@ -95,8 +95,8 @@
             $('body').addClass('_nav_is_open');
         }
     });
-      
-    
+
+
     // gotop
     goTop.click(function(event){
         $('html,body').animate({

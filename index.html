@@ -78,38 +78,33 @@
 
                         <h2 class="mainSection_subtitle">What is DoCSSa ?</h2>
 
-                        <p>DoCSSa is a CSS architecture and methodology that aims to combine all the good parts of the current state of
-                            the art.<br>
+                        <p>DoCSSa is a CSS architecture and methodology that aims to help structure rapid and maintainable
+                            stylesheets development.<br>
                             It is intended for use in large, long lived sites, on which many frontend developers may be working
                             over time.<br>
                             The name stands for <em>Deferred Object CSS Architecture</em>.</p>
 
-                        <h2 class="mainSection_subtitle">What are the benefits of doing things the DoCSSa way?</h2>
+                        <h2 class="mainSection_subtitle">What are the key features of DoCSSa ?</h2>
 
                         <ul class="firstOrderList">
                             <li class="firstOrderList_item">
                                 <span class="firstOrderList_item_content">
-                                    DoCSSa lets you define snippets of style you can reuse everywhere, without repeating yourself,
-                                    while keeping the flexibility you need and correct semantics.
+                                    Clear and proven folder structure.
                                 </span>
                             </li>
                             <li class="firstOrderList_item">
                                 <span class="firstOrderList_item_content">
-                                    DoCSSa is scalable and maintainable. It is based on Sass, and suggests a file structure that
-                                    allows for small, modular components. As most thing have a dedicated place, the developers can
-                                    easily find the part they have to work on, update it, remove obsolete rules, etc.
+                                    Separation of concerns between HTML and CSS.
                                 </span>
                             </li>
                             <li class="firstOrderList_item">
                                 <span class="firstOrderList_item_content">
-                                    DoCSSa keeps your CSS from leaking to unwanted places by using a naming convention for classnames,
-                                    which reflects the modularity of the reusable blocks at work and their constitutive elements.
+                                    Scalable and maintainable stylesheets
                                 </span>
                             </li>
                             <li class="firstOrderList_item">
                                 <span class="firstOrderList_item_content">
-                                    DoCSSa is easy to setup and as flexible as you want it to be. It's only a starting point. Where
-                                    you go from it is up to you and your team!
+                                    Easy to setup and flexible
                                 </span>
                             </li>
                         </ul>
@@ -230,7 +225,7 @@
                         </div>
 
                         <p>As you can see, it mostly acts as an aggregator for other files, which themselves import some
-                            other scss files, and so on. With a well thought organization, this construct can prove very powerful.</p>
+                            other scss files, and so on. With a well thought organization, this simple construct can prove very powerful!</p>
 
                         <p class="note">On a sidenote, remember that Sass is only a CSS precompiler, so you'll end up with only one .css file
                             with all the goodies, not a bunch of HTTP requests!</p>
@@ -250,12 +245,10 @@ sass
 ¦   ¦       __project.scss
 ¦   ¦       _fonts.scss
 ¦   ¦       _globals.scss
-¦   ¦       _helpers.scss
 ¦   ¦       _variables.scss
 ¦   ¦
 ¦   +---utils
 ¦           __utils.scss
-¦           _helpers.scss
 ¦           _mixins.scss
 ¦           _system.scss
 ¦
@@ -304,55 +297,43 @@ sass
                                 </div>
                             </li>
                         </ul>
-                        <p class="note">It also imports the <em>base/_config.scss</em> file which contains
-                            configuration information required by both the system and the project. <br>
-                            As of today, this file only contains $baseFontSize which is required for the
-                            "remIt" mixin.</p>
+                        <p class="note">Note that the <em>base/_config.scss</em> file is located directly in the base
+                            folder. It contains variables that are required by both the utils and the project. So far
+                            only the $baseFontSize and $breakpoints fell in that category.</p>
                         <p>
                             <strong id="fileStructure_base_utils">Utils</strong> contains only things that don't need to change
-                            from a project to another. As of today,
-                            it consists of <em>_system</em> and <em>_mixins</em>.
+                            from a project to another. As of today, it consists of <em>_system</em> and <em>_mixins</em>.
                         </p>
                         <ul class="secondaryList">
                             <li class="secondaryList_item">
                                 <div class="secondaryList_item_content">
-                                    <p><em>_system</em> is a special file the contains tools used by DoCSSa.<br>
-                                        Most notably, it contains a <em>importOnce</em> mixin used to allow inclusion of placeholders
-                                        from several places without generating duplicate content.
-                                    </p>
-
-                                    <p class="note">To have a specific
-                                        component's CSS file rendered, the component's .scss file needs to import the placeholders
-                                        contained in <em>_helpers.scss</em>.
-                                        But when generating the whole project's CSS, we don't want that multiple import to screw up the
-                                        output.
-                                        <em>importOnce</em> is a simple mixin taking advantage of the <em>@content</em> instruction Sass
-                                        provides, which
-                                        allows us in the end to have a clean .css file even though we import our placeholders file several
-                                        times from various places. Dig in the provided example structure if you want to find out how
-                                        this works.
+                                    <p><em>_system</em> is a special file that contains tools used by DoCSSa.<br>
+                                        Most notably, it contains a mixin that helps requiring content
+                                        from several places without generating duplicate content, and one that helps
+                                        the provided components to make use of Modernizr classes.
                                     </p>
 
                                 </div>
                             </li>
                             <li class="secondaryList_item">
                                 <div class="secondaryList_item_content">
-                                    <p><strong>_mixins</strong> have quite the same purpose as placeholders,
-                                        but they do require parameters.
-                                        Mixins are particularily useful for handling vendor prefixes and fallbacks. For example, DoCSSa comes with
-                                        a linear-gradient mixin that compiles to all required vendor prefixes (and only those required!)
-                                        and generates a fallback color from the input values for browsers that don't support linear-gradient at all.
+                                    <p><strong>_mixins</strong> contains a collection of commonly used helpers.
+                                        They are particularily useful for handling vendor prefixes and
+                                        fallbacks. For example, DoCSSa comes with a linear-gradient mixin that compiles to
+                                        all required vendor prefixes (and only those required!) and generates a fallback
+                                        color from the input values for browsers that don't support linear-gradient at all.
                                         DoCSSa recommends using Modernizr for feature detection and progressive enhancement, and the provided
                                         mixins implementing CSS3 features rely on it by default for their output, even though it can be
                                         disabled at include time.<br>
                                     </p>
 
-                                    <p class="note">Mixins, like placeholders, can accumulate and enrich your library
+                                    <p class="note">Mixins can accumulate and enrich your library
                                         with no cost, as they are only compiled when used.<br>
-                                        Mixins are a great way to avoid repetition when coding, but they end up in code
-                                        repetition n the css output. That's why we only use them when they have to output something that
-                                        needs to be configured.
-                                        For generic code that can be reused as-is, we use placeholder helpers instead.</p>
+                                        Mixins are a great way to avoid repetition when coding. They end up in code
+                                        repetition in the css output, and for that reason the previous version of DoCSSa
+                                        was based on placeholders insted, but it has now been proven that this repetition
+                                        is not an issue once gzip comes into play (more info at
+                                        https://tech.bellycard.com/blog/sass-mixins-vs-extends-the-data/ )</p>
 
                                     <aside class="exampleNote">
                                         <p>Here's what a mixin may look like in the <em>utils/_mixins</em> file :</p>
@@ -361,8 +342,10 @@ sass
 <pre class="codeSample">
 @mixin linear-gradient($from, $to, $fallback: '', $useModernizr: true) {
 
+  // get the correct prefixes map
   $prefixes: getPrefixes(cssgradients, $useModernizr);
 
+  // declare behaviour for the case of feature not available
   #{map-get($prefixes, no)} &amp; {
     @if $fallback != '' {
       background-color: $fallback;
@@ -371,6 +354,7 @@ sass
     }
   }
 
+  // declare behaviour for the case of feature available
   #{map-get($prefixes, yes)} &amp; {
     background-image: -webkit-gradient(linear, left top, left bottom, from($from), to($to)); // Saf4+, Chrome
     background-image: -webkit-linear-gradient(top, $from, $to); // Chrome 10+, Saf5.1+, iOS 5+
@@ -389,17 +373,18 @@ sass
 
 
                         <p>
-                            <strong id="fileStructure_base_project">Project</strong> has quite the same role as the <em>utils</em>
-                            folder, but it is project
-                            oriented while <em>utils</em> is intended to be kept and grow from a project to the next. As of today, it
-                            consists of <em>_variables</em>, <em>_fonts</em>, <em>_globals</em>, and <em>_helpers</em>.
+                            <strong id="fileStructure_base_project">Project</strong> is where every global setup of a project
+                            is stored. Whereas <em>utils</em> is intended to be kept and grow from a project to the next,
+                            <em>project</em> only stands true for a given project (although you may want to use it as a
+                            boilerplate from project to project). As of today, it consists of <em>_variables</em>,
+                            <em>_fonts</em> and <em>_globals</em>.
                         </p>
 
                         <ul class="secondaryList">
                             <li class="secondaryList_item">
                                 <div class="secondaryList_item_content">
-                                    <p><strong>_variables</strong> is were all site wide variables reside. Default values, color theme,
-                                        configuration variables go into this file.
+                                    <p><strong>_variables</strong> is were all site wide variables reside. Default values,
+                                        color theme, configuration variables, etc. go into this file.
                                     </p>
 
                                     <p>Here's what the <em>_variables.scss</em> file might look like :</p>
@@ -426,11 +411,11 @@ $color-default-light:       #fff;
 $color-default-dark:        #333;
 $color-default-darker:      #000;
 
-$color-main:                #449888;
-$color-main-light:          #5cbcaa;
-$color-main-lighter:        #a8d5cd;
+$color-main: #FF7F50;
+$color-main-light: #ff9e7e;
+$color-main-lighter: #ffdec7;
 
-$color-secondary:           #ee746f;
+$color-secondary:           #5cbcaa;
 
 $color-alt:                 #f1ede4;
 $color-alt-dark:            #c2c0bc;
@@ -470,40 +455,31 @@ $color-alt2:                #637c84;
                                 </div>
                             </li>
 
-                            <li class="secondaryList_item">
-                                <div class="secondaryList_item_content">
-                                    <p><strong>_helpers</strong> contains placeholders helper that are specific to your current
-                                        project. If you have a reusable visual component that wouldn't make sense in another project
-                                        and can be applied to your selector through a simple @extend, this is where it belongs.
-                                        For more advanced reusable components, the "components" section is what you're looking for.
-                                    </p>
-                                </div>
-                            </li>
                         </ul>
 
                         <h2 class="mainSection_subtitle" id="fileStructure_components">Components folder</h2>
 
                         <p>
-                            The "components" folder is where your complex ui-components are located. It plays quite the same
-                            role as the <em>_helpers</em> file in the base/project folder, but in a way more evolved way. You can
-                            think of it as configurable helpers on steroids.<br>
-                            Components are so important in DoCSSa that we needed a dedicated section to explain all there is to know about them,
+                            The "components" folder is where your ui-components are located. It is the place dedicated to
+                            store your reusable UI appearance.<br>
+                            Components are an important part of DoCSSa, and we dedicated a whole section to explain all there is to know about them,
                             so we won't say much more about them here.
                         </p>
 
                         <h2 class="mainSection_subtitle" id="fileStructure_specifics">Specifics folder</h2>
 
                         <p>The "specifics" folder is your common playground. It is where you'll place the rules that don't belong
-                            in the "base" or "components" folders. Until you become fluent with DoCSSa's organization rules, what will
+                            in the "base" or "components" folders. Until you become fluent with DoCSSa's organization system, what will
                             eventually end up in a component will probably exist in here first.</p>
 
-                        <p>Specifics is the closest thing to your usual CSS file, except for it's organization. Everything in there
-                            is split and dispatched in files and folders according to what they apply to.</p>
+                        <p>Specifics is the closest thing to your usual CSS file, except that everything in there
+                            is split and dispatched in files and folders according to what they apply to. This fragmentation
+                            is key to keeping things maintainable!</p>
 
-                        <p>By convention, we're using two underscores(__) as a prefix for files that act (mostly) as an import
+                        <p>By convention, we're using two underscores(__) as a prefix for files that act as an import
                             summary, and only one underscore(_) for files which are content only. This usually evolves with the
                             project: you begin with an underscore prefixed file, you add another one, and at some point you stop calling them
-                            directly from the main .scss file and you reorganize them in a folder with a summary file. </p>
+                            directly from the main .scss file and you reorganize them in a folder with its own summary file. </p>
                         <aside class="exampleNote">
                             <p>For example you might begin writing some rules in specifics/__specifics.scss, and as it grows
                                 realize that you have a bunch of rules all related to the popin windows. You'd then move those rules in a
@@ -572,7 +548,7 @@ $color-alt2:                #637c84;
                         <p>This allows for components to be instantiated on any class, and to be composable if needed.
                         </p>
                         <p>As the component is not tied to a particular class, you can use it on whatever class you want, whenever you want,
-                            from the CSS side. That means that you can (and should) keep a semantic meaning to your HTML classes, and change
+                            from the stylesheet side. That means that you can (and should) keep a semantic meaning to your HTML classes, and change
                             their look and feel without having to modify the markup. When your markup comes from a RTE, this is a huge gain.
                             You can change the styling without asking the contributors to change their habits, and you can
                             affect everything already written without having to make search&amp;replace throughout a database or without
@@ -586,7 +562,7 @@ $color-alt2:                #637c84;
                             and you're done, without affecting the navTriggers and without touching the markup.
                         </p>
                         <p>If you need a component with a slightly different behaviour than the original one, you  can pass
-                            a parameter to the mixin to change the binding (or rules). If the variants become too numerous,
+                            a parameter to the mixin to change the binding (or rules). If the exceptions become too numerous,
                             it's probably time to consider creating another component or a set of small components.
                         </p>
                         <div class="exampleNote">
@@ -596,7 +572,7 @@ $color-alt2:                #637c84;
                             <samp class="sampleTitle">// component example</samp>
 <pre class="codeSample">
 // map the placeholders content to some selectors through a mixin
-@mixin example($selector: '.example', $defaultSkin: true) {
+@mixin example($selector, $defaultSkin: true) {
 
   #{$selector} {
     padding: 10px;
@@ -902,8 +878,9 @@ $color-alt2:                #637c84;
                             and it appeared that with our components architecture, having a simple "_is_current" class for our items'
                             "current" state was way more effective than a "mainMenu_item--current" when it came to modifying the state through
                             javascript.<br>
-                            BEM modifiers are now exclusively used for visual variants that don't change over time. For
-                            example, if a tab needs to be highlighted so that it stand out, it is applied a variant.<br>
+                            BEM modifiers are now exclusively used for visual variants that don't change over time. They
+                            have a meaning at the content(HTML) level. For example, if a tab needs to be highlighted so that
+                            it stands out, it is applied a variant by using a modifier.<br>
                             By opposition, a "state" is something that is supposed to be handled by javascript and
                             change over time.
                         </p>
@@ -954,7 +931,9 @@ $color-alt2:                #637c84;
                         <p class="exampleNote">
                             For example, in our example above, the "mainMenu_link" class doesn't need to reflect the
                             fact that it is contained in a "mainMenu_item", this doesn't really matter to the link, so there is no
-                            reason to specify it in its name.
+                            reason to specify it in its name.<br>
+                            Also, if the element can live outside the block you're looking at, it's probably not a good
+                            idea to tie it to it, and it probably should exist on its own.
                         </p>
 
                         <h2 class="mainSection_subtitle">Sass files</h2>
@@ -970,45 +949,12 @@ $color-alt2:                #637c84;
                             Each folder has a single entry point in charge of importing other partial Sass files. This
                             file is named after the folder's name, and is prefixed with two underscores(__) so that it always
                             appears on top in the files list. It imports only the files in its own folder, except for other summary
-                            index located in a direct subfolder. This way, you always can handle your imports very easily and stop the
+                            indexes located in a direct subfolder. This way, you always can handle your imports very easily and stop the
                             imports of nested files at any level.<br>
                             Components definition files should have the same name as the component's folder name, and
-                            have a single underscore prefix.
+                            have a single underscore prefix, as they are content and not imports list.
                         </p>
 
-                        <h2>Sass contents</h2>
-
-                        <p>For placeholders, used in the _helpers files or the components definitions, we recommend a
-                            mix of lowerCamelCase, dashes(-) and underscores(_). Helpers and components prefix should stick to lowerCamelCase,
-                            while components placeholders should include the component's prefix and separate sub parts from it with a
-                            dash or underscore. Sass treats dashes and underscores as if they were the same character, so they are totally
-                            invertible.
-                        </p>
-
-                        <p class="note">
-                            Note that those are only guidelines, and if for any reason you prefer to go with another
-                            convention in your project, you're free to do so. HTML classes and file names conventions have a
-                            rationale behind them which offers you some advantages, but for the sass files contents it's really just a
-                            matter of preference. We offer a suggestion only to provide some common ground for DoCSSa users.
-                        </p>
-
-                        <div class="exampleNote">
-                            <p>For example, you could pass ".myExampleClass" as a selector to a component mixin for an
-                                implementation that would look like this :
-                            </p>
-                            <samp class="sampleTitle">// example</samp>
-<pre class="codeSample">
-#{$selector} {
-  @extend %componentName;
-}
-#{$selector}__singleItem {
-  @extend %componentName__singleItem
-  &amp;:hover {
-    @extend %componentName__singleItem-altState
-  }
-}
-</pre>
-                        </div>
                         <h2>SASS variables</h2>
 
                         <p>Sass variable names should be composed of dash(-) separated parts, with each part sorted from
@@ -1025,29 +971,31 @@ $color-alt2:                #637c84;
 // Generic
 // ==========================================================================
 
-$default-borderRadius: 4px;
+$default-borderRadius: 4;
+$containerWidth: 760;
+$left-nav-width: 200;
 
-$containerWidth: 760px;
-
-$variant: 'base';
+$nav-variant: 'base';
 
 
 // Colors
 // ==========================================================================
 
-$color-default-black: #000;
-$color-default-white: #fff;
+$color-default-light:       #fff;
+$color-default-dark:        #333;
+$color-default-darker:      #000;
 
-$color-green: #449888;
-$color-green-light: #5cbcaa;
-$color-green-lighter: #a8d5cd;
-$color-pink: #ee746f;
-$color-grey-dark: #333;
-$color-beige-dark: #c2c0bc;
-$color-beige: #f1ede4;
-$color-beige-light: #f8f5ec;
+$color-main: #FF7F50;
+$color-main-light: #ff9e7e;
+$color-main-lighter: #ffdec7;
 
-$color-code: #637c84;
+$color-secondary:           #5cbcaa;
+
+$color-alt:                 #f1ede4;
+$color-alt-dark:            #c2c0bc;
+$color-alt-light:           #f8f5ec;
+
+$color-alt2:                #637c84;
 </pre>
                         </div>
                     </div>

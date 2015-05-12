@@ -409,7 +409,7 @@ body {
   font-size: 16px;
   line-height: 1.4;
   background: #fff;
-  font-family: "titillium", Arial, "sans-serif";
+  font-family: Arial, "sans-serif";
   width: 100%;
   color: #000;
   min-height: 100%; }
@@ -440,6 +440,9 @@ pre {
 
 p {
   margin: 0 0 20px; }
+
+pre {
+  font-family: consolas, monospace; }
 
 /* _____ LAYOUT _____ */
 .mainContainer {
@@ -668,6 +671,9 @@ usage examples:
 .mainMenu_item {
   padding: 20px;
   border-bottom: 1px solid #ffdec7; }
+
+.mainMenu_item--highlighted {
+  background: #f8f5ec; }
 
 .mainMenu_link {
   color: #333;
