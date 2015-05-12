@@ -26,6 +26,10 @@
         border-bottom: 1px solid $color-main-lighter;
     }
 
+    .mainMenu_item--highlighted {
+      background: $color-alt-light;
+    }
+
     .mainMenu_link {
         color: $color-default-dark;
         @include basicClickable;
