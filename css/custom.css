@@ -416,19 +416,19 @@ body {
   .cssremunit body {
     font-size: 1rem; }
   .no-cssgradients body {
-    background-color: #50aa99; }
+    background-color: #ff8e67; }
   .cssgradients body {
-    background: -moz-radial-gradient(center, ellipse cover, #5cbcaa 0%, #449888 100%) fixed;
+    background: -moz-radial-gradient(center, ellipse cover, #ff9e7e 0%, #FF7F50 100%) fixed;
     /* FF3.6+ */
-    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #5cbcaa), color-stop(100%, #449888)) fixed;
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #ff9e7e), color-stop(100%, #FF7F50)) fixed;
     /* Chrome,Safari4+ */
-    background: -webkit-radial-gradient(center, ellipse cover, #5cbcaa 0%, #449888 100%) fixed;
+    background: -webkit-radial-gradient(center, ellipse cover, #ff9e7e 0%, #FF7F50 100%) fixed;
     /* Chrome10+,Safari5.1+ */
-    background: -o-radial-gradient(center, ellipse cover, #5cbcaa 0%, #449888 100%) fixed;
+    background: -o-radial-gradient(center, ellipse cover, #ff9e7e 0%, #FF7F50 100%) fixed;
     /* Opera 12+ */
-    background: -ms-radial-gradient(center, ellipse cover, #5cbcaa 0%, #449888 100%) fixed;
+    background: -ms-radial-gradient(center, ellipse cover, #ff9e7e 0%, #FF7F50 100%) fixed;
     /* IE10+ */
-    background: radial-gradient(ellipse at center, #5cbcaa 0%, #449888 100%) fixed;
+    background: radial-gradient(ellipse at center, #ff9e7e 0%, #FF7F50 100%) fixed;
     /* W3C */ }
 
 ul {
@@ -482,7 +482,7 @@ usage examples:
   width: 30px;
   height: 30px;
   color: #fff;
-  background: #449888;
+  background: #FF7F50;
   border: 1px solid #fff;
   z-index: 998; }
   .boxshadow .navOpener {
@@ -530,7 +530,7 @@ usage examples:
   right: 0;
   padding: 5px;
   text-align: center;
-  background: #449888;
+  background: #FF7F50;
   z-index: 10; }
 
 .mainFooterLink {
@@ -623,11 +623,11 @@ usage examples:
 
 .mainSection_header {
   padding: 10px 40px;
-  background: #a8d5cd; }
+  background: #ffdec7; }
 
 .mainSection_title {
   font-weight: normal;
-  color: #449888;
+  color: #FF7F50;
   font-size: 26px;
   line-height: 30px; }
   .cssremunit .mainSection_title {
@@ -667,7 +667,7 @@ usage examples:
 
 .mainMenu_item {
   padding: 20px;
-  border-bottom: 1px solid #a8d5cd; }
+  border-bottom: 1px solid #ffdec7; }
 
 .mainMenu_link {
   color: #333;
@@ -677,7 +677,7 @@ usage examples:
   cursor: pointer;
   text-decoration: none; }
   ._is_current .mainMenu_link {
-    color: #5cbcaa; }
+    color: #ff9e7e; }
 
 @media (min-width: 900px) {
   .mainMenu {
@@ -698,7 +698,7 @@ usage examples:
     .cssremunit .mainMenu_item {
       font-size: 1.125rem; }
     .mainMenu_item._is_current {
-      border-bottom: 3px solid #5cbcaa; }
+      border-bottom: 3px solid #ff9e7e; }
 
   .mainMenu_item:first-child .mainMenu_link {
     border-left: none; }
@@ -707,7 +707,7 @@ usage examples:
     padding: 0 10px;
     text-decoration: none;
     color: #333;
-    border-left: 1px solid #449888; }
+    border-left: 1px solid #FF7F50; }
 
   .navOpener {
     display: none; }
@@ -792,14 +792,14 @@ usage examples:
 
 .firstOrderList_item {
   list-style-type: square;
-  color: #ee746f; }
+  color: #5cbcaa; }
 
 .firstOrderList_item_content {
   color: #000; }
 
 .secondaryList_item {
   list-style-type: square;
-  color: #ee746f; }
+  color: #5cbcaa; }
 
 .secondaryList_item_content {
   color: #000; }
@@ -810,12 +810,12 @@ usage examples:
 
 .note {
   padding: 15px;
-  border: solid 1px rgba(168, 213, 205, 0.3);
-  background: rgba(168, 213, 205, 0.2); }
+  border: solid 1px rgba(255, 222, 199, 0.3);
+  background: rgba(255, 222, 199, 0.2); }
 
 .exampleNote {
   padding: 15px;
-  border: dotted 1px #ee746f;
+  border: dotted 1px #5cbcaa;
   margin-bottom: 15px; }
 
 .sampleTitle {
@@ -878,7 +878,7 @@ usage examples:
 .example3_inner {
   padding: 20px; }
 
-.example3_myHoverClass {
+.example3:hover {
   padding: 30px; }
 
 .example3 {
@@ -897,7 +897,7 @@ usage examples:
 .example4_inner {
   padding: 20px; }
 
-.example4_myHover {
+.example4:hover {
   padding: 30px; }
 
 .example4 {
