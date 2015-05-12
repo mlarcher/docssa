@@ -67,6 +67,15 @@
 // Helpers
 // ==========================================================================
 
+// reset button and link styles
+@mixin basicClickable {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: none;
+}
+
 @mixin box-opacity($value) {
   opacity: $value; // Chrome 4+, FF2+, Saf3.1+, Opera 9+, IE9, iOS 3.2+, Android 2.1+
   filter: alpha(opacity=$value*100); // IE6-IE8
@@ -359,4 +368,69 @@
     transform: matrix(#{$value});
   }
 }
+/* _____ UNIVERSAL HELPERS _____ */
 
+// From H5BP
+// ==========================================================================
+
+// Image replacement
+@mixin ir {
+  background-color: transparent;
+  border: 0;
+  overflow: hidden;
+  // IE 6/7 fallback
+  *text-indent: -9999px;
+  &:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 100%;
+  }
+}
+// Hide from both screenreaders and browsers: h5bp.com/u
+
+@mixin hidden {
+  display: none !important;
+  visibility: hidden;
+}
+// Hide only visually, but have it available for screenreaders: h5bp.com/v
+
+@mixin visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  //
+  // Extends the .visuallyhidden class to allow the element to be focusable
+  // when navigated to via the keyboard: h5bp.com/p
+  //
+  &.focusable:active,
+  &.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+  }
+}
+// Hide visually and from screenreaders, but maintain layout
+@mixin invisible {
+  visibility: hidden;
+}
+// Contain floats: h5bp.com/q
+@mixin clearfix {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+  *zoom: 1;
+}

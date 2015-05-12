@@ -60,7 +60,7 @@
   /* _____ LAYOUT _____ */
 
   .mainContainer {
-    @extend %clearfix;
+    @include clearfix;
     width: 100%;
     max-width: #{$containerWidth}px;
     margin: 0 auto;

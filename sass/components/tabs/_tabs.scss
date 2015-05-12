@@ -1,9 +1,11 @@
 
 // _____ STRUCTURE _____ //
 
-// define component placeholders for component contents (no selector here)
-@include importOnce('tabs') {
-  @include _add(tabs) {
+
+// map the placeholders content to some selectors through a mixin
+@mixin tabs($selector, $defaultSkin: true) {
+
+  #{$selector} {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -11,33 +13,15 @@
     display: inline-block;
   }
 
-  @include _add(tabs_item) {
+  #{$selector}_item {
     @include remIt(font-size, 18);
     padding: 10px 0;
     display: inline-block;
     vertical-align: bottom;
   }
 
-  @include _add(tabs_link) {
-    padding: 0 10px;
-  }
-
-}
-
-
-// map the placeholders content to some selectors through a mixin
-@mixin tabs($selector, $defaultSkin: true) {
-
-  #{$selector} {
-    @extend %tabs;
-  }
-
-  #{$selector}_item {
-    @extend %tabs_item;
-  }
-
   #{$selector}_link {
-    @extend %tabs_link;
+    padding: 0 10px;
   }
 
 
@@ -51,60 +35,20 @@
 // _____ SKIN _____ //
 
 
-// define component placeholders for component skin (no selector here)
-@include importOnce('tabs-skin-default') {
-
-  %tabs-skin-default__item {
-    border-bottom: solid 3px transparent;
-  }
-
-  %tabs-skin-default__item_current {
-    border-bottom: solid 3px $color-main;
-  }
-
-  %tabs-skin-default__item_hover {
-    border-bottom: solid 3px $color-main-light;
-  }
-
-
-  %tabs-skin-default__link {
-    border-left: solid 1px $color-main;
-    text-decoration: none;
-    color: $color-main;
-  }
-
-  %tabs-skin-default__link_first {
-    border-left: inherit;
-  }
-
-  %tabs-skin-default__item_hover_link {
-    color: $color-main-light;
-  }
-
-  %tabs-skin-default__item_current_link {
-    color: $color-main-light;
-  }
-
-  %tabs-skin-default__item_highlighted {
-    color: $color-default-dark;
-  }
-
-}
-
 // provide a default skin for the component
 // only visual changes that don't affect the component layout should be in here
 @mixin tabs-skin-default($selector) {
 
   #{$selector}_item {
 
-    @extend %tabs-skin-default__item;
+    border-bottom: solid 3px transparent;
 
     &._is_current {
-      @extend %tabs-skin-default__item_current;
+      border-bottom: solid 3px $color-main;
     }
 
     &:hover {
-      @extend %tabs-skin-default__item_hover;
+      border-bottom: solid 3px $color-main-light;
     }
 
 
@@ -112,22 +56,24 @@
 
   #{$selector}_link {
 
-    @extend %tabs-skin-default__link;
+    border-left: solid 1px $color-main;
+    text-decoration: none;
+    color: $color-main;
 
     #{$selector}_item:first-child & {
-      @extend %tabs-skin-default__link_first;
+      border-left: inherit;
     }
 
     &:hover {
-      @extend %tabs-skin-default__item_hover_link;
+      color: $color-main-light;
     }
 
     #{$selector}_item#{'--highlighted'} & {
-      @extend %tabs-skin-default__item_highlighted;
+      color: $color-default-dark;
     }
 
     #{$selector}_item._is_current & {
-      @extend %tabs-skin-default__item_current_link;
+      color: $color-main-light;
     }
   }
 

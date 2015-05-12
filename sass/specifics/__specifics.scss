@@ -6,17 +6,16 @@
 @import 'footer';
 @import 'main';
 @import 'nav';
-@import 'responsiveExample';
 @import 'responsiveNav';
 @import 'sample';
 
 
 // miscellaneous rules
 .navLink {
-  @extend %basicClickable;
+  @include basicClickable;
 }
 .externalLink{
-  @extend %basicClickable;
+  @include basicClickable;
 }
 
 .firstOrderList_item {
@@ -36,7 +35,7 @@
 }
 
 .articleSeparator {
-  @extend %hidden;
+  @include hidden;
 }
 
 .note {

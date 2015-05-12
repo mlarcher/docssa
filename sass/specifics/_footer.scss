@@ -28,10 +28,10 @@
 
 .repoWrapper {
     width: 362px;
-    @extend %clearfix;
+    @include clearfix;
     list-style: none;
     margin: 10px auto;
-} 
+}
 
 .repoWrapper_item {
     float: left;
@@ -47,12 +47,12 @@
   font-size: 0;
 }
 
-@include breakpoint(medium) {
+@media (min-width: 600px) {
     .repoWrapper {
         position: absolute;
         right: 10px;
         top: 3px;
         margin: 0;
         width: auto;
-    }   
+    }
 }

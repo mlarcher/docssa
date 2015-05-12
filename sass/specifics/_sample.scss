@@ -3,20 +3,20 @@
     list-style: none;
     padding: 0;
     margin: 0;
-    @extend %clearfix;
+    @include clearfix;
 }
 
 .sampleHeader_item {
     float: left;
     background: $color-alt;
-    
+
     &._is_current {
         background: $color-alt-light;
     }
 }
 
 .sampleHeader_link {
-    @extend %basicClickable;
+    @include basicClickable;
     border: none;
     background: transparent;
     color: #ccc;
@@ -42,7 +42,7 @@
     color: $color-alt2;
     @include remIt('font-size', 14);
     line-height: 1.3;
-    
+
     &._is_hidden {
         display: none;
     }

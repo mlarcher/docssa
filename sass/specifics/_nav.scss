@@ -10,7 +10,7 @@
         @include transition('left .2s linear');
         @include box-shadow(0 3px 3px 3px rgba(0,0,0,.3));
         z-index: 999;
-        
+
         ._nav_is_open & {
             left: 0;
         }
@@ -28,8 +28,8 @@
 
     .mainMenu_link {
         color: $color-default-dark;
-        @extend %basicClickable;
-        
+        @include basicClickable;
+
         ._is_current & {
             color: $color-main-light;
         }

@@ -55,9 +55,6 @@
                         <a class="mainMenu_link" href="#namingConventions">Naming conventions</a>
                     </li>
                     <li class="mainMenu_item">
-                      <a class="mainMenu_link" href="#responsive">Responsive</a>
-                    </li>
-                    <li class="mainMenu_item">
                         <a class="mainMenu_link" href="#gettingStarted">Getting started</a>
                     </li>
                     <li class="mainMenu_item mainMenu_item--highlighted">
@@ -123,9 +120,8 @@
                             relatively easy thing to do (putting aside browsers inconsistencies) has grown into a very complex,
                             dynamic, everchanging reality.</p>
 
-                        <p>We can't put up to the pace, and honestly do we really want to? Wouldn't we be better off by planning
-                            ahead what can be planned and setting up a flexible structure in order to be more efficient and less
-                            under pressure when the rough times come? The way we see it, the more work we
+                        <p>So, we need flexible structure in order to be more efficient and less
+                            under pressure when the rough times come. The way we see it, the more work we
                             can avoid by having defined the right tools and the right architecture ahead of time, the better.</p>
 
                         <p>DoCSSa is our attempt at an organization that aims toward a faster workflow without sacrificing the
@@ -134,9 +130,9 @@
                         <h2 class="mainSection_subtitle">How does DoCSSa bring its benefits ?</h2>
 
                         <p>DoCSSa is based on Sass, and leverages some of its key features to achieve its goal.
-                            Most notably, DoCSSa takes advantage of placeholders, mixins, and imports.
+                            Most notably, DoCSSa takes advantage of imports and mixins.
                             It also suggests a file system organisation and a BEM based naming convention, and integrates
-                            the core ideas found in OOCSS, SmaCSS and DRY CSS.</p>
+                            the core ideas found in OOCSS and SmaCSS.</p>
 
                     </div>
 
@@ -315,15 +311,14 @@ sass
                         <p>
                             <strong id="fileStructure_base_utils">Utils</strong> contains only things that don't need to change
                             from a project to another. As of today,
-                            it consists of <em>_system</em>, <em>_helpers</em>, and <em>_mixins</em>.
+                            it consists of <em>_system</em> and <em>_mixins</em>.
                         </p>
                         <ul class="secondaryList">
                             <li class="secondaryList_item">
                                 <div class="secondaryList_item_content">
                                     <p><em>_system</em> is a special file the contains tools used by DoCSSa.<br>
                                         Most notably, it contains a <em>importOnce</em> mixin used to allow inclusion of placeholders
-                                        from several places without generating duplicate content, and <em>_add()/_use()</em> mixins for
-                                      handling cross media placeholders.
+                                        from several places without generating duplicate content.
                                     </p>
 
                                     <p class="note">To have a specific
@@ -338,27 +333,6 @@ sass
                                         this works.
                                     </p>
 
-                                    <p class="note">As you'll notice, DoCSSa makes heavy use of placeholders. By default, Sass
-                                        doesn't like it when you try to use a placeholder defined on the root from within a
-                                        media query and will throw nasty errors at you for that. Thankfully, some nice folks have
-                                        found a way around it, and we've implemented it in DoCSSa. More on that in the "Responsive"
-                                        section.
-                                    </p>
-                                </div>
-                            </li>
-                            <li class="secondaryList_item">
-                                <div class="secondaryList_item_content">
-                                    <p><strong>_helpers</strong> are Sass placeholders that represent a simple
-                                        CSS functionnality that can be implemented by many classes. For example, %clearfix can be extended
-                                        by any class that would need to contain floats.
-                                    </p>
-
-                                    <p class="note">Placeholders have been a great addition to Sass. They are the magic that allows us to have
-                                        an object oriented architecture without polluting the markup. For those not familiar with placeholders,
-                                        they work a bit like mixins, but instead of placing a set of CSS rules within the selector
-                                        implementing them, they add that selector to the list of selectors on which to apply a set of CSS rules.<br>
-                                        This may not seem as much, but you'll see some of the awesome stuff we can do with
-                                        it in the components section.</p>
                                 </div>
                             </li>
                             <li class="secondaryList_item">
@@ -408,28 +382,6 @@ sass
 }
 </pre>
 
-                                            <p>And an example of placeholder in the <em>utils/_helpers</em> file :</p>
-
-                                            <samp class="sampleTitle">// base/utils/_helpers.scss</samp>
-
-<pre class="codeSample">
-@include _add(clearfix) {
-  &amp;:before,
-  &amp;:after {
-    content: " ";
-    display: table;
-  }
-  &amp;:after {
-    clear: both;
-  }
-  *zoom: 1;
-}
-</pre>
-
-                                        <p class="note">
-                                            Note that we use <em>@include _add(clearfix)</em> here instead of <em>%clearfix</em>. This
-                                            is a way to allow cross-media placeholders. More on that in the "responsive" section.
-                                        </p>
                                     </aside>
                                 </div>
                             </li>
@@ -608,18 +560,16 @@ $color-alt2:                #637c84;
 
                     <div class="mainSection_body">
                         <h2 class="mainSection_subtitle">Introduction</h2>
-                        <p>Components are an important part of DoCSSa. They are intended to be as reusable and
-                            extendable as possible. Ideally, they should be reusable in a totally different project without
-                            writing any additionnal code. They are, along with the placeholder helpers, the "Deferred Object" part of DoCCSa,
-                            thanks to the power of placeholders and mixins.
+                        <p>Components are an important part of DoCSSa. They have been redesigned since version 1 of DoCSSa
+                            to become simpler and easier to use. They are the "Deferred Object" part of DoCCSa.
                         </p>
-                        <p>We say the Object is Deferred because its core resides in an abstraction (the placeholders)
-                            instead of being tied to a classname. DoCSSa's components are class agnostic. They are made of placeholders
-                            and mixins. The placeholders define a component, and a component mixin is in charge of binding those placeholders to one
-                            or several HTML class(es). Thanks to the BEM naming convention, the class passed to the component mixin can be
-                            a prefix for other classes onto which to bind placeholder functionalities.
+                        <p>We say the Object is Deferred because its core resides in an abstraction (the mixin)
+                            instead of being tied to a classname. DoCSSa's components are class agnostic. They are made of mixins.
+                            A component mixin is in charge of binding the reusable styling to one or several HTML class(es).
+                            Thanks to the BEM naming convention, the class passed to the component mixin can be
+                            a prefix for other classes onto which to bind functionalities.
                         </p>
-                        <p>This allows for components to be instantiated on any class, and to be extendable if needed.
+                        <p>This allows for components to be instantiated on any class, and to be composable if needed.
                         </p>
                         <p>As the component is not tied to a particular class, you can use it on whatever class you want, whenever you want,
                             from the CSS side. That means that you can (and should) keep a semantic meaning to your HTML classes, and change
@@ -635,41 +585,33 @@ $color-alt2:                #637c84;
                             to have a different look for your submits, all you have to do is bind the submitTrigger to another component
                             and you're done, without affecting the navTriggers and without touching the markup.
                         </p>
-                        <p>If you need a component with a slightly different behaviour than the original one, you have two options : you can pass a parameter to
-                            the mixin to change the binding (or rules), or you can create a subComponent that will import the component's
-                            definition to get access to its placeholders, and make a new mixin that will handle the altered implementation.
+                        <p>If you need a component with a slightly different behaviour than the original one, you  can pass
+                            a parameter to the mixin to change the binding (or rules). If the variants become too numerous,
+                            it's probably time to consider creating another component or a set of small components.
                         </p>
                         <div class="exampleNote">
-                            <p>For example, your component can bind the %exampleAltState placeholder to #{$selector}:hover by default,
-                                but bind it to the #{$selector}_#{$hover} class for special cases.<br>
-                                Here is what it could look like :
+                            <p>Here is what a component definition looks like :
                             </p>
 
                             <samp class="sampleTitle">// component example</samp>
 <pre class="codeSample">
 // map the placeholders content to some selectors through a mixin
-@mixin example($selector: '.example', $hover: ':hover', $param2: '', $defaultSkin: true) {
+@mixin example($selector: '.example', $defaultSkin: true) {
 
   #{$selector} {
-    @extend %example;
+    padding: 10px;
   }
 
   #{$selector}_inner {
-    @extend %exampleInner;
+    padding: 20px;
   }
 
-  @if $hover == ':hover' {
-    #{$selector}:hover {
-      @extend %exampleAltState;
-    }
-  } @else {
-    #{$selector}_#{$hover} {
-      @extend %exampleAltState;
-    }
+  #{$selector}:hover {
+    padding: 30px;
   }
 
   @if $defaultSkin != false {
-    @include example-skin-default($selector, $hover, $param2);
+    @include example-skin-default($selector, $hover);
   }
 
 }
@@ -685,9 +627,9 @@ $color-alt2:                #637c84;
                                     should reside in the "specifics" folder, not in the component. This is required for your component to
                                     live in any possible context.</p>
                             </li>
-                            <li><p><strong>Structure(layout) should be dissociated from skin(paint)</strong>.</p>
+                            <li><p><strong>Structure(layout) may be dissociated from skin(paint)</strong>.</p>
 
-                                <p class="note">For example, background color, images, text colors, etc. should go into the skin section of the
+                                <p class="note">For example, background color, images, text colors, etc. may go into the skin section of the
                                     component, not in its core definition. That way, you can create additional styles for them without
                                     altering their expected behaviour as a component, and choose what visual style you want when binding
                                     the component to a classname.</p>
@@ -711,16 +653,14 @@ $color-alt2:                #637c84;
                             That's what we believe a "framework" should be anyway.
                         </p>
                         <h2 class="mainSection_subtitle">Description</h2>
-                        <p>When looking at a component folder, you will see one file, and eventually some subfolders.
+                        <p>When looking at a component folder, you will see one file, and possibly some subfolders.
                             Let's take a <em>Tabs</em> component as an example, as probably everyone has already seen a tabbed
                             navigation in a page. The file in the Tabs folder would be: <em>_tabs.scss</em>.<br>
                             It is the component definition. Let's look at it in details.
                         </p>
                         <h3 class="mainSection_smallTitle" id="components_definition">Component's definition</h3>
-                        <p>The component definition file contains two sets of placeholders
-                            named after the component's name, and two mixins. One set is for the component structure, one for
-                            the component's skin. Placeholders are wrapped in a <em>importOnce</em> mixin, so that we can import the
-                            component from anywhere without any risk of having our placeholders duplicated in the final css.
+                        <p>The component definition file contains two mixins. One for the component structure, one for
+                            the component's skin.
                         </p>
                         <p>Here's the <em>structure</em> part of our "tabs" component :</p>
 
@@ -734,10 +674,12 @@ $color-alt2:                #637c84;
 
 // _____ STRUCTURE _____ //
 
-// define component placeholders for component contents (no selector here except for component's id)
-@include importOnce('tabs') {
 
-  %tabs {
+
+// map the placeholders content to some selectors through a mixin
+@mixin tabs($selector, $defaultSkin: true) {
+
+  #{$selector} {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -745,34 +687,18 @@ $color-alt2:                #637c84;
     display: inline-block;
   }
 
-  %tabs_item{
+  #{$selector}_item {
     @include remIt(font-size, 18);
     padding: 10px 0;
     display: inline-block;
     vertical-align: bottom;
   }
 
-  %tabs_link {
+  #{$selector}_link {
     padding: 0 10px;
   }
 
-}
 
-
-// map the placeholders content to some selectors through a mixin
-@mixin tabs($selector, $defaultSkin: true) {
-
-  #{$selector} {
-    @extend %tabs;
-  }
-
-  #{$selector}_item {
-    @extend %tabs_item;
-  }
-
-  #{$selector}_link {
-    @extend %tabs_link;
-  }
 
 
 
@@ -785,69 +711,25 @@ $color-alt2:                #637c84;
 
                         </div>
 
-                        <p>First, a bunch of placeholders are defined, wrapped in a <em>importOnce</em> mixin so that they can safely be imported
-                            by subComponents if needed. They are the core of the component, and define what needs to be implemented
-                            on the various classes or states of the component.</p>
-                        <p>Below the defined wrapped placeholders is a mixin named after the component. Its role is to
-                            actually bind the components placeholders to the provided classname, its "elements", and its state.
+                        <p>A mixin named after the component is all it takes. Its role is to
+                            actually bind the component's styling rules to the provided classname, its "elements", and its state.
                         </p>
                         <p>By default, the component binding will also implement the default skin. If we have defined another
                             skin, all we need to do is pass "$defaultSkin: false" when instantiating the component, and
                             call another skin binding mixin to handle the component's skin.
                         </p>
                         <p class="note">We said earlier that a component folder may have subfolders. One of those is a "_skins"
-                            folder that would host different skins that we could import as needed. The other possible folders
-                            are subComponents folders, that would extend the component. The "_skins" folder is prefixed by an underscore only
-                            so that it always show on top of the list, instead of appearing among the subComponents folders.
+                            folder that would host different skins that we could import as needed. The "_skins" folder
+                            is prefixed by an underscore only so that it always show on top of the list in case you need
+                            some other folders in there.
                         </p>
                         <p>Now let's look at the <em>skin</em> part of our "tabs" component :
                         </p>
                         <samp class="sampleTitle">// A component's skin part</samp>
 <pre class="codeSample">
 // _____ SKIN _____ //
-@import 'sass/base/project/_variables';
-@import 'sass/base/project/_helpers';
 
 
-// define component placeholders for component skin (no selector here)
-@include importOnce('tabs-skin-default') {
-
-  %tabs-skin-default__item {
-    border-bottom: solid 3px transparent;
-  }
-
-  %tabs-skin-default__item_current {
-    border-bottom: solid 3px $color-green;
-  }
-
-  %tabs-skin-default__item_hover {
-    border-bottom: solid 3px $color-green-light;
-  }
-
-
-  %tabs-skin-default__link {
-    border-left: solid 1px $color-green;
-    text-decoration: none;
-    color: $color-green;
-  }
-
-  %tabs-skin-default__link_first {
-    border-left: inherit;
-  }
-
-  %tabs-skin-default__item_hover_link {
-    color: $color-green-light;
-  }
-
-  %tabs-skin-default__item_current_link {
-    color: $color-green-light;
-  }
-
-  %tabs-skin-default__item_highlighted {
-    color: $color-grey-dark;
-  }
-
-}
 
 // provide a default skin for the component
 // only visual changes that don't affect the component layout should be in here
@@ -855,14 +737,14 @@ $color-alt2:                #637c84;
 
   #{$selector}_item {
 
-    @extend %tabs-skin-default__item;
+    border-bottom: solid 3px transparent;
 
     &amp;._is_current {
-      @extend %tabs-skin-default__item_current;
+      border-bottom: solid 3px $color-main;
     }
 
     &amp;:hover {
-      @extend %tabs-skin-default__item_hover;
+      border-bottom: solid 3px $color-main-light;
     }
 
 
@@ -870,22 +752,24 @@ $color-alt2:                #637c84;
 
   #{$selector}_link {
 
-    @extend %tabs-skin-default__link;
+    border-left: solid 1px $color-main;
+    text-decoration: none;
+    color: $color-main;
 
     #{$selector}_item:first-child &amp; {
-      @extend %tabs-skin-default__link_first;
+      border-left: inherit;
     }
 
     &amp;:hover {
-      @extend %tabs-skin-default__item_hover_link;
+      color: $color-main-light;
     }
 
     #{$selector}_item#{'--highlighted'} &amp; {
-      @extend %tabs-skin-default__item_highlighted;
+      color: $color-default-dark;
     }
 
     #{$selector}_item._is_current &amp; {
-      @extend %tabs-skin-default__item_current_link;
+      color: $color-main-light;
     }
   }
 
@@ -896,20 +780,14 @@ $color-alt2:                #637c84;
                             folder for simplicity, but it could very well reside in a _skins folder right away.
                         </p>
                         <p class="note">We recommend that the "structure" part of the component doesn't make use of any
-                            project variable in order to stay as generic and reusable as possible.<br>
-                            Usually that is not a problem, but if for some reason you need to import the project variables anyhow for you
-                            component structure,
-                            you're just one @import away.
+                            project variable in order to stay as generic and reusable as possible.
                         </p>
                         <p class="note">As stated before, a component's "structure" should only contain it's layout, it's skeleton.
                             The "skin" part, unlike the structure, should
-                            <em>only
-                                contain</em> rules that <em>don't affect</em> the structure. These rules can be
-                            background-colors,
-                            background-images, border-radius, shadows, opacity... Anything you want as long as it doesn't
+                            <em>only contain</em> rules that <em>don't affect</em> the structure. These rules can be
+                            background-colors, background-images, border-radius, shadows, opacity... Anything you want as long as it doesn't
                             fiddle with the component's external boundaries.<br>
-                            It is not always easy, but the more you practice it
-                            the
+                            It is not always easy, but the more you practice it the
                             more it feels natural, and the easier it is to find out the right place when you come back to adjust
                             something about your component.
                         </p>
@@ -1052,9 +930,6 @@ $color-alt2:                #637c84;
             &lt;a class="mainMenu_link" href="#namingConventions"&gt;Naming conventions&lt;/a&gt;
         &lt;/li&gt;
         &lt;li class="mainMenu_item"&gt;
-            &lt;a class="mainMenu_link" href="#responsive"&gt;Responsive&lt;/a&gt;
-        &lt;/li&gt;
-        &lt;li class="mainMenu_item"&gt;
             &lt;a class="mainMenu_link" href="#gettingStarted"&gt;Getting started&lt;/a&gt;
         &lt;/li&gt;
         &lt;li class="mainMenu_item mainMenu_item--highlighted"&gt;
@@ -1181,158 +1056,6 @@ $color-code: #637c84;
 
                 <hr class="articleSeparator">
 
-                <section class="mainSection" id="responsive">
-
-                    <header class="mainSection_header">
-                        <h1 class="mainSection_title">Responsive</h1>
-                    </header>
-
-                    <div class="mainSection_body">
-                        <p>As you may have noticed, DoCSSa makes a quite heavy use of Sass placeholders. This is nice until
-                        you try to use them from within a media query, and stumble onto the dreaded <em>"You may not @extend
-                        an outer selector from within @media. You may only @extend selectors within the same directive."</em>
-                        error message. <br>
-                            But fear not, my friend! Until this gets fixed in Sass, there are ways around it.</p>
-                        <p>In order to be able to use your components in any context, you'll only have a few things to keep in mind:</p>
-                        <ul>
-                            <li>All <strong>breakpoints need to be named and predefined</strong> in the <strong>$breakpoints variable</strong> located in
-                                base/_config.scss
-                            </li>
-                            <li><strong>Placeholders definition</strong> need to be done through the provided <strong>_add()</strong> mixin</li>
-                            <li><strong>Placholders use</strong> need to be done through the provided <strong>_use()</strong> mixin</li>
-                            <li><strong>@media blocks</strong> need to be called through the provided <strong>breakpoint()</strong> mixin</li>
-                        </ul>
-                        <p>If you respect this process, which is a bargain, you can enjoy helpers and components anywhere
-                            in your sass structure. Aren't you just glad you came ?</p>
-
-                        <div class="exampleNote">
-                            <p>Here is how we implemented our "clearfix" helper for a responsive environment :</p>
-
-                            <samp class="sampleTitle">// in utils/_helpers.scss</samp>
-<pre class="codeSample">
-@include _add(clearfix) {
-  &amp;:before,
-  &amp;:after {
-    content: " ";
-    display: table;
-  }
-  &amp;:after {
-    clear: both;
-  }
-  *zoom: 1;
-}
-</pre>
-                            <p>As you can see, we just replaced the traditional <em>%clearfix</em> definition with
-                                <em>@include _add(clearfix)</em>.</p>
-                            <p class="note">If you've already defined placeholders in DoCSSa before,
-                                a simple regex can do the conversion for you : replace <em>%([^ {]+)\s*\{</em>
-                                with <em>@include _add($1) {</em> and you're done!
-                                </p>
-                            <p>When creating the <em>_add()</em> mixin, we made sure it wouldn't break compatibility.
-                            That means that our clearfix placeholder can still be used with a simple <em>@extend %clearfix</em>
-                                as long as you're not within a media query block. But now, it can do much more!</p>
-                            <p>First, you need to define the breakpoints :</p>
-                            <samp class="sampleTitle">// in base/_config.scss</samp>
-<pre class="codeSample">
-$breakpoints: (
-  "small": 600px,
-  "medium": 900px,
-  "large": 1200px
-);
-</pre>
-                            <p>Once this is done, you can call the "clearfix" placeholder from within a media query with the
-                            following syntax:</p>
-                            <samp class="sampleTitle">// crossmedia placeholders example</samp>
-<pre class="codeSample">
-.a {
-  @include _use(clearfix);
-}
-
-.b {
-  @extend %clearfix;
-}
-
-.c {
-  @include breakpoint(medium) {
-    @include _use(clearfix);
-  }
-}
-
-@include breakpoint(medium) {
-  .d {
-    @include _use(clearfix);
-  }
-}
-
-.e {
-  @include _use(clearfix);
-
-  @include breakpoint(large) {
-    @include _use(clearfix);
-  }
-}
-</pre>
-                            <p>Here is what the end result would look like in your custom.css file :</p>
-<pre class="codeSample">
-@media (min-width: 900px) {
-  .c,
-  .d {
-    *zoom: 1;
-  }
-  .c:before,
-  .d:before,
-  .c:after,
-  .d:after {
-    content: " ";
-    display: table;
-  }
-  .c:after,
-  .d:after {
-    clear: both;
-  }
-}
-@media (min-width: 1200px) {
-  .e {
-    *zoom: 1;
-  }
-  .e:before,
-  .e:after {
-    content: " ";
-    display: table;
-  }
-  .e:after {
-    clear: both;
-  }
-}
-.a,
-.b,
-.e {
-  *zoom: 1;
-}
-.a:before,
-.b:before,
-.e:before,
-.a:after,
-.b:after,
-.e:after {
-  content: " ";
-  display: table;
-}
-.a:after,
-.b:after,
-.e:after {
-  clear: both;
-}
-</pre>
-                        </div>
-                        <p>As you can see, everything ends up nicely in the correct media query, as if you had wrote it
-                        down manually. There is a little difference with the old school, hands in the dirt approach though:
-                        you can now have your logic in a single place, and stay DRY all the way!</p>
-                    </div>
-                </section>
-
-                <hr class="articleSeparator">
-
                 <section class="mainSection" id="gettingStarted">
 
                     <header class="mainSection_header">
@@ -1370,13 +1093,6 @@ $breakpoints: (
                             </li>
                             <li class="firstOrderList_item">
                                 <div class="firstOrderList_item_content">
-                                    <a class="externalLink" href="http://www.sitepoint.com/cross-media-query-extend-sass/">
-                                        Cross media query extend
-                                    </a>
-                                </div>
-                            </li>
-                            <li class="firstOrderList_item">
-                                <div class="firstOrderList_item_content">
                                     <a class="externalLink" href="http://www.creativebloq.com/css3/create-modular-and-scalable-css-9134351">
                                         Four ways to create CSS that's modular and scalable [article]
                                     </a>
@@ -1407,25 +1123,21 @@ $breakpoints: (
                             </li>
                             <li class="firstOrderList_item">
                                 <div class="firstOrderList_item_content">
-                                    Then, try manipulating the provided "_helpers" and "_mixins" from the base/utils folder
+                                    Then, try manipulating the provided "_mixins" from the base/utils folder
                                     to give your project more reusable code.
                                 </div>
                             </li>
                             <li class="firstOrderList_item">
                                 <div class="firstOrderList_item_content">
-                                    After that, you may write your own "_helpers" and "_mixins", tailored for your own
+                                    After that, you may write your own "_mixins", tailored for your own
                                     specific needs.
                                 </div>
                             </li>
                             <li class="firstOrderList_item">
                                 <div class="firstOrderList_item_content">
-                                    For more reusability within or across your project(s), you may then try to convert some of your "specifics" rules into "components".<br>
+                                    For more reusability within or across your project(s), you may then try to convert
+                                    some of your "specifics" rules into "components".<br>
                                     If see you are repeating the same rules on different sets of classes, you have a good candidate.
-                                </div>
-                            </li>
-                            <li class="firstOrderList_item">
-                                <div class="firstOrderList_item_content">
-                                    Cherry on the cake, you can finally add responsive super powers to your components.
                                 </div>
                             </li>
                             <li class="firstOrderList_item">
@@ -1444,13 +1156,13 @@ $breakpoints: (
                             </li>
                             <li class="firstOrderList_item">
                                 <div class="firstOrderList_item_content">
-                                    Once one of them feels ready to, let her write "_helpers", and let the whole team know
-                                    they can use them.
+                                    Once one of them feels ready to, let her write a component and let the whole team know
+                                    they can use it.
                                 </div>
                             </li>
                             <li class="firstOrderList_item">
                                 <div class="firstOrderList_item_content">
-                                    It won't be long before some other koalas would like to write _helpers or _mixins.
+                                    It won't be long before some other koalas would like to write a useful component too.
                                 </div>
                             </li>
                             <li class="firstOrderList_item">

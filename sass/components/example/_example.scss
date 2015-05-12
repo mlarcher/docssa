@@ -13,40 +13,20 @@ usage examples:
 
 /* **** EXAMPLE COMPONENT **** */
 
-// define component placeholders for component contents (no selector here)
-@include importOnce('example') {
-  %example {
-    padding: 10px;
-  }
-
-  %exampleInner {
-    padding: 20px;
-  }
-  %exampleAltState {
-    padding: 30px;
-  }
-}
-
 
 // map the placeholders content to some selectors through a mixin
 @mixin example($selector: '.example', $hover: ':hover', $param2: '', $defaultSkin: true) {
 
   #{$selector} {
-    @extend %example;
+    padding: 10px;
   }
 
   #{$selector}_inner {
-    @extend %exampleInner;
+    padding: 20px;
   }
 
-  @if $hover == ':hover' {
-    #{$selector}:hover {
-      @extend %exampleAltState;
-    }
-  } @else {
-    #{$selector}_#{$hover} {
-      @extend %exampleAltState;
-    }
+  #{$selector}:hover {
+    padding: 30px;
   }
 
   @if $defaultSkin != false {
@@ -60,20 +40,20 @@ usage examples:
 @mixin example2($hover: ':hover', $param2: '', $defaultSkin: true) {
 
   & {
-    @extend %example;
+    padding: 10px;
   }
 
   &_inner {
-    @extend %exampleInner;
+    padding: 20px;
   }
 
   @if $hover == ':hover' {
     &:hover {
-      @extend %exampleAltState;
+      padding: 30px;
     }
   } @else {
     &_#{$hover} {
-      @extend %exampleAltState;
+      padding: 30px;
     }
   }
 
@@ -89,39 +69,25 @@ usage examples:
 
 /* **** EXAMPLE COMPONENT SKIN **** */
 
-// define component placeholders for component skin (no selector here)
-@include importOnce('example_skin') {
-  %example-skin-default {
-    background: #eee;
-    color: blue;
-  }
-
-  %exampleInner-skin-default {
-    color: red;
-  }
-  %exampleAltState-skin-default {
-    border: solid 1px red;
-  }
-}
-
 // provide a default skin for the component
 // only visual changes that don't affect the component layout should be in here
 @mixin example-skin-default($selector: '.example', $hover: ':hover', $param2: '') {
 
     #{$selector} {
-      @extend %example-skin-default;
+      background: #eee;
+      color: blue;
     }
     #{$selector}_inner {
-      @extend %exampleInner-skin-default;
+      color: red;
     }
 
     @if $hover == ':hover' {
       #{$selector}:hover {
-        @extend %exampleAltState-skin-default;
+        border: solid 1px red;
       }
     } @else {
       #{$selector}_#{$hover} {
-        @extend %exampleAltState-skin-default;
+        border: solid 1px red;
       }
     }
 
@@ -132,19 +98,20 @@ usage examples:
 @mixin example-skin-default2($hover: ':hover', $param2: '') {
 
   & {
-    @extend %example-skin-default;
+    background: #eee;
+    color: blue;
   }
   &_inner {
-    @extend %exampleInner-skin-default;
+    color: red;
   }
 
   @if $hover == ':hover' {
     &:hover {
-      @extend %exampleAltState-skin-default;
+      border: solid 1px red;
     }
   } @else {
     &_#{$hover} {
-      @extend %exampleAltState-skin-default;
+      border: solid 1px red;
     }
   }
 

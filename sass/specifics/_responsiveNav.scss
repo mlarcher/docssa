@@ -1,37 +1,52 @@
 
+@media (min-width: 900px) {
 
-@include breakpoint(medium) {
-    
     .mainMenu {
-        @include _use(tabs);
-        
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 0;
+      display: inline-block;
+
     }
     .mainMenu_item {
         border: none;
         padding: 0;
         line-height: 2.5;
-        @include _use(tabs_item);
+
+      @include remIt(font-size, 18);
+      padding: 10px 0;
+      display: inline-block;
+      vertical-align: bottom;
+
+
+
+
         &._is_current {
             border-bottom: 3px solid $color-main-light;
         }
     }
-    
+
     .mainMenu_item:first-child .mainMenu_link {
         border-left: none;
     }
-    
+
     .mainMenu_link {
-        @include _use(tabs_link);
+      padding: 0 10px;
+
+
+
+
         text-decoration: none;
         color: $color-default-dark;
         border-left: 1px solid $color-main;
-        
-        
+
+
     }
     .navOpener {
         display :none;
     }
-    
+
     .mainNav {
         position: fixed;
         width: auto;
@@ -45,3 +60,4 @@
         @include box-opacity(.95);
       }
 }
+
