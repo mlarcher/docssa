@@ -21,7 +21,7 @@
     @include remIt(font-size, 16);
     line-height: 1.4;
     background: #fff;
-    font-family: "titillium", Arial, "sans-serif";
+    font-family: Arial, "sans-serif";
     width: 100%;
     color: #000;
     min-height: 100%;
@@ -55,6 +55,11 @@
 
   p {
     margin: 0 0 20px;
+  }
+
+  pre {
+    // monospace defaults to Courrier New on windows, which seems to badly alter the = sign, so we'll avoid it
+    font-family: consolas, monospace;
   }
 
   /* _____ LAYOUT _____ */
