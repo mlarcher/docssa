@@ -64,10 +64,13 @@
 // ==========================================================================
 
 // reset button and link styles
-@mixin basicClickable {
+@mixin basicClickable($omitPadding: false) {
   background: none;
   border: 0;
-  padding: 0;
+  // padding can change the box boundaries, so we may want to exclude it when dealing with component skins
+  @if $omitPadding == false {
+    padding: 0;
+  }
   cursor: pointer;
   text-decoration: none;
 }

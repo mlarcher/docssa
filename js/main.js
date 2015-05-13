@@ -10,15 +10,17 @@
       mainHeader,
       mainFooter,
       hashPrefix,
+      mainNav,
       navOpener,
       goTop,
       sampleLink,
       body;
 
+    mainNav = $('.mainNav');
     mainItems = $('.mainMenu_item');
     mainHeader = $('.mainHeader');
     mainFooter = $('.mainFooter');
-    navOpener = $('.navOpener');
+    navOpener = $('.mainNav_opener');
     goTop = $('.goTop');
     sampleLink = $('.sampleHeader_link');
     body = $('body');
@@ -92,11 +94,8 @@
 
     // Nav toggle
     navOpener.click(function () {
-      if (body.hasClass('_nav_is_open')) {
-        body.removeClass('_nav_is_open');
-      } else {
-        body.addClass('_nav_is_open');
-      }
+      mainNav.toggleClass('_is_open');
+      navOpener.toggleClass('_is_open');
     });
 
 

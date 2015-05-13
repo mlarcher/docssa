@@ -1,21 +1,20 @@
 // _____ STRUCTURE _____ //
 
-// map the placeholders content to some selectors through a mixin
+// define the component structure
 @mixin tabs($selector, $defaultSkin: true) {
 
   #{$selector} {
     display: inline-block;
     margin: 0;
     padding: 0;
-    list-style: none;
     font-size: 0;
   }
 
   #{$selector}_item {
     @include remIt(font-size, 18);
     display: inline-block;
-    padding: 10px 0;
     vertical-align: bottom;
+    line-height: 2.5;
   }
 
   #{$selector}_link {
@@ -34,41 +33,38 @@
 // only visual changes that don't affect the component layout should be in here
 @mixin tabs-skin-default($selector) {
 
-  #{$selector}_item {
+  #{$selector} {
+    list-style: none;
+  }
 
-    border-bottom: solid 3px transparent;
+  #{$selector}_item {
+    border-bottom: 1px solid $color-main-lighter;
 
     &._is_current {
-      border-bottom: solid 3px $color-main;
+      border-bottom: 3px solid $color-main-light;
     }
+  }
 
-    &:hover {
-      border-bottom: solid 3px $color-main-light;
-    }
-
+  #{$selector}_item--highlighted {
+    background: $color-alt-light;
   }
 
   #{$selector}_link {
-
-    border-left: solid 1px $color-main;
-    text-decoration: none;
-    color: $color-main;
+    @include basicClickable(true);
+    border-left: 1px solid $color-main;
+    color: $color-default-dark;
+    font-family: 'titillium', Arial, 'sans-serif';
 
     #{$selector}_item:first-child & {
-      border-left: inherit;
-    }
-
-    &:hover {
-      color: $color-main-light;
-    }
-
-    #{$selector}_item#{'--highlighted'} & {
-      color: red;
+      border-left: 0;
     }
 
     #{$selector}_item._is_current & {
       color: $color-main-light;
     }
-  }
 
+    &:hover {
+      background: $color-alt;
+    }
+  }
 }

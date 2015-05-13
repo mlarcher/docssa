@@ -1,60 +1,76 @@
-// decide the kind of style we want from a config variable
-@if $nav-variant == 'base' {
+$nav-breakpoint: 900;
+$left-nav-width: 200;
 
+// bind the responsive tabs mixin to the .mainMenu class
+@include responsiveTabs('.mainMenu');
+
+// handle menu position and visibility
+@media (max-width: #{($nav-breakpoint - 1)}px) {
   .mainNav {
+    @include transition('left .2s linear');
+    @include box-shadow(0 3px 3px 3px rgba(0, 0, 0, .3));
     position: absolute;
     top: 0;
     bottom: 0;
-    left: #{-1 * $left-nav-width}px;
+    left: -#{$left-nav-width}px;
     z-index: 999;
     background: $color-default-light;
     width: #{$left-nav-width}px;
-    @include transition('left .2s linear');
-    @include box-shadow(0 3px 3px 3px rgba(0, 0, 0, .3));
 
-    ._nav_is_open & {
+    &._is_open {
       left: 0;
     }
   }
 
-  .mainMenu {
+  .mainNav_opener {
+    display: block;
+    position: absolute;
+    top: 20px;
+    left: #{$left-nav-width + 20}px;
+    z-index: 998;
+    border: 1px solid $color-default-light;
+    background: $color-main;
     padding: 0;
-    list-style: none;
-  }
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    text-indent: -999px;
+    color: $color-default-light;
 
-  .mainMenu_item {
-    border-bottom: 1px solid $color-main-lighter;
-    padding: 20px;
-  }
+    &:before {
+      display: block;
+      width: 28px;
+      height: 30px;
+      text-align: center;
+      text-indent: 0;
+      line-height: 1.8;
+      content: '\2630';
+    }
 
-  .mainMenu_item--highlighted {
-    background: $color-alt-light;
-  }
-
-  .mainMenu_link {
-    color: $color-default-dark;
-    @include basicClickable;
-
-    ._is_current & {
-      color: $color-main-light;
+    &._is_open:before {
+      content: '\2613';
     }
   }
+}
 
-} @else {
-
-  @include verticalMenu('.mainMenu');
+@media (min-width: #{$nav-breakpoint}px) {
 
   .mainNav {
+    @include box-shadow('0 3px 5px rgba(0,0,0,.3)');
+    @include box-opacity(.95);
     position: fixed;
     top: 0;
-    bottom: 0;
+    right: 0;
+    bottom: auto;
     left: 0;
     background: $color-default-light;
-    width: $left-nav-width;
+    text-align: right;
   }
 
-  body {
-    padding-left: 200px;
+  .mainNav_opener {
+    display: none;
   }
 
 }
+
+

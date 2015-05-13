@@ -1,27 +1,27 @@
 
 .mainHeader {
+  @include transform('translate(-50%, -50%)');
   position: fixed;
   top: 50%;
   left: 50%;
   z-index: 10;
-  @include transform('translate(-50%, -50%)');
   text-align: center;
   color: $color-default-light;
 }
 
 .mainTitle {
-  margin: 0 0 10px;
-  font-family: 'robotoSlab', georgia, serif;
-  font-weight: normal;
   @include remIt('font-size', 70);
   @include remIt('line-height', 75);
   @include text-shadow(1px 1px 3px rgba(0, 0, 0, .3));
+  margin: 0 0 10px;
+  font-family: 'robotoSlab', georgia, serif;
+  font-weight: normal;
 }
 
 .mainSubtitle {
+  @include text-shadow(1px 1px 3px rgba(0, 0, 0, .3));
   margin: 0;
   font-weight: normal;
-  @include text-shadow(1px 1px 3px rgba(0, 0, 0, .3));
 }
 
 .mainContent {
@@ -48,10 +48,10 @@
 }
 
 .mainSection_title {
-  color: $color-main;
-  font-weight: normal;
   @include remIt('font-size', 26);
   @include remIt('line-height', 30);
+  color: $color-main;
+  font-weight: normal;
 }
 
 .mainSection_subtitle {

@@ -6,7 +6,6 @@
 @import 'footer';
 @import 'main';
 @import 'nav';
-@import 'responsiveNav';
 @import 'sample';
 
 // miscellaneous rules
@@ -68,9 +67,9 @@
   color: $color-alt2;
 }
 
-// various example component implementations
-@include example('.example2');
-@include example('.example3', 'myHoverClass');
-@include example('.example5', $defaultSkin: false);
-@include example-skin-alt('.example5');
+// example component implementations
+@include example('.example');
+
+@include example('.example2', $defaultSkin: false);
+@include example-skin-alt('.example2');
 

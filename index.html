@@ -31,7 +31,7 @@
 
             <header class="mainHeader">
                 <h1 class="mainTitle">
-                    DoCSSa {dok~sa}
+                    DoCSSa 2.0 {dok~sa}
                 </h1>
 
                 <h2 class="mainSubtitle">Sass based CSS architecture and methodology</h2>
@@ -61,8 +61,9 @@
                         <a class="mainMenu_link" href="#contributing">Contributing</a>
                     </li>
                 </ul>
+                <button class="mainNav_opener">show/hide menu</button>
             </nav>
-            <button class="navOpener"></button>
+
 
             <article class="mainContent">
 
@@ -78,7 +79,7 @@
 
                         <h2 class="mainSection_subtitle">What is DoCSSa ?</h2>
 
-                        <p>DoCSSa is a CSS architecture and methodology that aims to help structure rapid and maintainable
+                        <p>DoCSSa is a CSS architecture and methodology to help structure rapid and maintainable
                             stylesheets development.<br>
                             It is intended for use in large, long lived sites, on which many frontend developers may be working
                             over time.<br>
@@ -89,12 +90,12 @@
                         <ul class="firstOrderList">
                             <li class="firstOrderList_item">
                                 <span class="firstOrderList_item_content">
-                                    Clear and proven folder structure.
+                                    Clear and proven folder structure
                                 </span>
                             </li>
                             <li class="firstOrderList_item">
                                 <span class="firstOrderList_item_content">
-                                    Separation of concerns between HTML and CSS.
+                                    Separation of concerns between HTML and CSS
                                 </span>
                             </li>
                             <li class="firstOrderList_item">
@@ -115,12 +116,12 @@
                             relatively easy thing to do (putting aside browsers inconsistencies) has grown into a very complex,
                             dynamic, everchanging reality.</p>
 
-                        <p>So, we need flexible structure in order to be more efficient and less
-                            under pressure when the rough times come. The way we see it, the more work we
+                        <p>So, we need flexible structures in order to be more efficient and less
+                            under pressure when the rough times come. The more work we
                             can avoid by having defined the right tools and the right architecture ahead of time, the better.</p>
 
-                        <p>DoCSSa is our attempt at an organization that aims toward a faster workflow without sacrificing the
-                            long run flexibility.</p>
+                        <p>DoCSSa is our attempt at an organization that aims toward a fast workflow that will keep the
+                            flexibility required  for the long run.</p>
 
                         <h2 class="mainSection_subtitle">How does DoCSSa bring its benefits ?</h2>
 
@@ -176,7 +177,7 @@
                             This file is located at the root of the sass folder.</p>
 
                         <p class="note">In most cases, it will be the only file with no
-                            underscore(_) prefix : as you may know, the .scss to .css convertion process in Sass only converts
+                            underscore(_) prefix: as you may know, the .scss to .css convertion process in Sass only converts
                             files that don't have an underscore in front of them. Most of the files in our structure being imported
                             by other files, they don't need to be rendered directly.<br>
                             Only components may be rendered separately, in order to be able to dynamically load them if needed,
@@ -228,7 +229,7 @@
                             other scss files, and so on. With a well thought organization, this simple construct can prove very powerful!</p>
 
                         <p class="note">On a sidenote, remember that Sass is only a CSS precompiler, so you'll end up with only one .css file
-                            with all the goodies, not a bunch of HTTP requests!</p>
+                            with all the goodies, not a bunch of HTTP requests.</p>
 
                         <p>Here is an overview of what a basic file system might look like :</p>
 
@@ -245,6 +246,7 @@ sass
 ¦   ¦       __project.scss
 ¦   ¦       _fonts.scss
 ¦   ¦       _globals.scss
+¦   ¦       _mixins.scss
 ¦   ¦       _variables.scss
 ¦   ¦
 ¦   +---utils
@@ -258,14 +260,9 @@ sass
 ¦   +---button
 ¦   ¦       _button.scss
 ¦   ¦
-¦   +---roundedButton
-¦   ¦       _roundedButton.scss
-¦   ¦
 ¦   +---tabs
-¦   ¦       _tabs.scss
-¦   ¦
-¦   +---verticalMenu
-¦           _verticalMenu.scss
+¦           _tabs.scss
+¦
 ¦
 +---specifics
 ¦   ¦   __specifics.scss
@@ -278,7 +275,7 @@ sass
 ¦           _popin-loginForm.scss
 ¦
 +---vendor
-    _normalize.scss
+    __vendor.scss
 </pre>
 
 
@@ -299,7 +296,8 @@ sass
                         </ul>
                         <p class="note">Note that the <em>base/_config.scss</em> file is located directly in the base
                             folder. It contains variables that are required by both the utils and the project. So far
-                            only the $baseFontSize fell in that category.</p>
+                            only the $baseFontSize fell in that category, but we still dedicated a file to it in
+                            order to be consistent.</p>
                         <p>
                             <strong id="fileStructure_base_utils">Utils</strong> contains only things that don't need to change
                             from a project to another. As of today, it consists of <em>_system</em> and <em>_mixins</em>.
@@ -323,17 +321,18 @@ sass
                                         all required vendor prefixes (and only those required!) and generates a fallback
                                         color from the input values for browsers that don't support linear-gradient at all.
                                         DoCSSa recommends using Modernizr for feature detection and progressive enhancement, and the provided
-                                        mixins implementing CSS3 features rely on it by default for their output, even though it can be
-                                        disabled at include time.<br>
+                                        mixins implementing CSS3 features rely on it by default for their output (even though it can be
+                                        disabled at include time).<br>
                                     </p>
 
                                     <p class="note">Mixins can accumulate and enrich your library
                                         with no cost, as they are only compiled when used.<br>
                                         Mixins are a great way to avoid repetition when coding. They end up in code
                                         repetition in the css output, and for that reason the previous version of DoCSSa
-                                        was based on placeholders insted, but it has now been proven that this repetition
-                                        is not an issue once gzip comes into play (more info at
-                                        https://tech.bellycard.com/blog/sass-mixins-vs-extends-the-data/ )</p>
+                                        was based on placeholders instead, but it has now been proven that this repetition
+                                        is not an issue once gzip comes into play
+                                        (<a href="https://tech.bellycard.com/blog/sass-mixins-vs-extends-the-data/">more
+                                            info</a>)</p>
 
                                     <aside class="exampleNote">
                                         <p>Here's what a mixin may look like in the <em>utils/_mixins</em> file :</p>
@@ -377,7 +376,7 @@ sass
                             is stored. Whereas <em>utils</em> is intended to be kept and grow from a project to the next,
                             <em>project</em> only stands true for a given project (although you may want to use it as a
                             boilerplate from project to project). As of today, it consists of <em>_variables</em>,
-                            <em>_fonts</em> and <em>_globals</em>.
+                            <em>_fonts</em>, <em>_mixins</em> and <em>_globals</em>.
                         </p>
 
                         <ul class="secondaryList">
@@ -399,29 +398,27 @@ sass
 
 $default-borderRadius: 4;
 $containerWidth: 760;
-$left-nav-width: 200;
 
-$nav-variant: 'base';
 
 
 // Colors
 // ==========================================================================
 
-$color-default-light:       #fff;
-$color-default-dark:        #333;
-$color-default-darker:      #000;
+$color-default-light:   #fff;
+$color-default-dark:    #333;
+$color-default-darker:  #000;
 
-$color-main: #FF7F50;
-$color-main-light: #ff9e7e;
-$color-main-lighter: #ffdec7;
+$color-main:            #ff7f50;
+$color-main-light:      #ff9e7e;
+$color-main-lighter:    #ffdec7;
 
-$color-secondary:           #5cbcaa;
+$color-secondary:       #5cbcaa;
 
-$color-alt:                 #f1ede4;
-$color-alt-dark:            #c2c0bc;
-$color-alt-light:           #f8f5ec;
+$color-alt:             #f1ede4;
+$color-alt-dark:        #c2c0bc;
+$color-alt-light:       #f8f5ec;
 
-$color-alt2:                #637c84;
+$color-alt2:            #637c84;
 </pre>
 
                                 </div>
@@ -441,6 +438,15 @@ $color-alt2:                #637c84;
                                         "css" or "styles" folder. The font files will have to be there (preferably in a "fonts"
                                         subfolder in order to stay nice and tidy).<br>
                                         Same goes for all the image files you may be referring to in your stylesheets.
+                                    </p>
+                                </div>
+                            </li>
+
+                            <li class="secondaryList_item">
+                                <div class="secondaryList_item_content">
+                                    <p><strong>_mixins</strong> is a place for you to store simple helper that you may want
+                                        to reutilize throughout the site, but are not generic enough to endup in the
+                                        utils/_mixins file.
                                     </p>
                                 </div>
                             </li>
@@ -503,7 +509,7 @@ $color-alt2:                #637c84;
                         <p class="note">DoCSSa encourages you to keep your definitions tidy and reorganize in subfolders as soon as it makes
                             sense.<br>
                             No file should ever be big enough that you can't scroll through it in a few mousewheel movements
-                            max.</p>
+                            max!</p>
 
                         <p>Before everyone in your team is familiar with DoCSSa, it can be helpful for occasional contributors
                             wondering where to place their code to have a dedicated file. In such case, we recommend using
@@ -515,8 +521,9 @@ $color-alt2:                #637c84;
 
                         <h2 class="mainSection_subtitle" id="fileStructure_vendor">Vendor folder</h2>
 
-                        <p>The <em>vendor</em> folder is where we import/place SCSS files that come from third parties and can be updated at
-                            any time. As the .scss syntax is CSS compatible, all we have to do is to rename the .css files to
+                        <p>The <em>vendor</em> folder is where we import SCSS files that come from third parties and can be updated at
+                            any time. It can import from a bower folder, or have its assets directly in the folder.
+                            As the .scss syntax is CSS compatible, all we have to do is to rename the .css files to
                             .scss, in order for them to be integrated to the .css compilation instead of referenced by the CSS
                             file as a classic @import.</p>
 
@@ -549,7 +556,8 @@ $color-alt2:                #637c84;
                         </p>
                         <p>As the component is not tied to a particular class, you can use it on whatever class you want, whenever you want,
                             from the stylesheet side. That means that you can (and should) keep a semantic meaning to your HTML classes, and change
-                            their look and feel without having to modify the markup. When your markup comes from a RTE, this is a huge gain.
+                            their look and feel without having to modify the markup.<br>
+                            When your markup comes from a RTE, this is a huge gain.
                             You can change the styling without asking the contributors to change their habits, and you can
                             affect everything already written without having to make search&amp;replace throughout a database or without
                             having a "red" class helper mean the color is going to be purple!
@@ -559,7 +567,9 @@ $color-alt2:                #637c84;
                             class and bind a button component with a red skin to it. You could
                             also use the same component on a "submitTrigger" class so that both look the same. When time comes
                             to have a different look for your submits, all you have to do is bind the submitTrigger to another component
-                            and you're done, without affecting the navTriggers and without touching the markup.
+                            and you're done, without affecting the navTriggers and without touching the markup.<br>
+                            Note that for advanced components,
+                            the HTML may be expected to conform to a particular structure to be a valid target.
                         </p>
                         <p>If you need a component with a slightly different behaviour than the original one, you  can pass
                             a parameter to the mixin to change the binding (or rules). If the exceptions become too numerous,
@@ -603,7 +613,7 @@ $color-alt2:                #637c84;
                                     should reside in the "specifics" folder, not in the component. This is required for your component to
                                     live in any possible context.</p>
                             </li>
-                            <li><p><strong>Structure(layout) may be dissociated from skin(paint)</strong>.</p>
+                            <li><p><strong>Structure(layout)</strong> should be <strong>dissociated from skin(paint)</strong>.</p>
 
                                 <p class="note">For example, background color, images, text colors, etc. may go into the skin section of the
                                     component, not in its core definition. That way, you can create additional styles for them without
@@ -613,8 +623,7 @@ $color-alt2:                #637c84;
                         </ul>
                         <p>Of course, it's up to you to compose with those precepts and adapt them to your constraints, but
                             respecting them results in a clean separation of concerns and genuinely reusable components, which is much
-                            likely to make your dev faster further down the road, and that
-                            is what DoCSSa is aiming for.
+                            likely to make your dev faster further down the road.
                         </p>
                         <p class="note">
                             When beginning with DoCSSa, it's easy to think as everything as components, as they are so powerful.
@@ -650,33 +659,26 @@ $color-alt2:                #637c84;
 
 // _____ STRUCTURE _____ //
 
-
-
-// map the placeholders content to some selectors through a mixin
+// define the component structure
 @mixin tabs($selector, $defaultSkin: true) {
 
   #{$selector} {
-    list-style: none;
-    padding: 0;
+   display: inline-block;
     margin: 0;
+    padding: 0;
     font-size: 0;
-    display: inline-block;
   }
 
   #{$selector}_item {
     @include remIt(font-size, 18);
-    padding: 10px 0;
     display: inline-block;
     vertical-align: bottom;
+    line-height: 2.5;
   }
 
   #{$selector}_link {
     padding: 0 10px;
   }
-
-
-
-
 
   @if $defaultSkin != false {
     @include tabs-skin-default($selector);
@@ -689,6 +691,9 @@ $color-alt2:                #637c84;
 
                         <p>A mixin named after the component is all it takes. Its role is to
                             actually bind the component's styling rules to the provided classname, its "elements", and its state.
+                        </p>
+                        <p class="note">We recommend that the "structure" part of the component doesn't make use of any
+                            project variable in order to stay as generic and reusable as possible.
                         </p>
                         <p>By default, the component binding will also implement the default skin. If we have defined another
                             skin, all we need to do is pass "$defaultSkin: false" when instantiating the component, and
@@ -705,58 +710,49 @@ $color-alt2:                #637c84;
 <pre class="codeSample">
 // _____ SKIN _____ //
 
-
-
 // provide a default skin for the component
 // only visual changes that don't affect the component layout should be in here
 @mixin tabs-skin-default($selector) {
 
-  #{$selector}_item {
+  #{$selector} {
+    list-style: none;
+  }
 
-    border-bottom: solid 3px transparent;
+  #{$selector}_item {
+    border-bottom: 1px solid $color-main-lighter;
 
     &amp;._is_current {
-      border-bottom: solid 3px $color-main;
+      border-bottom: 3px solid $color-main-light;
     }
+  }
 
-    &amp;:hover {
-      border-bottom: solid 3px $color-main-light;
-    }
-
-
+  #{$selector}_item--highlighted {
+    background: $color-alt-light;
   }
 
   #{$selector}_link {
-
-    border-left: solid 1px $color-main;
-    text-decoration: none;
-    color: $color-main;
+    @include basicClickable(true);
+    border-left: 1px solid $color-main;
+    color: $color-default-dark;
+    font-family: 'titillium', Arial, 'sans-serif';
 
     #{$selector}_item:first-child &amp; {
-      border-left: inherit;
-    }
-
-    &amp;:hover {
-      color: $color-main-light;
-    }
-
-    #{$selector}_item#{'--highlighted'} &amp; {
-      color: $color-default-dark;
+      border-left: 0;
     }
 
     #{$selector}_item._is_current &amp; {
       color: $color-main-light;
     }
-  }
 
+    &amp;:hover {
+      background: $color-alt;
+    }
+  }
 }
 </pre>
 
                         <p>As you can see, it is very close to the structure part. Actually it is placed inside the component's
                             folder for simplicity, but it could very well reside in a _skins folder right away.
-                        </p>
-                        <p class="note">We recommend that the "structure" part of the component doesn't make use of any
-                            project variable in order to stay as generic and reusable as possible.
                         </p>
                         <p class="note">As stated before, a component's "structure" should only contain it's layout, it's skeleton.
                             The "skin" part, unlike the structure, should
@@ -785,60 +781,54 @@ $color-alt2:                #637c84;
                         <samp class="sampleTitle">// in css/custom.css</samp>
 <pre class="codeSample">
 .mainMenu {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-size: 0;
-  display: inline-block;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    font-size: 0;
 }
-
 .mainMenu_item {
-  font-size: 18px;
-  padding: 10px 0;
-  display: inline-block;
-  vertical-align: bottom;
+    font-size: 18px;
+    display: inline-block;
+    vertical-align: bottom;
+    line-height: 2.5;
 }
 .cssremunit .mainMenu_item {
-  font-size: 1.125rem;
+    font-size: 1.125rem;
 }
-
 .mainMenu_link {
-  padding: 0 10px;
+    padding: 0 10px;
 }
 
 
+.mainMenu {
+    list-style: none;
+}
 .mainMenu_item {
-  border-bottom: solid 3px transparent;
+    border-bottom: 1px solid #ffdec7;
 }
-
 .mainMenu_item._is_current {
-  border-bottom: solid 3px #449888;
+    border-bottom: 3px solid #ff9e7e;
 }
-
-.mainMenu_item:hover {
-  border-bottom: solid 3px #5cbcaa;
+.mainMenu_item--highlighted {
+    background: #f8f5ec;
 }
-
 .mainMenu_link {
-  border-left: solid 1px #449888;
-  text-decoration: none;
-  color: #449888;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    text-decoration: none;
+    border-left: 1px solid #ff7f50;
+    color: #333;
+    font-family: 'titillium', Arial, 'sans-serif';
 }
-
 .mainMenu_item:first-child .mainMenu_link {
-  border-left: inherit;
+    border-left: 0;
 }
-
-.mainMenu_link:hover {
-  color: #5cbcaa;
-}
-
 .mainMenu_item._is_current .mainMenu_link {
-  color: #5cbcaa;
+    color: #ff9e7e;
 }
-
-.mainMenu_item--highlighted .mainMenu_link {
-  color: #333333;
+.mainMenu_link:hover {
+    background: #f1ede4;
 }
 </pre>
                         <p>If later on you need to bind the tabs component to another class, all you have to do is to call the mixin
@@ -851,6 +841,7 @@ $color-alt2:                #637c84;
 @include tabs-skin-alternate('.articleTabs');
 </pre>
                     </div>
+
                 </section>
 
                 <hr class="articleSeparator">
@@ -913,6 +904,7 @@ $color-alt2:                #637c84;
             &lt;a class="mainMenu_link" href="#contributing"&gt;Contributing&lt;/a&gt;
         &lt;/li&gt;
     &lt;/ul&gt;
+    &lt;button class="mainNav_opener"&gt;&lt;/button&gt;
 &lt;/nav>
 </pre>
                             Note that this example is taken from the menu you're looking at just now in the present
@@ -973,29 +965,27 @@ $color-alt2:                #637c84;
 
 $default-borderRadius: 4;
 $containerWidth: 760;
-$left-nav-width: 200;
 
-$nav-variant: 'base';
 
 
 // Colors
 // ==========================================================================
 
-$color-default-light:       #fff;
-$color-default-dark:        #333;
-$color-default-darker:      #000;
+$color-default-light:   #fff;
+$color-default-dark:    #333;
+$color-default-darker:  #000;
 
-$color-main: #FF7F50;
-$color-main-light: #ff9e7e;
-$color-main-lighter: #ffdec7;
+$color-main:            #ff7f50;
+$color-main-light:      #ff9e7e;
+$color-main-lighter:    #ffdec7;
 
-$color-secondary:           #5cbcaa;
+$color-secondary:       #5cbcaa;
 
-$color-alt:                 #f1ede4;
-$color-alt-dark:            #c2c0bc;
-$color-alt-light:           #f8f5ec;
+$color-alt:             #f1ede4;
+$color-alt-dark:        #c2c0bc;
+$color-alt-light:       #f8f5ec;
 
-$color-alt2:                #637c84;
+$color-alt2:            #637c84;
 </pre>
                         </div>
                     </div>
@@ -1153,8 +1143,8 @@ $color-alt2:                #637c84;
             </article>
 
             <footer class="mainFooter">
-                Presented by <a class="mainFooterLink" href="https://twitter.com/larchermatthieu">Matthieu Larcher</a> &amp;
-                <a class="mainFooterLink" href="https://twitter.com/_faz">Fabien Zibi</a>
+                Presented by <a class="mainFooter_link" href="https://twitter.com/larchermatthieu">Matthieu Larcher</a> &amp;
+                <a class="mainFooter_link" href="https://twitter.com/_faz">Fabien Zibi</a>
 
                 <ul class="repoWrapper">
                     <li class="repoWrapper_item">
