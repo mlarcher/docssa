@@ -9,9 +9,10 @@
     background: #fff;
     color: green;
   }
+
   #{$selector}_inner {
-    color: orange;
     background: #eee;
+    color: orange;
   }
 
   @if $hover == ':hover' {

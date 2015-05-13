@@ -1,4 +1,3 @@
-
 /*
 usage examples:
 @include example();
@@ -10,12 +9,10 @@ usage examples:
 @include example-skin-alt('.example5');
 */
 
-
 /* **** EXAMPLE COMPONENT **** */
 
-
 // map the placeholders content to some selectors through a mixin
-@mixin example($selector: '.example', $hover: ':hover', $param2: '', $defaultSkin: true) {
+@mixin example($selector, $defaultSkin: true) {
 
   #{$selector} {
     padding: 10px;
@@ -30,89 +27,29 @@ usage examples:
   }
 
   @if $defaultSkin != false {
-    @include example-skin-default($selector, $hover, $param2);
+    @include example-skin-default($selector);
   }
 
 }
-
-// passing the selector is not mandatory, but it gets really useful when you need to add a prefix to it (ex: Modernizr)
-// here's how a component can look like without it, though :
-@mixin example2($hover: ':hover', $param2: '', $defaultSkin: true) {
-
-  & {
-    padding: 10px;
-  }
-
-  &_inner {
-    padding: 20px;
-  }
-
-  @if $hover == ':hover' {
-    &:hover {
-      padding: 30px;
-    }
-  } @else {
-    &_#{$hover} {
-      padding: 30px;
-    }
-  }
-
-  @if $defaultSkin != false {
-    @include example-skin-default2($hover, $param2);
-  }
-
-}
-
-
-
-
 
 /* **** EXAMPLE COMPONENT SKIN **** */
 
 // provide a default skin for the component
 // only visual changes that don't affect the component layout should be in here
-@mixin example-skin-default($selector: '.example', $hover: ':hover', $param2: '') {
+@mixin example-skin-default($selector) {
 
-    #{$selector} {
-      background: #eee;
-      color: blue;
-    }
-    #{$selector}_inner {
-      color: red;
-    }
-
-    @if $hover == ':hover' {
-      #{$selector}:hover {
-        border: solid 1px red;
-      }
-    } @else {
-      #{$selector}_#{$hover} {
-        border: solid 1px red;
-      }
-    }
-
-}
-
-// provide a default skin for the component
-// only visual changes that don't affect the component layout should be in here
-@mixin example-skin-default2($hover: ':hover', $param2: '') {
-
-  & {
+  #{$selector} {
     background: #eee;
     color: blue;
   }
-  &_inner {
+
+  #{$selector}_inner {
     color: red;
   }
 
-  @if $hover == ':hover' {
-    &:hover {
-      border: solid 1px red;
-    }
-  } @else {
-    &_#{$hover} {
-      border: solid 1px red;
-    }
+  #{$selector}:hover {
+    border: solid 1px red;
   }
 
 }
+

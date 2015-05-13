@@ -1,35 +1,37 @@
-(function($, window, undefined) {
+(function ($, window, undefined) {
   "use strict";
 
-  $(document).ready(function() {
+  $(document).ready(function () {
 
     var mainItems,
-    currentMainMenuItem,
-    currentMainSection,
-    scrollTarget = $('html, body'),
-    mainHeader,
-    mainFooter,
-    hashPrefix,
-    navOpener,
-    goTop,
-    sampleLink,
+      currentMainMenuItem,
+      currentMainSection,
+      scrollTarget = $('html, body'),
+      mainHeader,
+      mainFooter,
+      hashPrefix,
+      navOpener,
+      goTop,
+      sampleLink,
+      body;
 
-    mainItems   = $('.mainMenu_item');
-    mainHeader  = $('.mainHeader');
-    mainFooter  = $('.mainFooter');
-    navOpener   = $('.navOpener');
-    goTop       = $('.goTop');
-    sampleLink  = $('.sampleHeader_link');
+    mainItems = $('.mainMenu_item');
+    mainHeader = $('.mainHeader');
+    mainFooter = $('.mainFooter');
+    navOpener = $('.navOpener');
+    goTop = $('.goTop');
+    sampleLink = $('.sampleHeader_link');
+    body = $('body');
 
 
-    mainItems.bind('click', function(e) {
+    mainItems.bind('click', function (e) {
       e.preventDefault();
       navigateTo($(this));
     });
 
     function navigateTo($navItem, replace, subItemDest) {
       var href,
-      scrollV;
+        scrollV;
 
       mainHeader.hide();
       mainFooter.hide();
@@ -81,29 +83,29 @@
 
 
     // sample switcher
-    sampleLink.click(function(){
-        $(this).closest('.sampleHeader').find('.sampleHeader_item').toggleClass('_is_current');
-        $(this).closest('.sample').find('pre').toggleClass('_is_hidden');
+    sampleLink.click(function () {
+      var $this = $(this);
+      $this.closest('.sampleHeader').find('.sampleHeader_item').toggleClass('_is_current');
+      $this.closest('.sample').find('pre').toggleClass('_is_hidden');
     });
 
 
     // Nav toggle
-    navOpener.click(function(){
-        if ($('body').hasClass('_nav_is_open')) {
-            $('body').removeClass('_nav_is_open');
-        } else {
-            $('body').addClass('_nav_is_open');
-        }
+    navOpener.click(function () {
+      if (body.hasClass('_nav_is_open')) {
+        body.removeClass('_nav_is_open');
+      } else {
+        body.addClass('_nav_is_open');
+      }
     });
 
 
-    // gotop
-    goTop.click(function(event){
-        $('html,body').animate({
-          scrollTop: 0
-        }, 300);
+    // goTop
+    goTop.click(function (event) {
+      $('html, body').animate({
+        scrollTop: 0
+      }, 300);
     });
-
 
 
   });

@@ -1,30 +1,26 @@
-
 // _____ STRUCTURE _____ //
-
 
 // map the placeholders content to some selectors through a mixin
 @mixin tabs($selector, $defaultSkin: true) {
 
   #{$selector} {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    font-size: 0;
     display: inline-block;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0;
   }
 
   #{$selector}_item {
     @include remIt(font-size, 18);
-    padding: 10px 0;
     display: inline-block;
+    padding: 10px 0;
     vertical-align: bottom;
   }
 
   #{$selector}_link {
     padding: 0 10px;
   }
-
-
 
   @if $defaultSkin != false {
     @include tabs-skin-default($selector);
@@ -33,7 +29,6 @@
 }
 
 // _____ SKIN _____ //
-
 
 // provide a default skin for the component
 // only visual changes that don't affect the component layout should be in here
@@ -50,7 +45,6 @@
     &:hover {
       border-bottom: solid 3px $color-main-light;
     }
-
 
   }
 
@@ -69,7 +63,7 @@
     }
 
     #{$selector}_item#{'--highlighted'} & {
-      color: $color-default-dark;
+      color: red;
     }
 
     #{$selector}_item._is_current & {

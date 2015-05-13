@@ -1,63 +1,52 @@
-
 @media (min-width: 900px) {
 
-    .mainMenu {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      font-size: 0;
-      display: inline-block;
+  .mainMenu {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0;
+  }
 
+  .mainMenu_item {
+    display: inline-block;
+    border: 0;
+    padding: 10px 0;
+    vertical-align: bottom;
+    line-height: 2.5;
+    @include remIt(font-size, 18);
+
+    &._is_current {
+      border-bottom: 3px solid $color-main-light;
     }
-    .mainMenu_item {
-        border: none;
-        padding: 0;
-        line-height: 2.5;
+  }
 
-      @include remIt(font-size, 18);
-      padding: 10px 0;
-      display: inline-block;
-      vertical-align: bottom;
+  .mainMenu_item:first-child .mainMenu_link {
+    border-left: 0;
+  }
 
+  .mainMenu_link {
+    border-left: 1px solid $color-main;
+    padding: 0 10px;
+    text-decoration: none;
+    color: $color-default-dark;
+  }
 
+  .navOpener {
+    display: none;
+  }
 
-
-        &._is_current {
-            border-bottom: 3px solid $color-main-light;
-        }
-    }
-
-    .mainMenu_item:first-child .mainMenu_link {
-        border-left: none;
-    }
-
-    .mainMenu_link {
-      padding: 0 10px;
-
-
-
-
-        text-decoration: none;
-        color: $color-default-dark;
-        border-left: 1px solid $color-main;
-
-
-    }
-    .navOpener {
-        display :none;
-    }
-
-    .mainNav {
-        position: fixed;
-        width: auto;
-        bottom: auto;
-        top: 0;
-        left: 0;
-        right: 0;
-        background: $color-default-light;
-        text-align: right;
-        @include box-shadow('0 3px 5px rgba(0,0,0,.3)');
-        @include box-opacity(.95);
-      }
+  .mainNav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: auto;
+    left: 0;
+    background: $color-default-light;
+    width: auto;
+    text-align: right;
+    @include box-shadow('0 3px 5px rgba(0,0,0,.3)');
+    @include box-opacity(.95);
+  }
 }
 

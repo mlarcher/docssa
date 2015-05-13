@@ -1,4 +1,3 @@
-
 /* _____ MIXINS _____ */
 
 // Fonts
@@ -43,15 +42,12 @@
 
   $cssremunit: getPrefix(cssremunit, $useModernizr);
 
-  // it's god to keep the fallback at all times for debug purpose
-  //#{map-get($cssremunit, no)} & {
-
-    @if $value2 == '' {
-      #{$attr}: #{$before}#{$value}px#{$after};
-    } @else {
-      #{$attr}: #{$before}#{$value}px#{$between}#{$value2}px#{$after};
-    }
-  //}
+  // it's good to keep the fallback at all times for debug purpose
+  @if $value2 == '' {
+    #{$attr}: #{$before}#{$value}px#{$after};
+  } @else {
+    #{$attr}: #{$before}#{$value}px#{$between}#{$value2}px#{$after};
+  }
 
   #{map-get($cssremunit, yes)} & {
 
@@ -70,7 +66,7 @@
 // reset button and link styles
 @mixin basicClickable {
   background: none;
-  border: none;
+  border: 0;
   padding: 0;
   cursor: pointer;
   text-decoration: none;
@@ -83,9 +79,9 @@
 
 @mixin border-radius($value, $useModernizr: true) {
 
-  $borderradius: getPrefix(borderradius, $useModernizr);
+  $borderRadius: getPrefix(borderradius, $useModernizr);
 
-  #{map-get($borderradius, yes)} & {
+  #{map-get($borderRadius, yes)} & {
     -webkit-border-radius: #{$value}; // Saf3-4, iOS 1-3.2, Android ≤1.6
     border-radius: #{$value}; // Opera 10.5, IE9, Saf5, Chrome, FF4+, iOS 4, Android 2.1+
 
@@ -98,34 +94,34 @@
 
 @mixin box-shadow($value, $fallback:'', $useModernizr: true) {
 
-  $boxshadow: getPrefix(boxshadow, $useModernizr);
+  $boxShadow: getPrefix(boxshadow, $useModernizr);
 
-  #{map-get($boxshadow, yes)} & {
-      -webkit-box-shadow: #{$value}; // Saf3-4, iOS 4.0.2 - 4.2, Android 2.3+
-      box-shadow: #{$value}; // Opera 10.5, IE9, FF4+, Chrome 6+, iOS 5
-    }
+  #{map-get($boxShadow, yes)} & {
+    -webkit-box-shadow: #{$value}; // Saf3-4, iOS 4.0.2 - 4.2, Android 2.3+
+    box-shadow: #{$value}; // Opera 10.5, IE9, FF4+, Chrome 6+, iOS 5
+  }
 
-    @if $fallback != '' {
-      #{map-get($boxshadow, no)} & {
-        border-color: #{$fallback};
-      }
+  @if $fallback != '' {
+    #{map-get($boxShadow, no)} & {
+      border-color: #{$fallback};
     }
+  }
 }
 
 @mixin text-shadow($value, $useModernizr: true) {
 
-  $textshadow: getPrefix(textshadow, $useModernizr);
+  $textShadow: getPrefix(textshadow, $useModernizr);
 
-  #{map-get($textshadow, yes)} & {
+  #{map-get($textShadow, yes)} & {
     text-shadow: #{$value}; // Chrome, Firefox 3.5+, IE 10+, Opera 9+, Safari 1+
   }
 }
 
 @mixin box-columns($nb: 3, $gap: 10px, $useModernizr: true) {
 
-  $csscolumns: getPrefix(csscolumns, $useModernizr);
+  $cssColumns: getPrefix(csscolumns, $useModernizr);
 
-  #{map-get($csscolumns, yes)} & {
+  #{map-get($cssColumns, yes)} & {
     -webkit-column-count: $nb;
     -webkit-column-gap: $gap; // Safari 3, Chrome
     -moz-column-count: $nb;
@@ -137,9 +133,9 @@
 
 @mixin background-size($value, $useModernizr: true) {
 
-  $backgroundsize: getPrefix(backgroundsize, $useModernizr);
+  $backgroundSize: getPrefix(backgroundsize, $useModernizr);
 
-  #{map-get($backgroundsize, yes)} & {
+  #{map-get($backgroundSize, yes)} & {
     -webkit-background-size: $value; // Saf3-4
     background-size: $value; // Opera, IE9, Saf5, Chrome, FF4+
   }
@@ -147,9 +143,9 @@
 
 @mixin linear-gradient($from, $to, $fallback: '', $useModernizr: true) {
 
-  $cssgradients: getPrefix(cssgradients, $useModernizr);
+  $cssGradients: getPrefix(cssgradients, $useModernizr);
 
-  #{map-get($cssgradients, no)} & {
+  #{map-get($cssGradients, no)} & {
     @if $fallback != '' {
       background-color: $fallback;
     } @else {
@@ -157,7 +153,7 @@
     }
   }
 
-  #{map-get($cssgradients, yes)} & {
+  #{map-get($cssGradients, yes)} & {
     background-image: -webkit-gradient(linear, left top, left bottom, from($from), to($to)); // Saf4+, Chrome
     background-image: -webkit-linear-gradient(top, $from, $to); // Chrome 10+, Saf5.1+, iOS 5+
     background-image: -moz-linear-gradient(top, $from, $to); // FF3.6+
@@ -168,11 +164,11 @@
 }
 
 // TODO: rewrite with lists and make generic
-@mixin linear-gradient-double($from1, $to1, $from2, $to2, $type: 'vertical' ,$fallback: '', $useModernizr: true) {
+@mixin linear-gradient-double($from1, $to1, $from2, $to2, $type: 'vertical', $fallback: '', $useModernizr: true) {
 
-  $cssgradients: getPrefix(cssgradients, $useModernizr);
+  $cssGradients: getPrefix(cssgradients, $useModernizr);
 
-  #{map-get($cssgradients, no)} & {
+  #{map-get($cssGradients, no)} & {
     @if $fallback != '' {
       background-color: $fallback;
     } @else {
@@ -189,7 +185,7 @@
     $endPoint: 'right';
   }
 
-  #{map-get($cssgradients, yes)} & {
+  #{map-get($cssGradients, yes)} & {
     background-image: -webkit-gradient(linear, left top, #{$endPointWebkit}, color-stop(0, $from1), color-stop(.5, $to1), color-stop(.51, $from2), to($to2)); // Saf4+, Chrome
     background-image: -webkit-linear-gradient(#{$endPointVendor}, $from1, $to1 50%, $from2 51%, $to2); // Chrome 10+, Saf5.1+, iOS 5+
     background-image: -moz-linear-gradient(#{$endPointVendor}, $from1, $to1 50%, $from2 51%, $to2); // FF3.6+
@@ -202,11 +198,11 @@
 // TODO: refactorize with other linear-gradient mixins
 @mixin linear-gradient-with-img($from, $to, $img, $bkgmore: no-repeat, $fallback: '', $useModernizr: true) {
 
-  $cssgradients: getPrefix(cssgradients, $useModernizr);
+  $cssGradients: getPrefix(cssgradients, $useModernizr);
 
   background: #{$img} #{$bkgmore};
 
-  #{map-get($cssgradients, no)} & {
+  #{map-get($cssGradients, no)} & {
     @if $fallback != '' {
       background-color: $fallback;
     } @else {
@@ -214,7 +210,7 @@
     }
   }
 
-  #{map-get($cssgradients, yes)} & {
+  #{map-get($cssGradients, yes)} & {
     background-image: $img, -webkit-gradient(linear, left top, left bottom, from($from), to($to)); // Saf4+, Chrome
     background-image: $img, -webkit-linear-gradient(top, $from, $to); // Chrome 10+, Saf5.1+, iOS 5+
     background-image: $img, -moz-linear-gradient(top, $from, $to); // FF3.6+
@@ -226,9 +222,9 @@
 
 @mixin radial-gradient($from, $to, $fallback: '', $useModernizr: true) {
 
-  $cssgradients: getPrefix(cssgradients, $useModernizr);
+  $cssGradients: getPrefix(cssgradients, $useModernizr);
 
-  #{map-get($cssgradients, no)} & {
+  #{map-get($cssGradients, no)} & {
     @if $fallback != '' {
       background-color: $fallback;
     } @else {
@@ -236,7 +232,7 @@
     }
   }
 
-  #{map-get($cssgradients, yes)} & {
+  #{map-get($cssGradients, yes)} & {
     background: -moz-radial-gradient(center, ellipse cover, $from 0%, $to 100%) fixed; /* FF3.6+ */
     background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, $from), color-stop(100%, $to)) fixed; /* Chrome,Safari4+ */
     background: -webkit-radial-gradient(center, ellipse cover, $from 0%, $to 100%) fixed; /* Chrome10+,Safari5.1+ */
@@ -252,9 +248,9 @@
 
 @mixin animation($value, $useModernizr: true) {
 
-  $cssanimations: getPrefix(cssanimations, $useModernizr);
+  $cssAnimations: getPrefix(cssanimations, $useModernizr);
 
-  #{map-get($cssanimations, yes)} & {
+  #{map-get($cssAnimations, yes)} & {
     -webkit-animation: #{$value}; // Chrome, Safari 5
     -moz-animation: #{$value}; // Firefox 5-15
     -o-animation: #{$value}; // Opera 12+
@@ -264,9 +260,9 @@
 
 @mixin transition($value, $useModernizr: true) {
 
-  $csstransitions: getPrefix(csstransitions, $useModernizr);
+  $cssTransitions: getPrefix(csstransitions, $useModernizr);
 
-  #{map-get($csstransitions, yes)} & {
+  #{map-get($cssTransitions, yes)} & {
     -webkit-transition: #{$value}; // Saf3.2+, Chrome
     -moz-transition: #{$value}; // FF4+
     -o-transition: #{$value}; // Opera 10.5+
@@ -295,9 +291,9 @@
 
 @mixin transform($value, $useModernizr: true) {
 
-  $csstransforms: getPrefix(csstransforms, $useModernizr);
+  $cssTransforms: getPrefix(csstransforms, $useModernizr);
 
-  #{map-get($csstransforms, yes)} & {
+  #{map-get($cssTransforms, yes)} & {
     -webkit-transform: #{$value}; // Saf3.1+, Chrome
     -moz-transform: #{$value}; // FF3.5+
     -ms-transform: #{$value}; // IE9
@@ -308,9 +304,9 @@
 
 @mixin box-rotate($degrees, $useModernizr: true) {
 
-  $csstransforms: getPrefix(csstransforms, $useModernizr);
+  $cssTransforms: getPrefix(csstransforms, $useModernizr);
 
-  #{map-get($csstransforms, yes)} & {
+  #{map-get($cssTransforms, yes)} & {
     -webkit-transform: rotate(#{$degrees}deg); // Saf3.1+, Chrome
     -moz-transform: rotate(#{$degrees}deg); // FF3.5+
     -ms-transform: rotate(#{$degrees}deg); // IE9
@@ -321,9 +317,9 @@
 
 @mixin box-transform($val, $useModernizr: true) {
 
-  $csstransforms: getPrefix(csstransforms, $useModernizr);
+  $cssTransforms: getPrefix(csstransforms, $useModernizr);
 
-  #{map-get($csstransforms, yes)} & {
+  #{map-get($cssTransforms, yes)} & {
     -webkit-transform: #{$val};
     -moz-transform: #{$val};
     -ms-transform: #{$val};
@@ -334,9 +330,9 @@
 
 @mixin box-skew($degrees1, $degrees2, $useModernizr: true) {
 
-  $csstransforms: getPrefix(csstransforms, $useModernizr);
+  $cssTransforms: getPrefix(csstransforms, $useModernizr);
 
-  #{map-get($csstransforms, yes)} & {
+  #{map-get($cssTransforms, yes)} & {
     transform: skew(#{$degrees1}deg, #{$degrees2}deg);
     -ms-transform: skew(#{$degrees1}deg, #{$degrees2}deg); // IE 9
     -webkit-transform: skew(#{$degrees1}deg, #{$degrees2}deg); // Safari and Chrome
@@ -345,22 +341,22 @@
 
 @mixin box-scale($ratio, $useModernizr: true) {
 
-  $csstransforms: getPrefix(csstransforms, $useModernizr);
+  $cssTransforms: getPrefix(csstransforms, $useModernizr);
 
-  #{map-get($csstransforms, yes)} & {
-    -webkit-transform: scale($ratio);  // Chrome, Safari 3.1+
-       -moz-transform: scale($ratio);  // Firefox 3.5+
-        -ms-transform: scale($ratio);  // IE 9
-         -o-transform: scale($ratio);  // Opera 10.50-12.00
-            transform: scale($ratio);  // Firefox 16+, IE 10+, Opera 12.10+
+  #{map-get($cssTransforms, yes)} & {
+    -webkit-transform: scale($ratio); // Chrome, Safari 3.1+
+    -moz-transform: scale($ratio); // Firefox 3.5+
+    -ms-transform: scale($ratio); // IE 9
+    -o-transform: scale($ratio); // Opera 10.50-12.00
+    transform: scale($ratio); // Firefox 16+, IE 10+, Opera 12.10+
   }
 }
 
 @mixin transform-matrix($value, $useModernizr: true) {
 
-  $csstransforms: getPrefix(csstransforms, $useModernizr);
+  $cssTransforms: getPrefix(csstransforms, $useModernizr);
 
-  #{map-get($csstransforms, yes)} & {
+  #{map-get($cssTransforms, yes)} & {
     -webkit-transform: matrix(#{$value});
     -moz-transform: matrix(#{$value});
     -ms-transform: matrix(#{$value});
@@ -368,6 +364,7 @@
     transform: matrix(#{$value});
   }
 }
+
 /* _____ UNIVERSAL HELPERS _____ */
 
 // From H5BP
@@ -378,24 +375,23 @@
   background-color: transparent;
   border: 0;
   overflow: hidden;
-  // IE 6/7 fallback
-  *text-indent: -9999px;
+
   &:before {
-    content: "";
     display: block;
     width: 0;
     height: 100%;
+    content: "";
   }
 }
-// Hide from both screenreaders and browsers: h5bp.com/u
 
+// Hide from both screenreaders and browsers: h5bp.com/u
 @mixin hidden {
   display: none !important;
   visibility: hidden;
 }
-// Hide only visually, but have it available for screenreaders: h5bp.com/v
 
-@mixin visuallyhidden {
+// Hide only visually, but have it available for screenreaders: h5bp.com/v
+@mixin visuallyHidden {
   border: 0;
   clip: rect(0 0 0 0);
   height: 1px;
@@ -404,33 +400,34 @@
   padding: 0;
   position: absolute;
   width: 1px;
-  //
-  // Extends the .visuallyhidden class to allow the element to be focusable
+
+  // Extends the visuallyHidden feature to allow the element to be focusable
   // when navigated to via the keyboard: h5bp.com/p
-  //
   &.focusable:active,
   &.focusable:focus {
-    clip: auto;
-    height: auto;
-    margin: 0;
-    overflow: visible;
     position: static;
+    margin: 0;
     width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
   }
 }
+
 // Hide visually and from screenreaders, but maintain layout
 @mixin invisible {
   visibility: hidden;
 }
+
 // Contain floats: h5bp.com/q
 @mixin clearfix {
   &:before,
   &:after {
-    content: " ";
     display: table;
+    content: ' ';
   }
+
   &:after {
     clear: both;
   }
-  *zoom: 1;
 }

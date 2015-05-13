@@ -1,0 +1,11 @@
+{
+  "name": "DoCSSa",
+  "version": "2.0.0",
+  "authors": [
+    "Matthieu Larcher <contact@ringabell.org>"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "normalize-scss": "^3.0.2"
+  }
+}

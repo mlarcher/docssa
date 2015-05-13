@@ -299,7 +299,7 @@ sass
                         </ul>
                         <p class="note">Note that the <em>base/_config.scss</em> file is located directly in the base
                             folder. It contains variables that are required by both the utils and the project. So far
-                            only the $baseFontSize and $breakpoints fell in that category.</p>
+                            only the $baseFontSize fell in that category.</p>
                         <p>
                             <strong id="fileStructure_base_utils">Utils</strong> contains only things that don't need to change
                             from a project to another. As of today, it consists of <em>_system</em> and <em>_mixins</em>.
@@ -515,13 +515,13 @@ $color-alt2:                #637c84;
 
                         <h2 class="mainSection_subtitle" id="fileStructure_vendor">Vendor folder</h2>
 
-                        <p>The <em>vendor</em> folder is where we place CSS files that come from third parties and can be updated at
-                            any time. As the .scss syntax is CSS compatible, all we have to do is to rename the .css file to
-                            .scss, in order for it to be integrated to the .css compilation instead of referenced by the CSS
+                        <p>The <em>vendor</em> folder is where we import/place SCSS files that come from third parties and can be updated at
+                            any time. As the .scss syntax is CSS compatible, all we have to do is to rename the .css files to
+                            .scss, in order for them to be integrated to the .css compilation instead of referenced by the CSS
                             file as a classic @import.</p>
 
                         <p class="note"><em>_normalize.scss</em> is an excellent candidate for this section, along with more project specific
-                            third party CSS.</p>
+                            third party CSS. We currently rely on bower for fetching it for us.</p>
                     </div>
 
                 </section>

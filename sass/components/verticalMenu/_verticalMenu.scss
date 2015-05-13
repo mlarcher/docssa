@@ -1,18 +1,15 @@
-
 // _____ STRUCTURE _____ //
-
 
 // map the placeholders content to some selectors through a mixin
 @mixin verticalMenu($selector, $defaultSkin: true) {
 
   #{$selector} {
-    list-style: none;
     padding: 10px 0;
     margin: 0;
+    list-style: none;
   }
 
   #{$selector}_item {
-
     display: block;
     padding: 15px;
   }
@@ -34,9 +31,8 @@
   }
 
   #{$selector}_item {
-
-    background: $color-main-light;
     border-top: solid 1px #fff;
+    background: $color-main-light;
 
     &:first-child {
       border-top: inherit;
@@ -51,8 +47,8 @@
     }
 
     &._is_current {
-      background: $color-main;
       border-top: solid 1px $color-alt;
+      background: $color-main;
     }
   }
 

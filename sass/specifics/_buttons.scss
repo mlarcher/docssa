@@ -1,49 +1,49 @@
 .navOpener {
+  @include box-shadow(none);
+  @include transition('left .2s linear');
+  display: block;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 998;
+  border: 1px solid $color-default-light;
+  background: $color-main;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  color: $color-default-light;
+
+  ._nav_is_open & {
+    left: #{$left-nav-width + 46}px;
+  }
+
+  &:before {
     display: block;
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    padding: 0;
-    width: 30px;
+    width: 28px;
     height: 30px;
-    color: $color-default-light;
-    background: $color-main;
-    border: 1px solid $color-default-light;
-    z-index: 998;
-    @include box-shadow(none);
-    @include transition('left .2s linear');
+    text-align: center;
+    line-height: 1.8;
+    content: '☰';
 
     ._nav_is_open & {
-        left: #{$left-nav-width + 46}px;;
+      content: '☓';
     }
-
-    &:before {
-        content: '☰';
-        width: 28px;
-        height: 30px;
-        line-height: 1.8;
-        display: block;
-        text-align: center;
-
-        ._nav_is_open & {
-            content: '☓';
-        }
-    }
+  }
 }
 
 .goTop {
-    position: fixed;
-    padding: 0;
-    bottom: 10px;
-    right: 10px;
-    display: block;
-    width: 0;
-    height: 0;
-    border: 20px solid transparent;
-    border-bottom-color: $color-default-light;
-    background: transparent;
-    text-align: center;
-    @include box-shadow(none);
-    z-index: 0;
-    font-size: 0;
+  display: block;
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  z-index: 0;
+  border: 20px solid transparent;
+  border-bottom-color: $color-default-light;
+  background: transparent;
+  padding: 0;
+  width: 0;
+  height: 0;
+  text-align: center;
+  font-size: 0;
+  @include box-shadow(none);
 }
