@@ -1,30 +1,30 @@
 
 .mainHeader {
+  @include transform('translate(-50%, -50%)');
   position: fixed;
   top: 50%;
   left: 50%;
-  @include transform('translate(-50%, -50%)');
+  z-index: 10;
   text-align: center;
   color: $color-default-light;
-  z-index: 10;
 }
 
 .mainTitle {
-  font-family: 'robotoSlab', georgia, serif;
-  font-weight: normal;
-  margin: 0 0 10px;
   @include remIt('font-size', 70);
   @include remIt('line-height', 75);
   @include text-shadow(1px 1px 3px rgba(0, 0, 0, .3));
+  margin: 0 0 10px;
+  font-family: 'robotoSlab', georgia, serif;
+  font-weight: normal;
 }
+
 .mainSubtitle {
+  @include text-shadow(1px 1px 3px rgba(0, 0, 0, .3));
   margin: 0;
   font-weight: normal;
-  @include text-shadow(1px 1px 3px rgba(0, 0, 0, .3));
 }
 
-
-.mainContent{
+.mainContent {
   margin: 65px 0 50px;
 }
 
@@ -32,30 +32,28 @@
 .js .mainSection {
   display: none;
 }
+
 .js .mainSection._is_current {
   display: block;
 }
 
-.mainSection {
-  //padding: 10px 40px;
-}
-
 .mainSection_body {
-  padding: 10px 40px;
   background: $color-default-light;
+  padding: 10px 40px;
 }
 
 .mainSection_header {
-  padding: 10px 40px;
   background: $color-main-lighter;
+  padding: 10px 40px;
 }
 
 .mainSection_title {
-  font-weight: normal;
-  color: $color-main;
   @include remIt('font-size', 26);
   @include remIt('line-height', 30);
+  color: $color-main;
+  font-weight: normal;
 }
+
 .mainSection_subtitle {
   margin-top: 30px;
   margin-bottom: 20px;

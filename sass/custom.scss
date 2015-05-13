@@ -3,6 +3,7 @@
 /*!
 ========== INIT
 */
+// css reset (normalize) and third party scss required for the project
 @import 'vendor/_normalize';
 
 
@@ -16,12 +17,12 @@
 /*!
 ========== COMPONENTS
 */
-// reusable/framework components
+// reusable abstract components
 @import 'components/__components';
 
 
 /*!
 ========== SPECIFICS
 */
-// more specific declarations, may be built on a per page basis
+// more specific declarations, built on a per page/module basis
 @import 'specifics/__specifics';
