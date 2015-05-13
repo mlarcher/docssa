@@ -672,7 +672,7 @@ usage examples:
       border-left: 0; } }
 @media (max-width: 899px) {
   .mainNav {
-    position: absolute;
+    position: fixed;
     top: 0;
     bottom: 0;
     left: -200px;
@@ -712,7 +712,7 @@ usage examples:
       text-indent: 0;
       line-height: 1.8;
       content: '\2630'; }
-    .mainNav_opener._is_open:before {
+    .mainNav._is_open .mainNav_opener:before {
       content: '\2613'; } }
 @media (min-width: 900px) {
   .mainNav {

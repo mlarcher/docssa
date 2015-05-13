@@ -2,14 +2,14 @@ $nav-breakpoint: 900;
 $left-nav-width: 200;
 
 // bind the responsive tabs mixin to the .mainMenu class
-@include responsiveTabs('.mainMenu');
+@include responsiveTabs('.mainMenu', $breakpoint: 900);
 
 // handle menu position and visibility
 @media (max-width: #{($nav-breakpoint - 1)}px) {
   .mainNav {
     @include transition('left .2s linear');
     @include box-shadow(0 3px 3px 3px rgba(0, 0, 0, .3));
-    position: absolute;
+    position: fixed;
     top: 0;
     bottom: 0;
     left: -#{$left-nav-width}px;
@@ -47,7 +47,7 @@ $left-nav-width: 200;
       content: '\2630';
     }
 
-    &._is_open:before {
+    .mainNav._is_open &:before {
       content: '\2613';
     }
   }

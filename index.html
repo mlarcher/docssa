@@ -55,6 +55,9 @@
                         <a class="mainMenu_link" href="#namingConventions">Naming conventions</a>
                     </li>
                     <li class="mainMenu_item">
+                        <a class="mainMenu_link" href="#responsive">Responsive</a>
+                    </li>
+                    <li class="mainMenu_item">
                         <a class="mainMenu_link" href="#gettingStarted">Getting started</a>
                     </li>
                     <li class="mainMenu_item mainMenu_item--highlighted">
@@ -898,6 +901,9 @@ $color-alt2:            #637c84;
             &lt;a class="mainMenu_link" href="#namingConventions"&gt;Naming conventions&lt;/a&gt;
         &lt;/li&gt;
         &lt;li class="mainMenu_item"&gt;
+            &lt;a class="mainMenu_link" href="#responsive"&gt;Responsive&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li class="mainMenu_item"&gt;
             &lt;a class="mainMenu_link" href="#gettingStarted"&gt;Getting started&lt;/a&gt;
         &lt;/li&gt;
         &lt;li class="mainMenu_item mainMenu_item--highlighted"&gt;
@@ -991,6 +997,263 @@ $color-alt2:            #637c84;
                     </div>
                 </section>
 
+                <hr class="articleSeparator">
+
+                <section class="mainSection" id="responsive">
+
+                    <header class="mainSection_header">
+                        <h1 class="mainSection_title">Responsive</h1>
+                    </header>
+
+                    <div class="mainSection_body">
+                        <h2 class="mainSection_subtitle">Introduction</h2>
+                        <p>Now that you're all familiar with the core concepts and basic implementation of DoCSSa, it's time
+                        to take it to the next level and see how we can handle Responsive Web Design (RWD).<br>
+                        As you may have noticed, the main menu on the page you are currently looking at changes depending
+                        on the width of the viewport. We'll use it as an example to show you how to handle RWD.</p>
+                        <p class="note">As always, there isn't a one size fit all solution, and your mileage may vary, but we thought
+                        it would be nice to provide at least one implementation of a responsive widget.</p>
+
+                        <h2 class="mainSection_subtitle">Dispatching the roles</h2>
+                        <p>In order to have responsive tabs on this page, we had to decide what was going to be part of a
+                        component, and what would be outside. We chose to create a responsive component that would
+                        display horizontally from 900px and up, and vertically below that breakpoint.<br>
+                        As a component should be as reusable as possible, we made that value a parameter of the component
+                        mixin.<br>
+                        We also wanted the vertical menu  to be hidden by default, and only revealed when clicking on a burger
+                        icon. This is a specific implementation : all responsive tabs don't need to hide the menu when they
+                        are in vertical state. As such, we handled the hiding and revealing of the menu in the "specifics" part
+                        and kept the component unaware of those specifics.</p>
+
+                        <h3 class="mainSection_smallTitle" id="responsiveComponent">Responsive component</h3>
+                        <p>Here is what our sample component looks like :</p>
+
+                        <div class="sample">
+                            <ul class="sampleHeader">
+                                <li class="sampleHeader_item _is_current">
+                                    <span class="sampleHeader_link">// components/responsiveTabs/_responsiveTabs.scss</span>
+                                </li>
+                            </ul>
+
+<pre class="codeSample">
+// _____ STRUCTURE _____ //
+
+// define the component structure
+@mixin responsiveTabs($selector, $breakpoint: 900, $defaultSkin: true) {
+
+  // handle tabs vertically until breakpoint
+  @media (max-width: #{($breakpoint - 1)}px) {
+
+    #{$selector} {
+      padding: 0;
+    }
+
+    #{$selector}_link {
+      display: block;
+      padding: 20px;
+    }
+  }
+
+  // handle tabs horizontally until breakpoint
+  @media (min-width: #{$breakpoint}px) {
+
+    #{$selector} {
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+      font-size: 0;
+    }
+
+    #{$selector}_item {
+      @include remIt(font-size, 18);
+      display: inline-block;
+      vertical-align: bottom;
+      line-height: 2.5;
+    }
+
+    #{$selector}_link {
+      padding: 0 10px;
+    }
+  }
+
+  @if $defaultSkin != false {
+    @include responsiveTabs-skin-default($selector, $breakpoint);
+  }
+
+}
+
+// _____ SKIN _____ //
+
+// provide a default skin for the component
+// only visual changes that don't affect the component layout should be in here
+@mixin responsiveTabs-skin-default($selector, $breakpoint) {
+
+  #{$selector} {
+    list-style: none;
+  }
+
+  #{$selector}_item {
+    border-bottom: 1px solid $color-main-lighter;
+  }
+
+  #{$selector}_item--highlighted {
+    background: $color-alt-light;
+  }
+
+  #{$selector}_link {
+    @include basicClickable(true);
+    color: $color-default-dark;
+    font-family: 'titillium', Arial, 'sans-serif';
+
+    #{$selector}_item._is_current &amp; {
+      color: $color-main-light;
+    }
+
+    &amp;:hover {
+      background: $color-alt;
+    }
+  }
+
+  // set specific visual adjustments for horizontal display
+  @media (min-width: #{$breakpoint}px) {
+
+    #{$selector}_item {
+      &amp;._is_current {
+        border-bottom: 3px solid $color-main-light;
+      }
+    }
+
+    #{$selector}_link {
+      border-left: 1px solid $color-main;
+
+      #{$selector}_item:first-child &amp; {
+        border-left: 0;
+      }
+    }
+  }
+
+}
+
+</pre>
+                        </div>
+                        <p>As usual, the component is split in two parts: the structure and the skin. Its implementation
+                            is located in specifics/_nav.scss:
+<pre class="codeSample">
+@include responsiveTabs('.mainMenu', $breakpoint: 900);
+</pre>
+                        <p>As an experiment, you can add a "$defaultSkin: false" parameter to the call to see
+                        how the component looks like with no skin applied. You'll see that it behaves the same, but
+                            doesn't look as good.
+                        </p>
+                        <p>On the structure part, things are quite simple: we declare a totally different set of
+                        rules for below or above the breakpoint. It is not mandatory, but can help avoiding regression
+                        in the long run.</p>
+                        <p>On the skin part, we tried to keep most rules generic. We wanted both layout to have the
+                            same look&amp;feel. Still, some visual enhancements only made sense in the horizontal
+                        display, so we made sure they got scoped to the correct media query.</p>
+
+                        <h3 class="mainSection_smallTitle" id="responsiveImplementation">Responsive implementation</h3>
+
+                        <p>Once we have a responsive component, all we have to do is give it some boundaries.<br>
+                        In the "specifics" section we call the component and pass it a breakpoint. We also set some
+                            rules to the "mainNav" wrapper according to this breakpoint: the position
+                        of the tabs in the page, and the visual enhancement that go with it. For example, we set a
+                        bottom drop shadow for the horizontal state of the menu, and a right drop shadow for its
+                        vertical state. We also make sure the burger menu toggler is hidden when we don't need it,
+                            and the vertical menu respects a specific width.</p>
+
+                        <div class="sample">
+                            <ul class="sampleHeader">
+                                <li class="sampleHeader_item _is_current">
+                                    <span
+                                        class="sampleHeader_link">// specifics/_nav.scss</span>
+                                </li>
+                            </ul>
+
+<pre class="codeSample">
+$nav-breakpoint: 900;
+$left-nav-width: 200;
+
+// bind the responsive tabs mixin to the .mainMenu class
+@include responsiveTabs('.mainMenu', $breakpoint: 900);
+
+// handle menu position and visibility
+@media (max-width: #{($nav-breakpoint - 1)}px) {
+  .mainNav {
+    @include transition('left .2s linear');
+    @include box-shadow(0 3px 3px 3px rgba(0, 0, 0, .3));
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -#{$left-nav-width}px;
+    z-index: 999;
+    background: $color-default-light;
+    width: #{$left-nav-width}px;
+
+    &amp;._is_open {
+      left: 0;
+    }
+  }
+
+  .mainNav_opener {
+    display: block;
+    position: absolute;
+    top: 20px;
+    left: #{$left-nav-width + 20}px;
+    z-index: 998;
+    border: 1px solid $color-default-light;
+    background: $color-main;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    text-indent: -999px;
+    color: $color-default-light;
+
+    &amp;:before {
+      display: block;
+      width: 28px;
+      height: 30px;
+      text-align: center;
+      text-indent: 0;
+      line-height: 1.8;
+      content: '\2630';
+    }
+
+    .mainNav._is_open &amp;:before {
+      content: '\2613';
+    }
+  }
+}
+
+@media (min-width: #{$nav-breakpoint}px) {
+
+  .mainNav {
+    @include box-shadow('0 3px 5px rgba(0,0,0,.3)');
+    @include box-opacity(.95);
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: auto;
+    left: 0;
+    background: $color-default-light;
+    text-align: right;
+  }
+
+  .mainNav_opener {
+    display: none;
+  }
+
+}
+</pre>
+                        </div>
+
+                        <p>All there is left to do is use a bit of javascript to drive the state of the mainNav wrapper,
+                        and voila, a responsive menu we have!</p>
+
+                    </div>
+
+                </section>
 
                 <hr class="articleSeparator">
 

@@ -95,7 +95,6 @@
     // Nav toggle
     navOpener.click(function () {
       mainNav.toggleClass('_is_open');
-      navOpener.toggleClass('_is_open');
     });
 
 
