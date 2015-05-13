@@ -31,7 +31,7 @@ linters:
     severity: error
 
   DeclarationOrder:
-    enabled: false
+    enabled: true
     severity: warning
 
   DuplicateProperty:
