@@ -1,0 +1,97 @@
+// _____ STRUCTURE _____ //
+
+// define the component structure
+@mixin responsiveTabs($selector, $breakpoint: 900, $defaultSkin: true) {
+
+  // handle tabs vertically until breakpoint
+  @media (max-width: #{($breakpoint - 1)}px) {
+
+    #{$selector} {
+      padding: 0;
+    }
+
+    #{$selector}_link {
+      display: block;
+      padding: 20px;
+    }
+  }
+
+  // handle tabs horizontally until breakpoint
+  @media (min-width: #{$breakpoint}px) {
+
+    #{$selector} {
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+      font-size: 0;
+    }
+
+    #{$selector}_item {
+      @include remIt(font-size, 18);
+      display: inline-block;
+      vertical-align: bottom;
+      line-height: 2.5;
+    }
+
+    #{$selector}_link {
+      padding: 0 10px;
+    }
+  }
+
+  @if $defaultSkin != false {
+    @include responsiveTabs-skin-default($selector, $breakpoint);
+  }
+
+}
+
+// _____ SKIN _____ //
+
+// provide a default skin for the component
+// only visual changes that don't affect the component layout should be in here
+@mixin responsiveTabs-skin-default($selector, $breakpoint) {
+
+  #{$selector} {
+    list-style: none;
+  }
+
+  #{$selector}_item {
+    border-bottom: 1px solid $color-main-lighter;
+  }
+
+  #{$selector}_item--highlighted {
+    background: $color-alt-light;
+  }
+
+  #{$selector}_link {
+    @include basicClickable(true);
+    color: $color-default-dark;
+    font-family: 'titillium', Arial, 'sans-serif';
+
+    #{$selector}_item._is_current & {
+      color: $color-main-light;
+    }
+
+    &:hover {
+      background: $color-alt;
+    }
+  }
+
+  // set specific visual adjustments for horizontal display
+  @media (min-width: #{$breakpoint}px) {
+
+    #{$selector}_item {
+      &._is_current {
+        border-bottom: 3px solid $color-main-light;
+      }
+    }
+
+    #{$selector}_link {
+      border-left: 1px solid $color-main;
+
+      #{$selector}_item:first-child & {
+        border-left: 0;
+      }
+    }
+  }
+
+}

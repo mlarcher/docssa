@@ -1,0 +1,243 @@
+# Default application configuration that all configurations inherit from.
+
+scss_files: "**/*.scss"
+
+linters:
+  BangFormat:
+    enabled: true
+    space_before_bang: true
+    space_after_bang: false
+    severity: error
+
+  BorderZero:
+    enabled: true
+    convention: zero # or `none`
+    severity: error
+
+  ColorKeyword:
+    enabled: true
+    severity: warning
+
+  ColorVariable:
+    enabled: true
+    severity: warning
+
+  Comment:
+    enabled: false
+    severity: warning
+
+  DebugStatement:
+    enabled: true
+    severity: error
+
+  DeclarationOrder:
+    enabled: true
+    severity: warning
+
+  DuplicateProperty:
+    enabled: true
+    severity: error
+
+  ElsePlacement:
+    enabled: true
+    style: same_line # or 'new_line'
+    severity: error
+
+  EmptyLineBetweenBlocks:
+    enabled: true
+    ignore_single_line_blocks: true
+    severity: error
+
+  EmptyRule:
+    enabled: true
+    severity: warning
+
+  FinalNewline:
+    enabled: true
+    present: true
+    severity: error
+
+  HexLength:
+    enabled: false
+    style: short # or 'long'
+    severity: warning
+
+  HexNotation:
+    enabled: true
+    style: lowercase # or 'uppercase'
+    severity: error
+
+  HexValidation:
+    enabled: true
+    severity: error
+
+  IdSelector:
+    enabled: true
+    severity: error
+
+  ImportantRule:
+    enabled: true
+    severity: warning
+
+  ImportPath:
+    enabled: false
+    leading_underscore: true
+    filename_extension: false
+    severity: warning
+
+  Indentation:
+    enabled: true
+    allow_non_nested_indentation: false
+    character: space # or 'tab'
+    width: 2
+    severity: error
+
+  LeadingZero:
+    enabled: true
+    style: exclude_zero # or 'include_zero'
+    severity: error
+
+  MergeableSelector:
+    enabled: true
+    force_nesting: false
+    severity: warning
+
+  NameFormat:
+    enabled: false
+    allow_leading_underscore: true
+    convention: hyphenated_lowercase # or 'BEM', or a regex pattern
+    severity: error
+
+  NestingDepth:
+    enabled: true
+    max_depth: 3
+    severity: error
+
+  PlaceholderInExtend:
+    enabled: true
+    severity: warning
+
+  PropertyCount:
+    enabled: false
+    include_nested: false
+    max_properties: 10
+    severity: warning
+
+  PropertySortOrder:
+    enabled: true
+    order: concentric
+    ignore_unspecified: false
+    separate_groups: false
+    severity: warning
+
+  PropertySpelling:
+    enabled: true
+    extra_properties: []
+    severity: error
+
+  QualifyingElement:
+    enabled: true
+    allow_element_with_attribute: false
+    allow_element_with_class: false
+    allow_element_with_id: false
+    severity: warning
+
+  SelectorDepth:
+    enabled: true
+    max_depth: 3
+    severity: error
+
+  SelectorFormat:
+    enabled: true
+    convention: ^([a-zA-Z]([a-zA-Z0-9])+(_[a-zA-Z]+)*(--[a-zA-Z])*)|(_is_([a-zA-Z0-9]){2,})$ #hyphenated_lowercase # or 'BEM', or 'hyphenated_BEM', or 'snake_case', or 'camel_case', or a regex pattern
+    severity: warning
+
+  Shorthand:
+    enabled: true
+    severity: warning
+
+  SingleLinePerProperty:
+    enabled: true
+    allow_single_line_rule_sets: true
+    severity: warning
+
+  SingleLinePerSelector:
+    enabled: true
+    severity: error
+
+  SpaceAfterComma:
+    enabled: true
+    severity: error
+
+  SpaceAfterPropertyColon:
+    enabled: true
+    style: one_space # or 'no_space', or 'at_least_one_space', or 'aligned'
+    severity: error
+
+  SpaceAfterPropertyName:
+    enabled: true
+    severity: error
+
+  SpaceBeforeBrace:
+    enabled: true
+    style: space # or 'new_line'
+    allow_single_line_padding: false
+    severity: error
+
+  SpaceBetweenParens:
+    enabled: true
+    spaces: 0
+    severity: error
+
+  StringQuotes:
+    enabled: true
+    style: single_quotes # or double_quotes
+    severity: warning
+
+  TrailingSemicolon:
+    enabled: true
+    severity: error
+
+  TrailingZero:
+    enabled: false
+    severity: warning
+
+  UnnecessaryMantissa:
+    enabled: true
+    severity: warning
+
+  UnnecessaryParentReference:
+    enabled: true
+    severity: warning
+
+  UrlFormat:
+    enabled: true
+    severity: warning
+
+  UrlQuotes:
+    enabled: true
+    severity: warning
+
+  VariableForProperty:
+    enabled: true
+    properties: []
+    severity: warning
+
+  VendorPrefixes:
+    enabled: false
+    severity: warning
+
+  VendorPrefix:
+    enabled: false
+    identifier_list: base
+    additional_identifiers: []
+    excluded_identifiers: []
+    severity: warning
+
+  ZeroUnit:
+    enabled: true
+    severity: warning
+
+  Compass::*:
+    enabled: false
+    severity: warning

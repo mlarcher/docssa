@@ -1,48 +1,25 @@
-
-@import 'sass/base/utils/__utils';
-
 // _____ STRUCTURE _____ //
 
-// define component placeholders for component contents (no selector here)
-@include importOnce('tabs') {
-  @include _add(tabs) {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    font-size: 0;
-    display: inline-block;
-  }
-
-  @include _add(tabs_item) {
-    @include remIt(font-size, 18);
-    padding: 10px 0;
-    display: inline-block;
-    vertical-align: bottom;
-  }
-
-  @include _add(tabs_link) {
-    padding: 0 10px;
-  }
-
-}
-
-
-// map the placeholders content to some selectors through a mixin
+// define the component structure
 @mixin tabs($selector, $defaultSkin: true) {
 
   #{$selector} {
-    @extend %tabs;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    font-size: 0;
   }
 
   #{$selector}_item {
-    @extend %tabs_item;
+    @include remIt(font-size, 18);
+    display: inline-block;
+    vertical-align: bottom;
+    line-height: 2.5;
   }
 
   #{$selector}_link {
-    @extend %tabs_link;
+    padding: 0 10px;
   }
-
-
 
   @if $defaultSkin != false {
     @include tabs-skin-default($selector);
@@ -51,88 +28,43 @@
 }
 
 // _____ SKIN _____ //
-@import 'sass/base/project/_variables';
-@import 'sass/base/project/_helpers';
-
-
-// define component placeholders for component skin (no selector here)
-@include importOnce('tabs-skin-default') {
-
-  %tabs-skin-default__item {
-    border-bottom: solid 3px transparent;
-  }
-
-  %tabs-skin-default__item_current {
-    border-bottom: solid 3px $color-main;
-  }
-
-  %tabs-skin-default__item_hover {
-    border-bottom: solid 3px $color-main-light;
-  }
-
-
-  %tabs-skin-default__link {
-    border-left: solid 1px $color-main;
-    text-decoration: none;
-    color: $color-main;
-  }
-
-  %tabs-skin-default__link_first {
-    border-left: inherit;
-  }
-
-  %tabs-skin-default__item_hover_link {
-    color: $color-main-light;
-  }
-
-  %tabs-skin-default__item_current_link {
-    color: $color-main-light;
-  }
-
-  %tabs-skin-default__item_highlighted {
-    color: $color-default-dark;
-  }
-
-}
 
 // provide a default skin for the component
 // only visual changes that don't affect the component layout should be in here
 @mixin tabs-skin-default($selector) {
 
-  #{$selector}_item {
+  #{$selector} {
+    list-style: none;
+  }
 
-    @extend %tabs-skin-default__item;
+  #{$selector}_item {
+    border-bottom: 1px solid $color-main-lighter;
 
     &._is_current {
-      @extend %tabs-skin-default__item_current;
+      border-bottom: 3px solid $color-main-light;
     }
+  }
 
-    &:hover {
-      @extend %tabs-skin-default__item_hover;
-    }
-
-
+  #{$selector}_item--highlighted {
+    background: $color-alt-light;
   }
 
   #{$selector}_link {
-
-    @extend %tabs-skin-default__link;
+    @include basicClickable(true);
+    border-left: 1px solid $color-main;
+    color: $color-default-dark;
+    font-family: 'titillium', Arial, 'sans-serif';
 
     #{$selector}_item:first-child & {
-      @extend %tabs-skin-default__link_first;
-    }
-
-    &:hover {
-      @extend %tabs-skin-default__item_hover_link;
-    }
-
-    #{$selector}_item#{'--highlighted'} & {
-      @extend %tabs-skin-default__item_highlighted;
+      border-left: 0;
     }
 
     #{$selector}_item._is_current & {
-      @extend %tabs-skin-default__item_current_link;
+      color: $color-main-light;
+    }
+
+    &:hover {
+      background: $color-alt;
     }
   }
-
 }

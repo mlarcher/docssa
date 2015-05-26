@@ -1,8 +1,7 @@
-@charset "UTF-8";
 /*!
 ========== INIT
 */
-/*! normalize.css v3.0.0 | MIT License | git.io/normalize */
+/*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 /**
  * 1. Set default font family to sans-serif.
  * 2. Prevent iOS text size adjust after orientation change, without disabling
@@ -25,7 +24,9 @@ body {
 /* HTML5 display definitions
    ========================================================================== */
 /**
- * Correct `block` display not defined in IE 8/9.
+ * Correct `block` display not defined for any HTML5 element in IE 8/9.
+ * Correct `block` display not defined for `details` or `summary` in IE 10/11 and Firefox.
+ * Correct `block` display not defined for `main` in IE 11.
  */
 article,
 aside,
@@ -63,8 +64,8 @@ audio:not([controls]) {
   height: 0; }
 
 /**
- * Address `[hidden]` styling not present in IE 8/9.
- * Hide the `template` element in IE, Safari, and Firefox < 22.
+ * Address `[hidden]` styling not present in IE 8/9/10.
+ * Hide the `template` element in IE 8/9/11, Safari, and Firefox < 22.
  */
 [hidden],
 template {
@@ -88,27 +89,27 @@ a:hover {
 /* Text-level semantics
    ========================================================================== */
 /**
- * Address styling not present in IE 8/9, Safari 5, and Chrome.
+ * Address styling not present in IE 8/9/10/11, Safari, and Chrome.
  */
 abbr[title] {
   border-bottom: 1px dotted; }
 
 /**
- * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
+ * Address style set to `bolder` in Firefox 4+, Safari, and Chrome.
  */
 b,
 strong {
   font-weight: bold; }
 
 /**
- * Address styling not present in Safari 5 and Chrome.
+ * Address styling not present in Safari and Chrome.
  */
 dfn {
   font-style: italic; }
 
 /**
  * Address variable `h1` font-size and margin within `section` and `article`
- * contexts in Firefox 4+, Safari 5, and Chrome.
+ * contexts in Firefox 4+, Safari, and Chrome.
  */
 h1 {
   font-size: 2em;
@@ -146,13 +147,13 @@ sub {
 /* Embedded content
    ========================================================================== */
 /**
- * Remove border when inside `a` element in IE 8/9.
+ * Remove border when inside `a` element in IE 8/9/10.
  */
 img {
   border: 0; }
 
 /**
- * Correct overflow displayed oddly in IE 9.
+ * Correct overflow not hidden in IE 9/10/11.
  */
 svg:not(:root) {
   overflow: hidden; }
@@ -160,7 +161,7 @@ svg:not(:root) {
 /* Grouping content
    ========================================================================== */
 /**
- * Address margin not present in IE 8/9 and Safari 5.
+ * Address margin not present in IE 8/9 and Safari.
  */
 figure {
   margin: 1em 40px; }
@@ -199,7 +200,7 @@ samp {
  * 1. Correct color not being inherited.
  *    Known issue: affects color of disabled elements.
  * 2. Correct font properties not being inherited.
- * 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome.
+ * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
  */
 button,
 input,
@@ -214,7 +215,7 @@ textarea {
   /* 3 */ }
 
 /**
- * Address `overflow` set to `hidden` in IE 8/9/10.
+ * Address `overflow` set to `hidden` in IE 8/9/10/11.
  */
 button {
   overflow: visible; }
@@ -222,7 +223,7 @@ button {
 /**
  * Address inconsistent `text-transform` inheritance for `button` and `select`.
  * All other form control elements do not inherit `text-transform` values.
- * Correct `button` style inheritance in Firefox, IE 8+, and Opera
+ * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
  * Correct `select` style inheritance in Firefox.
  */
 button,
@@ -291,8 +292,8 @@ input[type="number"]::-webkit-outer-spin-button {
   height: auto; }
 
 /**
- * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
- * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
+ * 1. Address `appearance` set to `searchfield` in Safari and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari and Chrome
  *    (include `-moz` to future-proof).
  */
 input[type="search"] {
@@ -321,7 +322,7 @@ fieldset {
   padding: 0.35em 0.625em 0.75em; }
 
 /**
- * 1. Correct `color` not being inherited in IE 8/9.
+ * 1. Correct `color` not being inherited in IE 8/9/10/11.
  * 2. Remove padding so people aren't caught out if they zero out fieldsets.
  */
 legend {
@@ -331,7 +332,7 @@ legend {
   /* 2 */ }
 
 /**
- * Remove default vertical scrollbar in IE 8/9.
+ * Remove default vertical scrollbar in IE 8/9/10/11.
  */
 textarea {
   overflow: auto; }
@@ -363,32 +364,6 @@ th {
 /* _____ SYSTEM TOOLS _____ */
 /* _____ MIXINS _____ */
 /* _____ UNIVERSAL HELPERS _____ */
-.articleSeparator {
-  display: none !important;
-  visibility: hidden; }
-@media (min-width: 900px) {
-  .c, .d {
-    *zoom: 1; }
-    .c:before, .d:before, .c:after, .d:after {
-      content: " ";
-      display: table; }
-    .c:after, .d:after {
-      clear: both; } }
-@media (min-width: 1200px) {
-  .e {
-    *zoom: 1; }
-    .e:before, .e:after {
-      content: " ";
-      display: table; }
-    .e:after {
-      clear: both; } }
-.mainContainer, .repoWrapper, .a, .b, .e, .sampleHeader {
-  *zoom: 1; }
-  .mainContainer:before, .repoWrapper:before, .a:before, .b:before, .e:before, .sampleHeader:before, .mainContainer:after, .repoWrapper:after, .a:after, .b:after, .e:after, .sampleHeader:after {
-    content: " ";
-    display: table; }
-  .mainContainer:after, .repoWrapper:after, .a:after, .b:after, .e:after, .sampleHeader:after {
-    clear: both; }
 /* ===== PROJECT ===== */
 /* _____ VARIABLES _____ */
 /* _____ FONTS _____ */
@@ -425,34 +400,34 @@ th {
   box-sizing: border-box; }
 
 html {
-  font-size: 100%;
   width: 100%;
-  height: 100%; }
+  height: 100%;
+  font-size: 100%; }
 
 body {
   font-size: 16px;
-  line-height: 1.4;
   background: #fff;
-  font-family: "titillium", Arial, "sans-serif";
   width: 100%;
+  min-height: 100%;
+  line-height: 1.4;
   color: #000;
-  min-height: 100%; }
+  font-family: Arial, "sans-serif"; }
   .cssremunit body {
     font-size: 1rem; }
   .no-cssgradients body {
-    background-color: #50aa99; }
+    background-color: #ff8e67; }
   .cssgradients body {
-    background: -moz-radial-gradient(center, ellipse cover, #5cbcaa 0%, #449888 100%) fixed;
+    background: -moz-radial-gradient(center, ellipse cover, #ff9e7e 0%, #ff7f50 100%) fixed;
     /* FF3.6+ */
-    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #5cbcaa), color-stop(100%, #449888)) fixed;
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #ff9e7e), color-stop(100%, #ff7f50)) fixed;
     /* Chrome,Safari4+ */
-    background: -webkit-radial-gradient(center, ellipse cover, #5cbcaa 0%, #449888 100%) fixed;
+    background: -webkit-radial-gradient(center, ellipse cover, #ff9e7e 0%, #ff7f50 100%) fixed;
     /* Chrome10+,Safari5.1+ */
-    background: -o-radial-gradient(center, ellipse cover, #5cbcaa 0%, #449888 100%) fixed;
+    background: -o-radial-gradient(center, ellipse cover, #ff9e7e 0%, #ff7f50 100%) fixed;
     /* Opera 12+ */
-    background: -ms-radial-gradient(center, ellipse cover, #5cbcaa 0%, #449888 100%) fixed;
+    background: -ms-radial-gradient(center, ellipse cover, #ff9e7e 0%, #ff7f50 100%) fixed;
     /* IE10+ */
-    background: radial-gradient(ellipse at center, #5cbcaa 0%, #449888 100%) fixed;
+    background: radial-gradient(ellipse at center, #ff9e7e 0%, #ff7f50 100%) fixed;
     /* W3C */ }
 
 ul {
@@ -465,180 +440,93 @@ pre {
 p {
   margin: 0 0 20px; }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'titillium', Arial, 'sans-serif'; }
+
+pre {
+  font-family: consolas, monospace; }
+
 /* _____ LAYOUT _____ */
 .mainContainer {
+  margin: 0 auto;
   width: 100%;
-  max-width: 760px;
-  margin: 0 auto; }
+  max-width: 760px; }
+  .mainContainer:before, .mainContainer:after {
+    display: table;
+    content: ' '; }
+  .mainContainer:after {
+    clear: both; }
 
-/* _____ PROJECT HELPERS _____ */
-.mainMenu_link, .sampleHeader_link, .navLink, .externalLink {
-  color: #449888;
-  text-decoration: none; }
-  .mainMenu_link:hover, .sampleHeader_link:hover, .navLink:hover, .externalLink:hover {
-    color: #5cbcaa;
-    text-decoration: underline; }
 /*!
 ========== COMPONENTS
 */
-/* ===== UTILS ===== */
-/* _____ SYSTEM TOOLS _____ */
-/* _____ MIXINS _____ */
-@media (min-width: 900px) {
-  .mainMenu {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    font-size: 0;
-    display: inline-block; } }
-@media (min-width: 900px) {
-  .mainMenu_item {
-    font-size: 18px;
-    padding: 10px 0;
-    display: inline-block;
-    vertical-align: bottom; }
-    .cssremunit .mainMenu_item {
-      font-size: 1.125rem; } }
-@media (min-width: 900px) {
-  .mainMenu_link {
-    padding: 0 10px; } }
-/* _____ VARIABLES _____ */
-/* ===== UTILS ===== */
-/* _____ SYSTEM TOOLS _____ */
-/* _____ MIXINS _____ */
-/* ===== PROJECT ===== */
-/* _____ VARIABLES _____ */
-/* ===== UTILS ===== */
-/* _____ SYSTEM TOOLS _____ */
-/* _____ MIXINS _____ */
-/* ===== PROJECT ===== */
-/* _____ VARIABLES _____ */
 /*
 usage examples:
-@include example();
-@include example('.example2');
-@include example('.example3', 'myHoverClass');
-@include example('.example4', $param2: 'someParam', $hover: 'myHover');
+@include example('.example');
 
-@include example('.example5', $defaultSkin: false);
-@include example-skin-alt('.example5');
+@include example('.example2', $defaultSkin: false);
+@include example-skin-alt('.example2');
 */
 /* **** EXAMPLE COMPONENT **** */
-.example, .example2, .example3, .example4, .example5, .example6 {
-  padding: 10px; }
-
-.example_inner, .example2_inner, .example3_inner, .example4_inner, .example5_inner, .example6_inner {
-  padding: 20px; }
-
-.example:hover, .example2:hover, .example3_myHoverClass, .example4_myHover, .example5:hover, .example6:hover {
-  padding: 30px; }
-
 /* **** EXAMPLE COMPONENT SKIN **** */
-.example, .example2, .example3, .example4, .example6 {
-  background: #eee;
-  color: blue; }
-
-.example_inner, .example2_inner, .example3_inner, .example4_inner, .example6_inner {
-  color: red; }
-
-.example:hover, .example2:hover, .example3_myHoverClass, .example4_myHover, .example6:hover {
-  border: solid 1px red; }
-
 /* **** EXAMPLE COMPONENT SKIN ALT **** */
-.example5 {
-  background: #fff;
-  color: green; }
-
-.example5_inner {
-  color: orange;
-  background: #eee; }
-
-.example5:hover {
-  border: solid 1px purple;
-  background: blue; }
-
 /*!
 ========== SPECIFICS
 */
 /* _____ SPECIFICS _____ */
-.navOpener {
-  display: block;
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  padding: 0;
-  width: 30px;
-  height: 30px;
-  color: white;
-  background: #449888;
-  border: 1px solid white;
-  z-index: 998; }
-  .boxshadow .navOpener {
-    -webkit-box-shadow: none;
-    box-shadow: none; }
-  .csstransitions .navOpener {
-    -webkit-transition: left .2s linear;
-    -moz-transition: left .2s linear;
-    -o-transition: left .2s linear;
-    transition: left .2s linear; }
-  ._nav_is_open .navOpener {
-    left: 246px; }
-  .navOpener:before {
-    content: '☰';
-    width: 28px;
-    height: 30px;
-    line-height: 1.8;
-    display: block;
-    text-align: center; }
-    ._nav_is_open .navOpener:before {
-      content: '☓'; }
-
 .goTop {
-  position: fixed;
-  padding: 0;
-  bottom: 10px;
-  right: 10px;
   display: block;
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  z-index: 0;
+  border: 20px solid transparent;
+  border-bottom-color: #fff;
+  background: transparent;
+  padding: 0;
   width: 0;
   height: 0;
-  border: 20px solid transparent;
-  border-bottom-color: white;
-  background: transparent;
   text-align: center;
-  z-index: 0;
   font-size: 0; }
-  .boxshadow .goTop {
-    -webkit-box-shadow: none;
-    box-shadow: none; }
 
 .mainFooter {
   position: fixed;
+  right: 0;
   bottom: 0;
   left: 0;
-  right: 0;
+  z-index: 10;
+  background: #ff7f50;
   padding: 5px;
-  text-align: center;
-  background: #449888;
-  z-index: 10; }
+  text-align: center; }
 
-.mainFooterLink {
-  color: #333333;
-  text-decoration: none; }
-  .mainFooterLink:hover {
+.mainFooter_link {
+  text-decoration: none;
+  color: #333; }
+  .mainFooter_link:hover {
     text-decoration: underline;
-    color: white; }
+    color: #fff; }
 
-.mainFooterIconLink, .repoWrapper_link {
+.mainFooter_iconLink {
   display: block;
-  width: 22px;
-  height: 22px;
   float: right;
-  margin: 2px 5px; }
+  margin: 2px 5px;
+  width: 22px;
+  height: 22px; }
 
 .repoWrapper {
+  margin: 10px auto;
   width: 362px;
-  list-style: none;
-  margin: 10px auto; }
+  list-style: none; }
+  .repoWrapper:before, .repoWrapper:after {
+    display: table;
+    content: ' '; }
+  .repoWrapper:after {
+    clear: both; }
 
 .repoWrapper_item {
   float: left; }
@@ -647,23 +535,28 @@ usage examples:
   margin-bottom: -6px; }
 
 .repoWrapper_link {
+  display: block;
+  float: right;
+  margin: 2px 5px;
   background: url("../assets/img/github.png") center no-repeat;
+  width: 22px;
+  height: 22px;
   font-size: 0; }
 
-@media (min-width: 900px) {
+@media (min-width: 600px) {
   .repoWrapper {
     position: absolute;
-    right: 10px;
     top: 3px;
+    right: 10px;
     margin: 0;
     width: auto; } }
 .mainHeader {
   position: fixed;
   top: 50%;
   left: 50%;
+  z-index: 10;
   text-align: center;
-  color: white;
-  z-index: 10; }
+  color: #fff; }
   .csstransforms .mainHeader {
     -webkit-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);
@@ -672,11 +565,11 @@ usage examples:
     transform: translate(-50%, -50%); }
 
 .mainTitle {
-  font-family: 'robotoSlab', georgia, serif;
-  font-weight: normal;
-  margin: 0 0 10px;
   font-size: 70px;
-  line-height: 75px; }
+  line-height: 75px;
+  margin: 0 0 10px;
+  font-family: 'robotoSlab', georgia, serif;
+  font-weight: normal; }
   .cssremunit .mainTitle {
     font-size: 4.375rem; }
   .cssremunit .mainTitle {
@@ -700,18 +593,18 @@ usage examples:
   display: block; }
 
 .mainSection_body {
-  padding: 10px 40px;
-  background: white; }
+  background: #fff;
+  padding: 10px 40px; }
 
 .mainSection_header {
-  padding: 10px 40px;
-  background: #a8d5cd; }
+  background: #ffdec7;
+  padding: 10px 40px; }
 
 .mainSection_title {
-  font-weight: normal;
-  color: #449888;
   font-size: 26px;
-  line-height: 30px; }
+  line-height: 30px;
+  color: #ff7f50;
+  font-weight: normal; }
   .cssremunit .mainSection_title {
     font-size: 1.625rem; }
   .cssremunit .mainSection_title {
@@ -724,75 +617,129 @@ usage examples:
 .mainSection_smallTitle {
   margin-top: 80px; }
 
-.mainNav {
-  position: absolute;
-  width: 200px;
-  top: 0;
-  bottom: 0;
-  left: -200px;
-  background: white;
-  z-index: 999; }
-  .csstransitions .mainNav {
-    -webkit-transition: left .2s linear;
-    -moz-transition: left .2s linear;
-    -o-transition: left .2s linear;
-    transition: left .2s linear; }
-  .boxshadow .mainNav {
-    -webkit-box-shadow: 0 3px 3px 3px rgba(0, 0, 0, 0.3);
-    box-shadow: 0 3px 3px 3px rgba(0, 0, 0, 0.3); }
-  ._nav_is_open .mainNav {
-    left: 0; }
-
-.mainMenu {
-  list-style: none;
-  padding: 0; }
-
-.mainMenu_item {
-  padding: 20px;
-  border-bottom: 1px solid #a8d5cd; }
-
-.mainMenu_link {
-  color: #333333; }
-  ._is_current .mainMenu_link {
-    color: #5cbcaa; }
-
-@media (min-width: 900px) {
-  .mainMenu_item {
-    border: none;
-    padding: 0;
-    line-height: 2.5; }
-    .mainMenu_item._is_current {
-      border-bottom: 3px solid #5cbcaa; }
-
-  .mainMenu_item:first-child .mainMenu_link {
-    border-left: none; }
+@media (max-width: 899px) {
+  .mainMenu {
+    padding: 0; }
 
   .mainMenu_link {
-    text-decoration: none;
-    color: #333333;
-    border-left: 1px solid #449888; }
+    display: block;
+    padding: 20px; } }
+@media (min-width: 900px) {
+  .mainMenu {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    font-size: 0; }
 
-  .navOpener {
-    display: none; }
+  .mainMenu_item {
+    font-size: 18px;
+    display: inline-block;
+    vertical-align: bottom;
+    line-height: 2.5; }
+    .cssremunit .mainMenu_item {
+      font-size: 1.125rem; }
 
+  .mainMenu_link {
+    padding: 0 10px; } }
+.mainMenu {
+  list-style: none; }
+
+.mainMenu_item {
+  border-bottom: 1px solid #ffdec7; }
+
+.mainMenu_item--highlighted {
+  background: #f8f5ec; }
+
+.mainMenu_link {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  text-decoration: none;
+  color: #333;
+  font-family: 'titillium', Arial, 'sans-serif'; }
+  .mainMenu_item._is_current .mainMenu_link {
+    color: #ff9e7e; }
+  .mainMenu_link:hover {
+    background: #f1ede4; }
+
+@media (min-width: 900px) {
+  .mainMenu_item._is_current {
+    border-bottom: 3px solid #ff9e7e; }
+
+  .mainMenu_link {
+    border-left: 1px solid #ff7f50; }
+    .mainMenu_item:first-child .mainMenu_link {
+      border-left: 0; } }
+@media (max-width: 899px) {
   .mainNav {
     position: fixed;
-    width: auto;
-    bottom: auto;
     top: 0;
-    left: 0;
-    right: 0;
-    background: white;
-    text-align: right;
+    bottom: 0;
+    left: -200px;
+    z-index: 999;
+    background: #fff;
+    width: 200px; }
+    .csstransitions .mainNav {
+      -webkit-transition: left .2s linear;
+      -moz-transition: left .2s linear;
+      -o-transition: left .2s linear;
+      transition: left .2s linear; }
+    .boxshadow .mainNav {
+      -webkit-box-shadow: 0 3px 3px 3px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 3px 3px 3px rgba(0, 0, 0, 0.3); }
+    .mainNav._is_open {
+      left: 0; }
+
+  .mainNav_opener {
+    display: block;
+    position: absolute;
+    top: 20px;
+    left: 220px;
+    z-index: 998;
+    border: 1px solid #fff;
+    background: #ff7f50;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    text-indent: -999px;
+    color: #fff; }
+    .mainNav_opener:before {
+      display: block;
+      width: 28px;
+      height: 30px;
+      text-align: center;
+      text-indent: 0;
+      line-height: 1.8;
+      content: '\2630'; }
+    .mainNav._is_open .mainNav_opener:before {
+      content: '\2613'; } }
+@media (min-width: 900px) {
+  .mainNav {
     opacity: 0.95;
-    filter: alpha(opacity=95); }
+    filter: alpha(opacity=95);
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: auto;
+    left: 0;
+    background: #fff;
+    text-align: right; }
     .boxshadow .mainNav {
       -webkit-box-shadow: 0 3px 5px rgba(0,0,0,.3);
-      box-shadow: 0 3px 5px rgba(0,0,0,.3); } }
+      box-shadow: 0 3px 5px rgba(0,0,0,.3); }
+
+  .mainNav_opener {
+    display: none; } }
 .sampleHeader {
-  list-style: none;
+  margin: 0;
   padding: 0;
-  margin: 0; }
+  list-style: none; }
+  .sampleHeader:before, .sampleHeader:after {
+    display: table;
+    content: ' '; }
+  .sampleHeader:after {
+    clear: both; }
 
 .sampleHeader_item {
   float: left;
@@ -801,69 +748,134 @@ usage examples:
     background: #f8f5ec; }
 
 .sampleHeader_link {
-  border: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+  border: 0;
   background: transparent;
-  color: #ccc;
   padding: 10px;
-  display: block; }
+  color: #ccc; }
 
 .sampleHeader_item._is_current .sampleHeader_link {
-  color: black; }
+  color: #000; }
 
 .sampleTitle {
-  background: #f1ede4;
   display: inline-block;
+  background: #f1ede4;
   padding: 5px 20px; }
 
 .codeSample {
-  background: #f8f5ec;
-  border: solid 1px #f1ede4;
-  margin-top: 0;
-  padding: 20px;
-  color: #637c84;
   font-size: 14px;
-  line-height: 1.3; }
+  margin-top: 0;
+  border: solid 1px #f1ede4;
+  background: #f8f5ec;
+  padding: 20px;
+  line-height: 1.3;
+  color: #637c84; }
   .cssremunit .codeSample {
     font-size: 0.875rem; }
   .codeSample._is_hidden {
     display: none; }
 
+.navLink {
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: none; }
+
+.externalLink {
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: none; }
+
 .firstOrderList_item {
-  list-style-type: square;
-  color: #ee746f; }
+  color: #5cbcaa;
+  list-style-type: square; }
 
 .firstOrderList_item_content {
-  color: black; }
+  color: #000; }
 
 .secondaryList_item {
-  list-style-type: square;
-  color: #ee746f; }
+  color: #5cbcaa;
+  list-style-type: square; }
 
 .secondaryList_item_content {
-  color: black; }
+  color: #000; }
+
+.articleSeparator {
+  display: none !important;
+  visibility: hidden; }
 
 .note {
-  padding: 15px;
-  border: solid 1px rgba(168, 213, 205, 0.3);
-  background: rgba(168, 213, 205, 0.2); }
+  border: solid 1px rgba(255, 222, 199, 0.3);
+  background: rgba(255, 222, 199, 0.2);
+  padding: 15px; }
 
 .exampleNote {
-  padding: 15px;
-  border: dotted 1px #ee746f;
-  margin-bottom: 15px; }
+  margin-bottom: 15px;
+  border: dotted 1px #5cbcaa;
+  padding: 15px; }
 
 .sampleTitle {
-  background: #f1ede4;
   display: inline-block;
+  background: #f1ede4;
   padding: 5px 20px; }
 
 .codeSample {
-  background: #f8f5ec;
-  border: solid 1px #f1ede4;
-  margin-top: 0;
-  padding: 20px;
-  color: #637c84;
   font-size: 14px;
-  line-height: 1.3; }
+  margin-top: 0;
+  border: solid 1px #f1ede4;
+  background: #f8f5ec;
+  padding: 20px;
+  line-height: 1.3;
+  color: #637c84; }
   .cssremunit .codeSample {
     font-size: 0.875rem; }
+
+.example {
+  padding: 10px; }
+
+.example_inner {
+  padding: 20px; }
+
+.example:hover {
+  padding: 30px; }
+
+.example {
+  background: #eee;
+  color: blue; }
+
+.example_inner {
+  color: red; }
+
+.example:hover {
+  border: solid 1px red; }
+
+.example2 {
+  padding: 10px; }
+
+.example2_inner {
+  padding: 20px; }
+
+.example2:hover {
+  padding: 30px; }
+
+.example2 {
+  background: #fff;
+  color: green; }
+
+.example2_inner {
+  background: #eee;
+  color: orange; }
+
+.example2:hover {
+  border: solid 1px purple;
+  background: blue; }
+
+/*# sourceMappingURL=custom.css.map */

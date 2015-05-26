@@ -1,0 +1,69 @@
+{
+  "rules": {
+
+    //EcmaScript rules
+    "strict": [2, "global"], //IMPORTANT controls location of Use Strict Directives. But not mandatory because it's managed by browserify
+    "no-console":2, //IMPORTANT disallow use of console
+    "no-unused-vars":0,//WARNING disallow declaration of variables that are not used in the code
+    "no-reserved-keys": 2,//IMPORTANT - disallow reserved words being used as object literal keys (off by default)
+    "no-undef":2,//WARNING disallow use of undeclared variables unless mentioned in a /*global */ block
+    "camelcase":1,//WARNING when you do not put camelcase on your code
+    "no-multi-spaces":1,//WARNING disallow use of multiple spaces
+    "valid-jsdoc":1,//WARNING Ensure JSDoc comments are valid
+    "no-underscore-dangle": 0, //WARNING disallow dangling underscores in identifiers
+    "no-extra-parens": 0,//WARNING disallow unnecessary parentheses
+    "quotes":0,//NOT specify whether double or single quotes should be used
+    "comma-spacing":0, //NOT enforce spacing before and after comma
+    "space-infix-ops":0, //NOT  require spaces around operators
+    "key-spacing":0, //NOT enforces spacing between keys and values in object literal properties
+    "eol-last":0, //NOT enforce newline at the end of file, with no multiple empty lines
+    "no-use-before-define": 0,
+    "consistent-return": 0,
+    "no-shadow": 1,
+    "no-unreachable": 1
+
+  },
+  "globals": {
+    "jasmine": true,
+    "describe": true,
+    "xdescribe": true,
+    "it": true,
+    "xit": true,
+    "inject": true,
+    "expect": true,
+    "beforeEach": true,
+    "afterEach": true,
+    "spyOn": true
+  },
+  "env":{
+    "node": true, //node environment to authorize module and require
+    "browser": true //browser environment to authorize document and window keywords
+  },
+  "plugins": [
+
+  ],
+  "ecmaFeatures": {
+    "arrowFunctions": true, // enable arrow functions
+    "binaryLiterals": true, // enable binary literals
+    "blockBindings": true, // enable let and const (aka block bindings)
+    "classes": true, // enable classes
+    "defaultParams": true, // enable default function parameters
+    "destructuring": true, // enable destructuring
+    "forOf": true, // enable for-of loops
+    "generators": true, // enable generators
+    "modules": false, // enable modules and global strict mode
+    "objectLiteralComputedProperties": true, // enable computed object literal property names
+    "objectLiteralDuplicateProperties": false, // enable duplicate object literal properties in strict mode
+    "objectLiteralShorthandMethods": true, // enable object literal shorthand methods
+    "objectLiteralShorthandProperties": true, // enable object literal shorthand properties
+    "octalLiterals": true, // enable octal literals
+    "regexUFlag": false, // enable the regular expression u flag
+    "regexYFlag": false, // enable the regular expression y flag
+    "spread": true, // enable the spread operator
+    "superInFunctions": false, // enable super references inside of functions
+    "templateStrings": true, // enable template strings
+    "unicodeCodePointEscapes": true, // enable code point escapes
+    "globalReturn": false // allow return statements in the global scope
+  }
+
+}

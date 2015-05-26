@@ -1,4 +1,3 @@
-
 @include importOnce('project-globals') {
 
   /* _____ GLOBAL DEFAULTS _____ */
@@ -12,36 +11,20 @@
   }
 
   html {
-    font-size: 100%;
     width: 100%;
     height: 100%;
+    font-size: 100%;
   }
 
   body {
     @include remIt(font-size, 16);
-    line-height: 1.4;
-    background: #fff;
-    font-family: "titillium", Arial, "sans-serif";
-    width: 100%;
-    color: #000;
-    min-height: 100%;
     @include radial-gradient($color-main-light, $color-main);
-  }
-
-  h1 {
-  }
-
-  h2 {
-  }
-
-  h3 {
-  }
-
-  h4 {
-  }
-
-  a,
-  a:visited {
+    background: #fff;
+    width: 100%;
+    min-height: 100%;
+    line-height: 1.4;
+    color: #000;
+    font-family: Arial, "sans-serif";
   }
 
   ul {
@@ -57,13 +40,27 @@
     margin: 0 0 20px;
   }
 
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'titillium', Arial, 'sans-serif';
+  }
+
+  pre {
+    // monospace defaults to Courrier New on windows, which seems to badly alter the = sign, so we'll avoid it
+    font-family: consolas, monospace;
+  }
+
   /* _____ LAYOUT _____ */
 
   .mainContainer {
-    @extend %clearfix;
+    @include clearfix;
+    margin: 0 auto;
     width: 100%;
     max-width: #{$containerWidth}px;
-    margin: 0 auto;
   }
 
 }
