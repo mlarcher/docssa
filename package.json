@@ -1,6 +1,6 @@
 {
   "name": "docssa",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "A Sass based CSS architecture and methodology",
   "main": "index.html",
   "scripts": {
