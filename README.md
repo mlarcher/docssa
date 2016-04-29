@@ -3,7 +3,7 @@
 
 DoCSSa - Sass based CSS architecture and methodology
 
-See it live at [docssa.info](http://docssa.info)
+See it live at [mlarcher.github.io/docssa](http://mlarcher.github.io/docssa/)
 
 Note: even though DoCSSa's principles can be used with any version of Sass, some parts of the provided implementation
 rely on the 3.3 version (i.e. the crossmedia placeholders feature). DoCSSa is all about guidelines though, so feel free
